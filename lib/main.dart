@@ -24,8 +24,6 @@ import '/util/extensions.dart';
 void main() {
   BlocOverrides.runZoned(
     () {
-      // final IUserStorage userStorage = IUserStorage.call();
-      // final IAuthRepository authRepository = IAuthRepository.call(userStorage);
       runApp(const FlutterShop());
     },
     blocObserver: AppBlocObserver(),
@@ -46,7 +44,7 @@ class FlutterShop extends StatelessWidget {
             context.read<Auth>().token,
             context.read<Auth>().userId,
             <Product>[],
-              ),
+          ),
           update: (context, auth, previous) => Products(
             auth.token,
             auth.userId,
