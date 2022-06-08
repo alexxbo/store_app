@@ -11,7 +11,7 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
   final _formKey = GlobalKey<FormState>();
 
   bool init = false;
-  late CreateProduct product = CreateProduct.Empty();
+  late CreateProduct product = CreateProduct.empty();
 
   bool _showProgress = false;
 
@@ -48,20 +48,20 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Product'),
+        title: const Text('Edit Product'),
         actions: [
           IconButton(
             onPressed: _validateAndSave,
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
           ),
         ],
       ),
       body: _showProgress
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Form(
                 key: _formKey,
                 child: SingleChildScrollView(
@@ -69,7 +69,7 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
                     children: [
                       TextFormField(
                         initialValue: product.title,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text('Title'),
                         ),
                         textInputAction: TextInputAction.next,
@@ -81,11 +81,11 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
                       ),
                       TextFormField(
                         initialValue: product.price.toString(),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text('Price'),
                         ),
-                        keyboardType:
-                            TextInputType.numberWithOptions(decimal: true),
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
                         focusNode: _priceFocusNode,
                         textInputAction: TextInputAction.next,
                         onFieldSubmitted: (_) {
@@ -98,7 +98,7 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
                       ),
                       TextFormField(
                         initialValue: product.description,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text('Description'),
                         ),
                         textInputAction: TextInputAction.done,
@@ -109,14 +109,14 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
                             product.description = value.orEmpty(),
                         validator: (input) => input.isDescriptionValid(),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
                             width: 100,
                             height: 100,
-                            margin: EdgeInsets.only(
+                            margin: const EdgeInsets.only(
                               top: 8,
                               right: 8,
                             ),
@@ -127,14 +127,14 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
                               ),
                             ),
                             child: _imageUrlInputController.text.isEmpty
-                                ? Center(child: Text('Enter a URL'))
+                                ? const Center(child: Text('Enter a URL'))
                                 : FittedBox(
                                     child: Image.network(
                                       _imageUrlInputController.text,
                                       fit: BoxFit.cover,
                                       errorBuilder:
                                           (context, error, stackTrace) {
-                                        return Container(
+                                        return const SizedBox(
                                           width: 100,
                                           height: 100,
                                           child: Center(
@@ -147,7 +147,7 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
                           ),
                           Expanded(
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 label: Text('Image Url'),
                               ),
                               keyboardType: TextInputType.url,

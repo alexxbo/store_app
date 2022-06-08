@@ -13,6 +13,6 @@ class CreateProduct {
     required this.imageUrl,
   });
 
-  CreateProduct.Empty()
+  CreateProduct.empty()
       : this(title: '', description: '', price: 0.0, imageUrl: '');
 }

@@ -23,7 +23,7 @@ class AddProductScreen extends StatefulWidget {
 class _AddProductScreenState
     extends AddEditProductScreenState<AddProductScreen> {
   @override
-  CreateProduct initProduct() => CreateProduct.Empty();
+  CreateProduct initProduct() => CreateProduct.empty();
 
   @override
   Future<void> saveForm(CreateProduct newProduct) {

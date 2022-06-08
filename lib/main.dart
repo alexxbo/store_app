@@ -1,30 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '/theme/app_theme.dart';
-import '/screens/splash/splash_screen.dart';
-import '/screens/product_detail/product_detail_screen.dart';
-import '/screens/product_list/products_overview.dart';
-import '/screens/cart/cart_screen.dart';
-import '/screens/orders/orders_screen.dart';
-import '/screens/user_products/user_products_screen.dart';
-import '/screens/add_edit_product/edit_product_screen.dart';
-import '/screens/add_edit_product/add_product_screen.dart';
-import '/screens/auth/auth_screen.dart';
-import '/common/data/model/order_item.dart';
+import '/common/bloc/block_observer.dart';
+import '/common/data/auth.dart';
 import '/common/data/cart.dart';
+import '/common/data/model/order_item.dart';
+import '/common/data/model/product.dart';
 import '/common/data/orders.dart';
 import '/common/data/products.dart';
-import '/common/data/auth.dart';
-import '/common/data/model/product.dart';
+import '/screens/add_edit_product/add_product_screen.dart';
+import '/screens/add_edit_product/edit_product_screen.dart';
+import '/screens/auth/auth_screen.dart';
+import '/screens/cart/cart_screen.dart';
+import '/screens/orders/orders_screen.dart';
+import '/screens/product_detail/product_detail_screen.dart';
+import '/screens/product_list/products_overview.dart';
+import '/screens/splash/splash_screen.dart';
+import '/screens/user_products/user_products_screen.dart';
+import '/theme/app_theme.dart';
 import '/util/extensions.dart';
 
 void main() {
-  runApp(FlutterShop());
+  BlocOverrides.runZoned(
+    () {
+      // final IUserStorage userStorage = IUserStorage.call();
+      // final IAuthRepository authRepository = IAuthRepository.call(userStorage);
+      runApp(const FlutterShop());
+    },
+    blocObserver: AppBlocObserver(),
+  );
 }
 
 //FIXME: autologout works only on ProductsOverviewScreen
 class FlutterShop extends StatelessWidget {
+  const FlutterShop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -35,7 +46,7 @@ class FlutterShop extends StatelessWidget {
             context.read<Auth>().token,
             context.read<Auth>().userId,
             <Product>[],
-          ),
+              ),
           update: (context, auth, previous) => Products(
             auth.token,
             auth.userId,
@@ -43,13 +54,17 @@ class FlutterShop extends StatelessWidget {
           ),
         ),
         ChangeNotifierProxyProvider<Auth, Orders>(
-            create: (context) => Orders(
-                  context.read<Auth>().token,
-                  context.read<Auth>().userId,
-                  <OrderItem>[],
-                ),
-            update: (_, auth, previous) => Orders(
-                auth.token, auth.userId, previous?.orders ?? <OrderItem>[])),
+          create: (context) => Orders(
+            context.read<Auth>().token,
+            context.read<Auth>().userId,
+            <OrderItem>[],
+          ),
+          update: (_, auth, previous) => Orders(
+            auth.token,
+            auth.userId,
+            previous?.orders ?? <OrderItem>[],
+          ),
+        ),
         ChangeNotifierProvider(create: (_) => Cart()),
       ],
       child: Consumer<Auth>(
@@ -57,14 +72,14 @@ class FlutterShop extends StatelessWidget {
           title: 'Flutter Shop',
           theme: appTheme(Theme.of(context)),
           home: auth.isAuth
-              ? ProductsOverviewScreen()
+              ? const ProductsOverviewScreen()
               : FutureBuilder(
                   future: auth.tryAutoLogIn(),
                   builder: (context, snapshot) {
                     if (snapshot.isWaiting) {
-                      return SplashScreen();
+                      return const SplashScreen();
                     } else {
-                      return AuthScreen();
+                      return const AuthScreen();
                     }
                   },
                 ),
