@@ -3,13 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/data/auth.dart';
+import '/common/data/auth.dart';
 import '/util/extensions.dart';
-import 'exceptions/Email_not_found_exception.dart';
-import 'exceptions/email_exist_exception.dart';
-import 'exceptions/invalid_email_exception.dart';
-import 'exceptions/invalid_password_exception.dart';
-import 'exceptions/weak_password_exception.dart';
 
 enum AuthMode { Sign_up, Login }
 
@@ -28,8 +23,8 @@ class AuthScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 240, 243, 247).withOpacity(0.5),
-                  Color.fromARGB(255, 69, 212, 234).withOpacity(0.9),
+                  const Color.fromARGB(255, 240, 243, 247).withOpacity(0.5),
+                  const Color.fromARGB(255, 69, 212, 234).withOpacity(0.9),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -47,15 +42,15 @@ class AuthScreen extends StatelessWidget {
                 children: <Widget>[
                   Flexible(
                     child: Container(
-                      margin: EdgeInsets.only(bottom: 20.0),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 94.0),
+                      margin: const EdgeInsets.only(bottom: 20.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 94.0),
                       transform: Matrix4.rotationZ(-8 * pi / 180)
                         ..translate(-15.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Theme.of(context).colorScheme.secondary,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             blurRadius: 8,
                             color: Colors.black26,
@@ -65,7 +60,7 @@ class AuthScreen extends StatelessWidget {
                       ),
                       child: Stack(
                         alignment: Alignment.bottomRight,
-                        children: [
+                        children: const [
                           Text(
                             'Flutter',
                             style: TextStyle(
@@ -90,7 +85,7 @@ class AuthScreen extends StatelessWidget {
                   ),
                   Flexible(
                     flex: deviceSize.width > 600 ? 2 : 1,
-                    child: AuthCard(),
+                    child: const AuthCard(),
                   ),
                 ],
               ),
@@ -131,11 +126,11 @@ class _AuthCardState extends State<AuthCard>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 450),
+      duration: const Duration(milliseconds: 450),
     );
     _animationHeight = Tween<Size>(
-      begin: Size(double.infinity, 260),
-      end: Size(double.infinity, 320),
+      begin: const Size(double.infinity, 260),
+      end: const Size(double.infinity, 320),
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
     _opacityAnimation = Tween(begin: 0.0, end: 1.0)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
@@ -157,19 +152,19 @@ class _AuthCardState extends State<AuthCard>
         ),
         elevation: 8.0,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 450),
+          duration: const Duration(milliseconds: 450),
           curve: Curves.linear,
           height: _animationHeight.value.height,
           constraints: BoxConstraints(minHeight: _animationHeight.value.height),
           width: deviceSize.width * 0.75,
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'E-Mail'),
+                    decoration: const InputDecoration(labelText: 'E-Mail'),
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value != null &&
@@ -183,7 +178,7 @@ class _AuthCardState extends State<AuthCard>
                     },
                   ),
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Password'),
+                    decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
                     controller: _passwordController,
                     validator: (value) {
@@ -201,14 +196,14 @@ class _AuthCardState extends State<AuthCard>
                     constraints: BoxConstraints(
                         minHeight: 0,
                         maxHeight: _authMode == AuthMode.Sign_up ? 120 : 0),
-                    duration: Duration(milliseconds: 1000),
+                    duration: const Duration(milliseconds: 1000),
                     curve: Curves.linear,
                     child: FadeTransition(
                       opacity: _opacityAnimation,
                       child: TextFormField(
                         enabled: _authMode == AuthMode.Sign_up,
-                        decoration:
-                            InputDecoration(labelText: 'Confirm Password'),
+                        decoration: const InputDecoration(
+                            labelText: 'Confirm Password'),
                         obscureText: true,
                         validator: _authMode == AuthMode.Sign_up
                             ? (value) {
@@ -221,15 +216,15 @@ class _AuthCardState extends State<AuthCard>
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   if (_isLoading)
-                    CircularProgressIndicator()
+                    const CircularProgressIndicator()
                   else
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 30.0, vertical: 8.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -247,8 +242,8 @@ class _AuthCardState extends State<AuthCard>
                   TextButton(
                     onPressed: _switchAuthMode,
                     style: TextButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 4),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         textStyle: TextStyle(
                             color: Theme.of(context).colorScheme.primary)),
@@ -289,19 +284,19 @@ class _AuthCardState extends State<AuthCard>
 
   void _onError(error) {
     final String message;
-    if (error is EmailExistException) {
-      message = 'This email address is already in use.';
-    } else if (error is InvalidEmailException) {
-      message = 'This is not a valid email address';
-    } else if (error is WeakPasswordException) {
-      message = 'This password is too weak.';
-    } else if (error is EmailNotFoundException) {
-      message = 'Could not find a user with that email.';
-    } else if (error is InvalidPasswordException) {
-      message = 'Invalid password.';
-    } else {
-      message = 'Could not authenticate you. Please try again later.';
-    }
+    // if (error is EmailExistException) {
+    //   message = 'This email address is already in use.';
+    // } else if (error is InvalidEmailException) {
+    //   message = 'This is not a valid email address';
+    // } else if (error is WeakPasswordException) {
+    //   message = 'This password is too weak.';
+    // } else if (error is EmailNotFoundException) {
+    //   message = 'Could not find a user with that email.';
+    // } else if (error is InvalidPasswordException) {
+    //   message = 'Invalid password.';
+    // } else {
+    message = 'Could not authenticate you. Please try again later.';
+    // }
     print(error.toString());
     print(message);
     showShackBar(message);

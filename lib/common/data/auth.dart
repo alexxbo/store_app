@@ -6,20 +6,15 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/util/extensions.dart';
-import '/screens/auth/exceptions/weak_password_exception.dart';
 import '/screens/auth/exceptions/authenticate_exception.dart';
-import '/screens/auth/exceptions/Email_not_found_exception.dart';
-import '/screens/auth/exceptions/email_exist_exception.dart';
-import '/screens/auth/exceptions/invalid_email_exception.dart';
-import '/screens/auth/exceptions/invalid_password_exception.dart';
 
 /// Docs https://firebase.google.com/docs/reference/rest/auth
 
 const String _USER_DATA_KEY = 'user_data_key';
 
 class Auth with ChangeNotifier {
-  static const _BASE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts';
-  static const _API_KEY = 'AIzaSyAYZHqDYBz5h8C-97UmYxunH6WY87qjMUc';
+  static const _baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
+  static const _apiKey = 'AIzaSyAYZHqDYBz5h8C-97UmYxunH6WY87qjMUc';
 
   String? _token;
   DateTime? _expiryDate;
@@ -46,7 +41,7 @@ class Auth with ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    final url = Uri.parse('$_BASE_URL:signUp?key=$_API_KEY');
+    final url = Uri.parse('$_baseUrl:signUp?key=$_apiKey');
     final response = await http.post(url,
         body: jsonEncode({
           'email': email,
@@ -60,7 +55,7 @@ class Auth with ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    final url = Uri.parse('$_BASE_URL:signInWithPassword?key=$_API_KEY');
+    final url = Uri.parse('$_baseUrl:signInWithPassword?key=$_apiKey');
     final response = await http.post(url,
         body: jsonEncode({
           'email': email,
@@ -73,23 +68,10 @@ class Auth with ChangeNotifier {
 
   Future<void> _handleResponse(http.Response response, Uri url) async {
     if (response.statusCode != 200) {
-      print(jsonDecode(response.body));
       final responseData = response.body.orEmpty();
 
-      if (responseData.contains('EMAIL_EXISTS')) {
-        throw EmailExistException();
-      } else if (responseData.contains('INVALID_EMAIL')) {
-        throw InvalidEmailException();
-      } else if (responseData.contains('WEAK_PASSWORD')) {
-        throw WeakPasswordException();
-      } else if (responseData.contains('EMAIL_NOT_FOUND')) {
-        throw EmailNotFoundException();
-      } else if (responseData.contains('INVALID_PASSWORD')) {
-        throw InvalidPasswordException();
-      } else {
-        throw AuthenticateException(
-            'Status code: ${response.statusCode} message: ${response.body}');
-      }
+      throw AuthenticateException(
+          'Status code: ${response.statusCode} message: ${response.body}');
     } else {
       final responseData = jsonDecode(response.body) as Map<String, dynamic>;
       _token = responseData['idToken'];

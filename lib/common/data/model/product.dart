@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '/data/constants.dart';
+import '/common/data/constants.dart';
 
 class Product with ChangeNotifier {
   final String id;
@@ -40,8 +40,8 @@ class Product with ChangeNotifier {
     String? token,
     String? userId,
   ) async {
-    final url =
-        Uri.parse('$BASE_URL/user_favorites/$userId/$id.json?auth=$token');
+    final url = Uri.parse(
+        '$productsBaseUrl/user_favorites/$userId/$id.json?auth=$token');
     final response = await http.put(url, body: json.encode(!isFavorite));
 
     if (response.statusCode != 200) {

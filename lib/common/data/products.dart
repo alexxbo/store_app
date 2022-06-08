@@ -3,9 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import '/data/constants.dart';
-import '/data/model/product.dart';
+import 'package:store_app/common/data/model/product.dart';
+import 'package:store_app/common/data/constants.dart';
 
 //TODO refactor: separete server model/ui model
 
@@ -29,7 +28,8 @@ class Products with ChangeNotifier {
   Future<void> fetchProducts([bool filterByUser = false]) async {
     final filterQuery =
         filterByUser ? '&orderBy="creatorId"&equalTo="$_userId"' : '';
-    final url = Uri.parse('$BASE_URL/products.json?auth=$_token$filterQuery');
+    final url =
+        Uri.parse('$productsBaseUrl/products.json?auth=$_token$filterQuery');
 
     final response = await http.get(url);
 
@@ -41,8 +41,8 @@ class Products with ChangeNotifier {
       final data = json.decode(response.body) as Map<String, dynamic>?;
       if (data == null) return;
 
-      final url =
-          Uri.parse('$BASE_URL/user_favorites/$_userId.json?auth=$_token');
+      final url = Uri.parse(
+          '$productsBaseUrl/user_favorites/$_userId.json?auth=$_token');
       final favResponse = await http.get(url);
       final favoriteDate = jsonDecode(favResponse.body);
 
@@ -67,7 +67,7 @@ class Products with ChangeNotifier {
       print('add product => userId is null');
       return;
     }
-    final url = Uri.parse('$BASE_URL/products.json?auth=$_token');
+    final url = Uri.parse('$productsBaseUrl/products.json?auth=$_token');
     final response = await http.post(
       url,
       body: json.encode({
@@ -107,8 +107,8 @@ class Products with ChangeNotifier {
     final index = _items.indexWhere((product) => product.id == id);
     if (index >= 0) {
       final current = _items[index];
-      final url =
-          Uri.parse('$BASE_URL/products/${current.id}.json?auth=$_token');
+      final url = Uri.parse(
+          '$productsBaseUrl/products/${current.id}.json?auth=$_token');
       final response = await http.patch(
         url,
         body: json.encode({
@@ -139,7 +139,8 @@ class Products with ChangeNotifier {
   }
 
   Future<void> remove(String productId) async {
-    final url = Uri.parse('$BASE_URL/products/$productId.json?auth=$_token');
+    final url =
+        Uri.parse('$productsBaseUrl/products/$productId.json?auth=$_token');
     final response = await http.delete(url);
 
     if (response.statusCode != 200) {

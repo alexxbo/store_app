@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../data/products.dart';
+import '/common/data/products.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   static String routeName = '/product_details';
@@ -45,21 +45,21 @@ class ProductDetailScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Text(
                   '\$${product.price}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 24,
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
                     '${product.description}',
-                    style: TextStyle(),
+                    style: const TextStyle(),
                     softWrap: true,
                     textAlign: TextAlign.center,
                   ),

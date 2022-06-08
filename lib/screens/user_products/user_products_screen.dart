@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/data/products.dart';
+import '/common/data/products.dart';
 import '/screens/user_products/user_products_item.dart';
 import '/screens/add_edit_product/add_product_screen.dart';
 import '/widgets/app_drawer.dart';
@@ -15,18 +15,18 @@ class UserProductScreen extends StatelessWidget {
     Navigator.of(context).pushReplacementNamed(routeName);
   }
 
-  const UserProductScreen();
+  const UserProductScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // final catalog = context.watch<Products>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Products'),
+        title: const Text('Your Products'),
         actions: [
           IconButton(
             onPressed: () => _openEditProductScreen(context),
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
@@ -41,7 +41,7 @@ class UserProductScreen extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return _buildError();
               } else {
-                return ProgressWidget();
+                return const ProgressWidget();
               }
             },
           )),
@@ -59,7 +59,7 @@ class UserProductScreen extends StatelessWidget {
   Widget _buildProductList() {
     return Consumer<Products>(
       builder: (context, catalog, child) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView.builder(
           itemCount: catalog.items.length,
           itemBuilder: (context, index) {
@@ -76,7 +76,7 @@ class UserProductScreen extends StatelessWidget {
   }
 
   Widget _buildError() {
-    return Center(
+    return const Center(
       child: Text('Some thing went wrong. Please try again.'),
     );
   }

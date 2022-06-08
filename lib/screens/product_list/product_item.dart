@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/data/auth.dart';
-import '/data/cart.dart';
-import '/data/model/product.dart';
+import '/common/data/auth.dart';
+import '/common/data/cart.dart';
+import '/common/data/model/product.dart';
 import '/screens/product_detail/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
+  const ProductItem({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final product = context.read<Product>();
@@ -53,7 +55,8 @@ class ProductItem extends StatelessWidget {
             tag: product.id,
             child: FadeInImage(
               placeholderFit: BoxFit.cover,
-              placeholder: AssetImage('assets/images/product_placeholder.png'),
+              placeholder:
+                  const AssetImage('assets/images/product_placeholder.png'),
               image: NetworkImage(product.imageUrl),
               fit: BoxFit.cover,
             ),
@@ -75,7 +78,7 @@ class ProductItem extends StatelessWidget {
     final cart = context.read<Cart>();
     cart.add(product.id, product.title, product.price);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Add product to card'),
+      content: const Text('Add product to card'),
       action: SnackBarAction(
         label: 'UNDO',
         onPressed: () {

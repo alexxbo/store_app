@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/util/extensions.dart';
-import '/data/orders.dart';
+import '/common/data/orders.dart';
 import '/screens/orders/order_item.dart';
 import '/widgets/progress.dart';
 import '/widgets/app_drawer.dart';
@@ -19,7 +19,7 @@ class OrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Orders')),
+        appBar: AppBar(title: const Text('Orders')),
         drawer: AppDrawer(),
         body: FutureBuilder(
           future: context.read<Orders>().fetchOrders(),
@@ -29,7 +29,7 @@ class OrderScreen extends StatelessWidget {
             } else if (snapshot.hasError) {
               return _buildError();
             } else {
-              return ProgressWidget();
+              return const ProgressWidget();
             }
           },
         ));
@@ -55,8 +55,8 @@ class OrderScreen extends StatelessWidget {
   }
 
   Widget _buildError() {
-    return Center(
-      child: Text('An error occurred!'),
+    return const Center(
+      child: const Text('An error occurred!'),
     );
   }
 }

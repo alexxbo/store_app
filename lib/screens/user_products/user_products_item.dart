@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/data/products.dart';
+import '/common/data/products.dart';
 import '/screens/add_edit_product/edit_product_screen.dart';
 
 class UserProductsItem extends StatelessWidget {
@@ -46,9 +48,9 @@ class UserProductsItem extends StatelessWidget {
 
   void _deleteItem(BuildContext context) {
     context.read<Products>().remove(id).catchError((error) {
-      print('$error');
+      log('$error');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Some thing went wrong'),
         ),
       );

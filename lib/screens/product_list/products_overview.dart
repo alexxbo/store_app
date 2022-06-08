@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/util/extensions.dart';
 
-import '/data/cart.dart';
-import '/data/model/product.dart';
-import '/data/products.dart';
+import '/common/data/cart.dart';
+import '/common/data/model/product.dart';
+import '/common/data/products.dart';
 import '/screens/cart/cart_screen.dart';
 import '/screens/product_list/product_item.dart';
 import '/widgets/app_drawer.dart';
@@ -46,7 +46,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         _isFavorite ? productsProvider.favoriteItems : productsProvider.items;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Products'),
+        title: const Text('Products'),
         actions: [
           Consumer<Cart>(
             builder: (_, cart, child) => Badge(
@@ -57,19 +57,19 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               onPressed: () {
                 CartScreen.launch(context: context);
               },
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
             ),
           ),
           PopupMenuButton(
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
             itemBuilder: (context) {
               return [
-                PopupMenuItem(
-                  value: _FilterOptions.ALL,
+                const PopupMenuItem(
+                  value: _FilterOptions.all,
                   child: Text('All'),
                 ),
-                PopupMenuItem(
-                  value: _FilterOptions.FAVORITE,
+                const PopupMenuItem(
+                  value: _FilterOptions.favorite,
                   child: Text('Favorite'),
                 ),
               ];
@@ -80,7 +80,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       ),
       drawer: AppDrawer(),
       body: _showProgress
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : products.isEmpty
@@ -91,9 +91,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                   ),
                 )
               : GridView.builder(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   itemCount: products.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 3 / 2,
                     crossAxisSpacing: 20,
@@ -103,7 +103,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                     final item = products[index];
                     return ChangeNotifierProvider<Product>.value(
                       value: item,
-                      child: ProductItem(),
+                      child: const ProductItem(),
                     );
                   },
                 ),
@@ -113,10 +113,10 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   void _setFilter(Object? filter) {
     setState(() {
       switch (filter) {
-        case _FilterOptions.ALL:
+        case _FilterOptions.all:
           _isFavorite = false;
           break;
-        case _FilterOptions.FAVORITE:
+        case _FilterOptions.favorite:
           _isFavorite = true;
           break;
       }
@@ -131,6 +131,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 }
 
 enum _FilterOptions {
-  ALL,
-  FAVORITE,
+  all,
+  favorite,
 }

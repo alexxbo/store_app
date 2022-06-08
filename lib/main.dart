@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/data/model/order_item.dart';
-import 'package:store_app/screens/splash/splash_screen.dart';
-import 'package:store_app/util/extensions.dart';
 
 import '/theme/app_theme.dart';
-import '/data/cart.dart';
-import '/data/orders.dart';
-import '/data/products.dart';
-import '/data/auth.dart';
+import '/screens/splash/splash_screen.dart';
 import '/screens/product_detail/product_detail_screen.dart';
 import '/screens/product_list/products_overview.dart';
 import '/screens/cart/cart_screen.dart';
@@ -17,7 +11,13 @@ import '/screens/user_products/user_products_screen.dart';
 import '/screens/add_edit_product/edit_product_screen.dart';
 import '/screens/add_edit_product/add_product_screen.dart';
 import '/screens/auth/auth_screen.dart';
-import 'data/model/product.dart';
+import '/common/data/model/order_item.dart';
+import '/common/data/cart.dart';
+import '/common/data/orders.dart';
+import '/common/data/products.dart';
+import '/common/data/auth.dart';
+import '/common/data/model/product.dart';
+import '/util/extensions.dart';
 
 void main() {
   runApp(FlutterShop());

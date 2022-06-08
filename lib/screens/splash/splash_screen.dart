@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -15,13 +17,14 @@ class SplashScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 20.0),
-              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 94.0),
+              margin: const EdgeInsets.only(bottom: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 94.0),
               transform: Matrix4.rotationZ(-8 * pi / 180)..translate(-15.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Theme.of(context).colorScheme.secondary,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 8,
                     color: Colors.black26,
@@ -31,7 +34,7 @@ class SplashScreen extends StatelessWidget {
               ),
               child: Stack(
                 alignment: Alignment.bottomRight,
-                children: [
+                children: const [
                   Text(
                     'Flutter',
                     style: TextStyle(
@@ -53,8 +56,8 @@ class SplashScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 54),
-            Text('Loading...'),
+            const SizedBox(height: 54),
+            const Text('Loading...'),
           ],
         ),
       ),

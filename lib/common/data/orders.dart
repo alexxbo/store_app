@@ -6,9 +6,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '/data/constants.dart';
-import '/data/model/cart_item.dart';
-import '/data/model/order_item.dart';
+import '/common/data/constants.dart';
+import 'model/cart_item.dart';
+import 'model/order_item.dart';
 
 class Orders with ChangeNotifier {
   final String? _token;
@@ -24,7 +24,7 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> fetchOrders() async {
-    final url = Uri.parse('$BASE_URL/orders/$_userId.json?auth=$_token');
+    final url = Uri.parse('$productsBaseUrl/orders/$_userId.json?auth=$_token');
     final response = await http.get(url);
 
     if (response.statusCode != 200) {
@@ -49,7 +49,7 @@ class Orders with ChangeNotifier {
   Future<void> add(List<CartItem> products, double total) async {
     final date = DateTime.now();
 
-    final url = Uri.parse('$BASE_URL/orders/$_userId.json?auth=$_token');
+    final url = Uri.parse('$productsBaseUrl/orders/$_userId.json?auth=$_token');
     final response = await http.post(
       url,
       body: json.encode({

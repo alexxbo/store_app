@@ -1,1 +1,0 @@
-class EmailExistException implements Exception {}

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 extension StringEmpty on String? {
@@ -34,7 +36,7 @@ extension FutureExtensions on Future {
     String message = 'Some thing went wrong',
   }) {
     return catchError((error) {
-      print('error ${error.toString()}');
+      log('error ${error.toString()}');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),

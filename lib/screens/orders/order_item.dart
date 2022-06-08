@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '/data/model/order_item.dart';
+import '../../common/data/model/order_item.dart';
 
 class OrderItemView extends StatelessWidget {
   final OrderItem order;
@@ -11,12 +11,11 @@ class OrderItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(12),
+      margin: const EdgeInsets.all(12),
       child: ExpansionTile(
         title: ListTile(
           title: Text('\$${order.amount}'),
-          subtitle:
-              Text('${DateFormat('dd/MM/yyyy hh:mm').format(order.date)}'),
+          subtitle: Text(DateFormat('dd/MM/yyyy hh:mm').format(order.date)),
         ),
         children: [
           Padding(
@@ -30,12 +29,12 @@ class OrderItemView extends StatelessWidget {
                   children: [
                     Text(
                       item.title,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       '${item.quantity} x ${item.price.toStringAsFixed(2)}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 );
