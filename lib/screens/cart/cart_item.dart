@@ -11,12 +11,13 @@ class CartItem extends StatelessWidget {
   final int quantity;
 
   const CartItem({
+    Key? key,
     required this.id,
     required this.productId,
     required this.title,
     required this.price,
     required this.quantity,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +28,16 @@ class CartItem extends StatelessWidget {
         return showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Delete'),
-            content: Text('Do you want to delete the item from cart? '),
+            title: const Text('Delete'),
+            content: const Text('Do you want to delete the item from cart? '),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop(true),
-                child: Text('Delete'),
+                child: const Text('Delete'),
               ),
             ],
           ),
@@ -46,13 +47,13 @@ class CartItem extends StatelessWidget {
         Provider.of<Cart>(context, listen: false).remove(productId);
       },
       background: Container(
-        margin: EdgeInsets.all(24),
+        margin: const EdgeInsets.all(24),
         alignment: Alignment.centerRight,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text('Delete'),
-            SizedBox(width: 4),
+            const Text('Delete'),
+            const SizedBox(width: 4),
             Icon(
               Icons.delete,
               size: 24,
@@ -62,9 +63,9 @@ class CartItem extends StatelessWidget {
         ),
       ),
       child: Card(
-        margin: EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: ListTile(
             leading: CircleAvatar(
               child: Padding(

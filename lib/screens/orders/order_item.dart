@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../common/data/model/order_item.dart';
+import '/common/data/model/order_item.dart';
 
 class OrderItemView extends StatelessWidget {
   final OrderItem order;
 
-  const OrderItemView({required this.order});
+  const OrderItemView({
+    Key? key,
+    required this.order,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,7 @@ class OrderItemView extends StatelessWidget {
               itemCount: order.products.length,
               itemBuilder: (context, index) {
                 final item = order.products[index];
+
                 return Row(
                   children: [
                     Text(

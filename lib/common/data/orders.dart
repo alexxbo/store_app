@@ -29,8 +29,9 @@ class Orders with ChangeNotifier {
 
     if (response.statusCode != 200) {
       throw HttpException(
-          'Status code: ${response.statusCode} message: ${response.body}',
-          uri: url);
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
     } else {
       final data = json.decode(response.body) as Map<String, dynamic>?;
       if (data == null) return;
@@ -68,8 +69,9 @@ class Orders with ChangeNotifier {
 
     if (response.statusCode != 200) {
       throw HttpException(
-          'Status code: ${response.statusCode} message: ${response.body}',
-          uri: url);
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
     } else {
       _orders.insert(
         0,

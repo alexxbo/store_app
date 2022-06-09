@@ -19,7 +19,6 @@ class UserProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final catalog = context.watch<Products>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
@@ -30,21 +29,22 @@ class UserProductScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: RefreshIndicator(
-          onRefresh: (() => _refreshProducts(context)),
-          child: FutureBuilder(
-            future: _refreshProducts(context),
-            builder: (context, snapshot) {
-              if (snapshot.isDone) {
-                return _buildProductList();
-              } else if (snapshot.hasError) {
-                return _buildError();
-              } else {
-                return const ProgressWidget();
-              }
-            },
-          )),
+        onRefresh: (() => _refreshProducts(context)),
+        child: FutureBuilder(
+          future: _refreshProducts(context),
+          builder: (context, snapshot) {
+            if (snapshot.isDone) {
+              return _buildProductList();
+            } else if (snapshot.hasError) {
+              return _buildError();
+            } else {
+              return const ProgressWidget();
+            }
+          },
+        ),
+      ),
     );
   }
 
@@ -64,6 +64,7 @@ class UserProductScreen extends StatelessWidget {
           itemCount: catalog.items.length,
           itemBuilder: (context, index) {
             final item = catalog.items[index];
+
             return UserProductsItem(
               id: item.id,
               title: item.title,

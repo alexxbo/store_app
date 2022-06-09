@@ -10,11 +10,11 @@ import '/screens/add_edit_product/model/create_product.dart';
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add_products';
 
+  const AddProductScreen({Key? key}) : super(key: key);
+
   static void launch({required BuildContext context}) {
     Navigator.of(context).pushNamed(routeName);
   }
-
-  const AddProductScreen();
 
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
@@ -35,6 +35,7 @@ class _AddProductScreenState
       imageUrl: newProduct.imageUrl,
       userId: context.read<Auth>().userId!,
     );
+
     return context.read<Products>().add(product);
   }
 }

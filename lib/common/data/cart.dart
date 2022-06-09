@@ -53,13 +53,14 @@ class Cart with ChangeNotifier {
 
     if (_items[productId]!.quantity > 1) {
       _items.update(
-          productId,
-          (current) => CartItem(
-                id: current.id,
-                title: current.title,
-                quantity: current.quantity - 1,
-                price: current.price,
-              ));
+        productId,
+        (current) => CartItem(
+          id: current.id,
+          title: current.title,
+          quantity: current.quantity - 1,
+          price: current.price,
+        ),
+      );
     } else {
       _items.remove(productId);
     }

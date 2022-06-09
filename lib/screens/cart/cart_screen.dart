@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,43 +20,46 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<Cart>();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart'),
+        title: const Text('Cart'),
       ),
       body: Column(
         children: [
           Card(
-            margin: EdgeInsets.all(16),
+            margin: const EdgeInsets.all(16),
             child: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Total',
                     style: TextStyle(fontSize: 20),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Chip(label: Text('\$${cart.totalAmount}')),
-                  SizedBox(width: 8),
-                  OrderButton(cart),
+                  const SizedBox(width: 8),
+                  OrderButton(cart: cart),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Expanded(
             child: ListView.builder(
               itemCount: cart.items.length,
               itemBuilder: (_, index) {
                 final item = cart.items.values.toList()[index];
+
                 return CartItem(
-                    id: item.id,
-                    productId: cart.items.keys.toList()[index],
-                    title: item.title,
-                    quantity: item.quantity,
-                    price: item.price);
+                  id: item.id,
+                  productId: cart.items.keys.toList()[index],
+                  title: item.title,
+                  quantity: item.quantity,
+                  price: item.price,
+                );
               },
             ),
           ),
@@ -65,9 +70,11 @@ class CartScreen extends StatelessWidget {
 }
 
 class OrderButton extends StatefulWidget {
-  final Cart cart;
+  final Cart _cart;
 
-  const OrderButton(this.cart);
+  const OrderButton({Key? key, required Cart cart})
+      : _cart = cart,
+        super(key: key);
 
   @override
   State<OrderButton> createState() => _OrderButtonState();
@@ -80,14 +87,14 @@ class _OrderButtonState extends State<OrderButton> {
     return SizedBox(
       width: 130,
       child: _onProgress
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : TextButton(
-              onPressed: widget.cart.totalAmount == 0.0
+              onPressed: widget._cart.totalAmount == 0.0
                   ? null
-                  : () => _onOrderNowClicked(context, widget.cart),
-              child: Text(
+                  : () => _onOrderNowClicked(context, widget._cart),
+              child: const Text(
                 'ORDER NOW',
                 style: TextStyle(
                   fontSize: 16,
@@ -112,9 +119,9 @@ class _OrderButtonState extends State<OrderButton> {
         ProductsOverviewScreen.launch(context: context);
       },
     ).catchError((error) {
-      print(error.toString());
+      log(error.toString());
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Some thing went wrong'),
         ),
       );

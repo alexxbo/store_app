@@ -26,6 +26,7 @@ class FadeRoute<T> extends MaterialPageRoute<T> {
 
 class FadePageTransitionsBuilder extends PageTransitionsBuilder {
   @override
+  // ignore: long-parameter-list
   Widget buildTransitions<T>(
     PageRoute<T> route,
     BuildContext context,
@@ -33,7 +34,6 @@ class FadePageTransitionsBuilder extends PageTransitionsBuilder {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    print('widger ${child.toString()} route ${route.settings.name}');
     if (route.settings.name == '/') {
       return child;
     }

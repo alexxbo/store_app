@@ -85,7 +85,8 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
                           label: Text('Price'),
                         ),
                         keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true),
+                          decimal: true,
+                        ),
                         focusNode: _priceFocusNode,
                         textInputAction: TextInputAction.next,
                         onFieldSubmitted: (_) {
@@ -201,16 +202,12 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
 
 extension _EditProductInputValidate on String? {
   String? isTitleValid() {
-    if (this?.isNotEmpty == true) {
-      return null;
-    } else {
-      return 'Please provide a title';
-    }
+    return this?.isNotEmpty == true ? null : 'Please provide a title';
   }
 
   String? isPriceValid() {
     final input = this;
-    if (input == null || input.isEmpty == true) {
+    if (input == null || input.isEmpty) {
       return 'Please enter a price.';
     }
     if (double.tryParse(input) == null) {
@@ -219,6 +216,7 @@ extension _EditProductInputValidate on String? {
     if (double.parse(input) <= 0) {
       return 'Please enter number greater then zero.';
     }
+
     return null;
   }
 
@@ -230,6 +228,7 @@ extension _EditProductInputValidate on String? {
     if (input.length < 10) {
       return 'Should be at least 10 characters long.';
     }
+
     return null;
   }
 
@@ -246,6 +245,7 @@ extension _EditProductInputValidate on String? {
         !input.endsWith('jpeg')) {
       return 'Please enter a valid image URL.';
     }
+
     return null;
   }
 }

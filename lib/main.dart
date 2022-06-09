@@ -30,7 +30,7 @@ void main() {
   );
 }
 
-//FIXME: autologout works only on ProductsOverviewScreen
+//FIXME: auto logout works only on ProductsOverviewScreen
 class FlutterShop extends StatelessWidget {
   const FlutterShop({Key? key}) : super(key: key);
 
@@ -74,11 +74,9 @@ class FlutterShop extends StatelessWidget {
               : FutureBuilder(
                   future: auth.tryAutoLogIn(),
                   builder: (context, snapshot) {
-                    if (snapshot.isWaiting) {
-                      return const SplashScreen();
-                    } else {
-                      return const AuthScreen();
-                    }
+                    return snapshot.isWaiting
+                        ? const SplashScreen()
+                        : const AuthScreen();
                   },
                 ),
           routes: {

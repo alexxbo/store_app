@@ -1,4 +1,5 @@
-import 'dart:math';
+import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,16 +7,17 @@ import 'package:provider/provider.dart';
 import '/common/data/auth.dart';
 import '/util/extensions.dart';
 
-enum AuthMode { Sign_up, Login }
+enum AuthMode { signUp, login }
 
 class AuthScreen extends StatelessWidget {
   static const routeName = '/auth';
 
-  const AuthScreen();
+  const AuthScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -28,12 +30,12 @@ class AuthScreen extends StatelessWidget {
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                stops: [0, 1],
+                stops: const [0, 1],
               ),
             ),
           ),
           SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: deviceSize.height,
               width: deviceSize.width,
               child: Column(
@@ -44,8 +46,10 @@ class AuthScreen extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 20.0),
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 94.0),
-                      transform: Matrix4.rotationZ(-8 * pi / 180)
+                        vertical: 8.0,
+                        horizontal: 94.0,
+                      ),
+                      transform: Matrix4.rotationZ(-8 * math.pi / 180)
                         ..translate(-15.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -55,7 +59,7 @@ class AuthScreen extends StatelessWidget {
                             blurRadius: 8,
                             color: Colors.black26,
                             offset: Offset(0, 2),
-                          )
+                          ),
                         ],
                       ),
                       child: Stack(
@@ -109,7 +113,7 @@ class AuthCard extends StatefulWidget {
 class _AuthCardState extends State<AuthCard>
     with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  AuthMode _authMode = AuthMode.Login;
+  AuthMode _authMode = AuthMode.login;
   final Map<String, String> _authData = {
     'email': '',
     'password': '',
@@ -146,115 +150,127 @@ class _AuthCardState extends State<AuthCard>
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
+
     return Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        elevation: 8.0,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 450),
-          curve: Curves.linear,
-          height: _animationHeight.value.height,
-          constraints: BoxConstraints(minHeight: _animationHeight.value.height),
-          width: deviceSize.width * 0.75,
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'E-Mail'),
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value != null &&
-                          (value.isEmpty || !value.contains('@'))) {
-                        return 'Invalid email!';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      _authData['email'] = value.orEmpty();
-                    },
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      elevation: 8.0,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 450),
+        curve: Curves.linear,
+        height: _animationHeight.value.height,
+        constraints: BoxConstraints(minHeight: _animationHeight.value.height),
+        width: deviceSize.width * 0.75,
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'E-Mail'),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value != null &&
+                        (value.isEmpty || !value.contains('@'))) {
+                      return 'Invalid email!';
+                    }
+
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _authData['email'] = value.orEmpty();
+                  },
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Password'),
+                  obscureText: true,
+                  controller: _passwordController,
+                  validator: (value) {
+                    if (value != null && (value.isEmpty || value.length < 5)) {
+                      return 'Password is too short!';
+                    }
+
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _authData['password'] = value.orEmpty();
+                  },
+                ),
+                AnimatedContainer(
+                  constraints: BoxConstraints(
+                    minHeight: 0,
+                    maxHeight: _authMode == AuthMode.signUp ? 120 : 0,
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    obscureText: true,
-                    controller: _passwordController,
-                    validator: (value) {
-                      if (value != null &&
-                          (value.isEmpty || value.length < 5)) {
-                        return 'Password is too short!';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      _authData['password'] = value.orEmpty();
-                    },
-                  ),
-                  AnimatedContainer(
-                    constraints: BoxConstraints(
-                        minHeight: 0,
-                        maxHeight: _authMode == AuthMode.Sign_up ? 120 : 0),
-                    duration: const Duration(milliseconds: 1000),
-                    curve: Curves.linear,
-                    child: FadeTransition(
-                      opacity: _opacityAnimation,
-                      child: TextFormField(
-                        enabled: _authMode == AuthMode.Sign_up,
-                        decoration: const InputDecoration(
-                            labelText: 'Confirm Password'),
-                        obscureText: true,
-                        validator: _authMode == AuthMode.Sign_up
-                            ? (value) {
-                                if (value != _passwordController.text) {
-                                  return 'Passwords do not match!';
-                                }
-                                return null;
+                  duration: const Duration(milliseconds: 1000),
+                  curve: Curves.linear,
+                  child: FadeTransition(
+                    opacity: _opacityAnimation,
+                    child: TextFormField(
+                      enabled: _authMode == AuthMode.signUp,
+                      decoration:
+                          const InputDecoration(labelText: 'Confirm Password'),
+                      obscureText: true,
+                      validator: _authMode == AuthMode.signUp
+                          ? (value) {
+                              if (value != _passwordController.text) {
+                                return 'Passwords do not match!';
                               }
-                            : null,
-                      ),
+
+                              return null;
+                            }
+                          : null,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  if (_isLoading)
-                    const CircularProgressIndicator()
-                  else
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 8.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        textStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        primary: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                if (_isLoading)
+                  const CircularProgressIndicator()
+                else
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30.0,
+                        vertical: 8.0,
                       ),
-                      onPressed: _submit,
-                      child: Text(
-                        _authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP',
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
                       ),
+                      textStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      primary: Theme.of(context).colorScheme.primary,
                     ),
-                  TextButton(
-                    onPressed: _switchAuthMode,
-                    style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 4),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        textStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.primary)),
+                    onPressed: _submit,
                     child: Text(
-                        '${_authMode == AuthMode.Login ? 'SIGN UP' : 'LOGIN'} INSTEAD'),
+                      _authMode == AuthMode.login ? 'LOGIN' : 'SIGN UP',
+                    ),
                   ),
-                ],
-              ),
+                TextButton(
+                  onPressed: _switchAuthMode,
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0,
+                      vertical: 4,
+                    ),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    textStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  child: Text(
+                    '${_authMode == AuthMode.login ? 'SIGN UP' : 'LOGIN'} INSTEAD',
+                  ),
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   void _submit() {
@@ -265,17 +281,15 @@ class _AuthCardState extends State<AuthCard>
     _formKey.currentState?.save();
     _showProgress(true);
     final Future result;
-    if (_authMode == AuthMode.Login) {
-      result = context.read<Auth>().logIn(
-            email: _authData['email'].orEmpty(),
-            password: _authData['password'].orEmpty(),
-          );
-    } else {
-      result = context.read<Auth>().signUp(
-            email: _authData['email'].orEmpty(),
-            password: _authData['password'].orEmpty(),
-          );
-    }
+    result = _authMode == AuthMode.login
+        ? context.read<Auth>().logIn(
+              email: _authData['email'].orEmpty(),
+              password: _authData['password'].orEmpty(),
+            )
+        : context.read<Auth>().signUp(
+              email: _authData['email'].orEmpty(),
+              password: _authData['password'].orEmpty(),
+            );
 
     result
         .catchError((error) => _onError(error))
@@ -297,8 +311,7 @@ class _AuthCardState extends State<AuthCard>
     // } else {
     message = 'Could not authenticate you. Please try again later.';
     // }
-    print(error.toString());
-    print(message);
+    log('error: ${error.toString()}, message $message');
     showShackBar(message);
   }
 
@@ -309,14 +322,14 @@ class _AuthCardState extends State<AuthCard>
   }
 
   void _switchAuthMode() {
-    if (_authMode == AuthMode.Login) {
+    if (_authMode == AuthMode.login) {
       setState(() {
-        _authMode = AuthMode.Sign_up;
+        _authMode = AuthMode.signUp;
       });
       _controller.forward();
     } else {
       setState(() {
-        _authMode = AuthMode.Login;
+        _authMode = AuthMode.login;
       });
       _controller.reverse();
     }

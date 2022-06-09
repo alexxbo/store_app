@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:store_app/common/data/model/product.dart';
 import 'package:store_app/common/data/constants.dart';
 
-//TODO refactor: separete server model/ui model
+//TODO refactor: separate server model/ui model
 
 class Products with ChangeNotifier {
   final String? _token;
@@ -35,14 +36,16 @@ class Products with ChangeNotifier {
 
     if (response.statusCode != 200) {
       throw HttpException(
-          'Status code: ${response.statusCode} message: ${response.body}',
-          uri: url);
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
     } else {
       final data = json.decode(response.body) as Map<String, dynamic>?;
       if (data == null) return;
 
       final url = Uri.parse(
-          '$productsBaseUrl/user_favorites/$_userId.json?auth=$_token');
+        '$productsBaseUrl/user_favorites/$_userId.json?auth=$_token',
+      );
       final favResponse = await http.get(url);
       final favoriteDate = jsonDecode(favResponse.body);
 
@@ -64,7 +67,8 @@ class Products with ChangeNotifier {
 
   Future<void> add(Product product) async {
     if (_userId == null) {
-      print('add product => userId is null');
+      log('add product => userId is null');
+
       return;
     }
     final url = Uri.parse('$productsBaseUrl/products.json?auth=$_token');
@@ -81,8 +85,9 @@ class Products with ChangeNotifier {
 
     if (response.statusCode != 200) {
       throw HttpException(
-          'Status code: ${response.statusCode} message: ${response.body}',
-          uri: url);
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
     } else {
       Product(
         id: json.decode(response.body)['name'],
@@ -97,6 +102,7 @@ class Products with ChangeNotifier {
     }
   }
 
+  // ignore: long-parameter-list
   Future<void> update({
     required String? id,
     required String title,
@@ -108,7 +114,8 @@ class Products with ChangeNotifier {
     if (index >= 0) {
       final current = _items[index];
       final url = Uri.parse(
-          '$productsBaseUrl/products/${current.id}.json?auth=$_token');
+        '$productsBaseUrl/products/${current.id}.json?auth=$_token',
+      );
       final response = await http.patch(
         url,
         body: json.encode({
@@ -120,8 +127,9 @@ class Products with ChangeNotifier {
       );
       if (response.statusCode != 200) {
         throw HttpException(
-            'Status code: ${response.statusCode} message: ${response.body}',
-            uri: url);
+          'Status code: ${response.statusCode} message: ${response.body}',
+          uri: url,
+        );
       } else {
         final newProduct = Product(
           id: current.id,
@@ -145,8 +153,9 @@ class Products with ChangeNotifier {
 
     if (response.statusCode != 200) {
       throw HttpException(
-          'Status code: ${response.statusCode} message: ${response.body}',
-          uri: url);
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
     } else {
       final index = _items.indexWhere((product) => product.id == productId);
       _items.removeAt(index);

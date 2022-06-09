@@ -15,7 +15,7 @@ class EditProductScreen extends StatefulWidget {
     Navigator.of(context).pushNamed(routeName, arguments: productId);
   }
 
-  const EditProductScreen();
+  const EditProductScreen({Key? key}) : super(key: key);
 
   @override
   State<EditProductScreen> createState() => _EditProductScreenState();
@@ -26,12 +26,14 @@ class _EditProductScreenState
   @override
   Future<void> saveForm(CreateProduct editProduct) {
     final id = ModalRoute.of(context)?.settings.arguments as String;
+
     return context.read<Products>().update(
-        id: id,
-        title: editProduct.title,
-        description: editProduct.description,
-        price: editProduct.price,
-        imageUrl: editProduct.imageUrl);
+          id: id,
+          title: editProduct.title,
+          description: editProduct.description,
+          price: editProduct.price,
+          imageUrl: editProduct.imageUrl,
+        );
   }
 
   @override
@@ -39,6 +41,7 @@ class _EditProductScreenState
     final id = ModalRoute.of(context)?.settings.arguments as String;
     final editedProduct =
         Provider.of<Products>(context, listen: false).getById(id);
+
     return CreateProduct(
       title: editedProduct.title,
       description: editedProduct.description,

@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '/util/extensions.dart';
 import '/screens/auth/exceptions/authenticate_exception.dart';
 
 /// Docs https://firebase.google.com/docs/reference/rest/auth
 
-const String _USER_DATA_KEY = 'user_data_key';
+const String _userDataKey = 'user_data_key';
 
 class Auth with ChangeNotifier {
   static const _baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
@@ -26,11 +25,7 @@ class Auth with ChangeNotifier {
   }
 
   String? get token {
-    if (_expiryDate?.isBefore(DateTime.now()) == true) {
-      return null;
-    } else {
-      return _token;
-    }
+    return _expiryDate?.isBefore(DateTime.now()) == true ? null : _token;
   }
 
   String? get userId {
@@ -42,12 +37,14 @@ class Auth with ChangeNotifier {
     required String password,
   }) async {
     final url = Uri.parse('$_baseUrl:signUp?key=$_apiKey');
-    final response = await http.post(url,
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-          'returnSecureToken': true,
-        }));
+    final response = await http.post(
+      url,
+      body: jsonEncode({
+        'email': email,
+        'password': password,
+        'returnSecureToken': true,
+      }),
+    );
     await _handleResponse(response, url);
   }
 
@@ -56,27 +53,28 @@ class Auth with ChangeNotifier {
     required String password,
   }) async {
     final url = Uri.parse('$_baseUrl:signInWithPassword?key=$_apiKey');
-    final response = await http.post(url,
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-          'returnSecureToken': true,
-        }));
+    final response = await http.post(
+      url,
+      body: jsonEncode({
+        'email': email,
+        'password': password,
+        'returnSecureToken': true,
+      }),
+    );
 
     await _handleResponse(response, url);
   }
 
   Future<void> _handleResponse(http.Response response, Uri url) async {
-    if (response.statusCode != 200) {
-      final responseData = response.body.orEmpty();
-
+    if (response.statusCode != 200 || response.body.isEmpty) {
       throw AuthenticateException(
-          'Status code: ${response.statusCode} message: ${response.body}');
+        'Status code: ${response.statusCode} message: ${response.body}',
+      );
     } else {
       final responseData = jsonDecode(response.body) as Map<String, dynamic>;
       _token = responseData['idToken'];
       _userId = responseData['localId'];
-      _expiryDate = DateTime.now().add(Duration(hours: 1));
+      _expiryDate = DateTime.now().add(const Duration(hours: 1));
       _autoLogout();
       notifyListeners();
 
@@ -86,7 +84,7 @@ class Auth with ChangeNotifier {
         'userId': _userId,
         'expiryDate': _expiryDate?.toIso8601String(),
       });
-      await preferences.setString(_USER_DATA_KEY, userData);
+      await preferences.setString(_userDataKey, userData);
     }
   }
 
@@ -103,9 +101,9 @@ class Auth with ChangeNotifier {
 
   Future<bool> tryAutoLogIn() async {
     final preferences = await SharedPreferences.getInstance();
-    if (!preferences.containsKey(_USER_DATA_KEY)) return false;
+    if (!preferences.containsKey(_userDataKey)) return false;
 
-    final data = jsonDecode(preferences.getString(_USER_DATA_KEY)!)
+    final data = jsonDecode(preferences.getString(_userDataKey)!)
         as Map<String, dynamic>;
     final expiryDate = DateTime.parse(data['expiryDate']);
 
@@ -116,6 +114,7 @@ class Auth with ChangeNotifier {
     _expiryDate = expiryDate;
     notifyListeners();
     _autoLogout();
+
     return true;
   }
 

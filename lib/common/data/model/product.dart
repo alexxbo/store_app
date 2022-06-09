@@ -41,13 +41,15 @@ class Product with ChangeNotifier {
     String? userId,
   ) async {
     final url = Uri.parse(
-        '$productsBaseUrl/user_favorites/$userId/$id.json?auth=$token');
+      '$productsBaseUrl/user_favorites/$userId/$id.json?auth=$token',
+    );
     final response = await http.put(url, body: json.encode(!isFavorite));
 
     if (response.statusCode != 200) {
       throw HttpException(
-          'Status code: ${response.statusCode} message: ${response.body}',
-          uri: url);
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
     } else {
       isFavorite = !isFavorite;
       notifyListeners();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/util/extensions.dart';
 
 import '/common/data/cart.dart';
 import '/common/data/model/product.dart';
@@ -9,6 +8,8 @@ import '/screens/cart/cart_screen.dart';
 import '/screens/product_list/product_item.dart';
 import '/widgets/app_drawer.dart';
 import '/widgets/badge.dart';
+import '/widgets/mixins/progress.dart';
+import '/util/extensions.dart';
 
 class ProductsOverviewScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -17,15 +18,15 @@ class ProductsOverviewScreen extends StatefulWidget {
     Navigator.of(context).pushReplacementNamed(routeName);
   }
 
-  const ProductsOverviewScreen();
+  const ProductsOverviewScreen({Key? key}) : super(key: key);
 
   @override
   State<ProductsOverviewScreen> createState() => _ProductsOverviewScreenState();
 }
 
-class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
+class _ProductsOverviewScreenState extends State<ProductsOverviewScreen>
+    with ProgressState {
   bool _isFavorite = false;
-  bool _showProgress = false;
 
   @override
   void initState() {
@@ -44,6 +45,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     final productsProvider = context.watch<Products>();
     final products =
         _isFavorite ? productsProvider.favoriteItems : productsProvider.items;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products'),
@@ -78,8 +80,8 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           ),
         ],
       ),
-      drawer: AppDrawer(),
-      body: _showProgress
+      drawer: const AppDrawer(),
+      body: inProgress
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -101,6 +103,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                   ),
                   itemBuilder: (_, index) {
                     final item = products[index];
+
                     return ChangeNotifierProvider<Product>.value(
                       value: item,
                       child: const ProductItem(),
@@ -120,12 +123,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           _isFavorite = true;
           break;
       }
-    });
-  }
-
-  void showProgress(bool show) {
-    setState(() {
-      _showProgress = show;
     });
   }
 }

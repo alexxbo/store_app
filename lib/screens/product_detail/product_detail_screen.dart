@@ -16,13 +16,14 @@ class ProductDetailScreen extends StatelessWidget {
     );
   }
 
-  const ProductDetailScreen();
+  const ProductDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)?.settings.arguments as String;
     final product =
         Provider.of<Products>(context, listen: false).getById(productId);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -58,7 +59,7 @@ class ProductDetailScreen extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
-                    '${product.description}',
+                    product.description,
                     style: const TextStyle(),
                     softWrap: true,
                     textAlign: TextAlign.center,
