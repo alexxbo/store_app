@@ -55,12 +55,10 @@ class FlutterShop extends StatelessWidget {
           create: (context) => Orders(
             context.read<Auth>().token,
             context.read<Auth>().userId,
-            <OrderItem>[],
           ),
           update: (_, auth, previous) => Orders(
             auth.token,
             auth.userId,
-            previous?.orders ?? <OrderItem>[],
           ),
         ),
         ChangeNotifierProvider(create: (_) => Cart()),

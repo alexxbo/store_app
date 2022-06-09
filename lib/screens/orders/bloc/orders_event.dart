@@ -2,5 +2,7 @@ part of 'orders_bloc.dart';
 
 @freezed
 class OrdersEvent with _$OrdersEvent {
-  const factory OrdersEvent.started() = _Started;
+  // ignore: unused_element
+  const OrdersEvent._();
+  const factory OrdersEvent.fetchOrders() = _FetchOrdersEvent;
 }

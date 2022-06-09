@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +13,10 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    log('error: $error bloc: $bloc stackTrace: $stackTrace');
+    if (error is HttpException) {
+      log('error: HttpException, message ${error.message} bloc: $bloc stackTrace: $stackTrace');
+    } else {
+      log('error: $error bloc: $bloc stackTrace: $stackTrace');
+    }
   }
 }
