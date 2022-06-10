@@ -40,6 +40,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.0.3+1
   dart_code_metrics: ^4.15.2
+  mockito: ^5.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
