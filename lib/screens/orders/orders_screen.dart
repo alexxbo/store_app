@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_app/common/data/auth.dart';
-import 'package:store_app/common/data/model/order_item.dart';
-import 'package:store_app/screens/orders/bloc/orders_bloc.dart';
-import 'package:store_app/common/data/repository/orders_repository.dart';
 
-import '/util/extensions.dart';
-import '/screens/orders/order_item.dart';
-import '/widgets/progress.dart';
-import '/widgets/app_drawer.dart';
+import '../../common/data/auth.dart';
+import '../../common/data/model/order_item.dart';
+import '../../common/data/repository/orders_repository.dart';
+import '../../util/extensions.dart';
+import '../../widgets/app_drawer.dart';
+import '../../widgets/progress.dart';
+import 'bloc/orders_bloc.dart';
+import 'order_item.dart';
 
 //TODO add swipe to refresh
 class OrderScreen extends StatelessWidget {

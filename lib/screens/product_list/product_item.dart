@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/common/data/auth.dart';
-import '/common/data/cart.dart';
-import '/common/data/model/product.dart';
-import '/screens/product_detail/product_detail_screen.dart';
+import '../../common/data/auth.dart';
+import '../../common/data/cart.dart';
+import '../../common/data/model/product.dart';
+import '../product_detail/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key}) : super(key: key);

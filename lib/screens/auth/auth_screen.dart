@@ -4,8 +4,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/common/data/auth.dart';
-import '/util/extensions.dart';
+import '../../common/data/auth.dart';
+import '../../util/extensions.dart';
 
 enum AuthMode { signUp, login }
 

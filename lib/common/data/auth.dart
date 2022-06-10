@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '/screens/auth/exceptions/authenticate_exception.dart';
+import '../../screens/auth/exceptions/authenticate_exception.dart';
 
 /// Docs https://firebase.google.com/docs/reference/rest/auth
 

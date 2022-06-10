@@ -4,8 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:store_app/common/data/model/product.dart';
-import 'package:store_app/common/data/constants.dart';
+
+import 'constants.dart';
+import 'model/product.dart';
 
 //TODO refactor: separate server model/ui model
 

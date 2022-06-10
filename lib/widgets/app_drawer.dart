@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/common/data/auth.dart';
-import '/screens/orders/orders_screen.dart';
-import '/screens/product_list/products_overview.dart';
-import '/screens/user_products/user_products_screen.dart';
+import '../common/data/auth.dart';
+import '../screens/orders/orders_screen.dart';
+import '../screens/product_list/products_overview.dart';
+import '../screens/user_products/user_products_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);

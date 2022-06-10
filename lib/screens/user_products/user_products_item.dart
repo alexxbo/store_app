@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/common/data/products.dart';
-import '/screens/add_edit_product/edit_product_screen.dart';
+import '../../common/data/products.dart';
+import '../add_edit_product/edit_product_screen.dart';
 
 class UserProductsItem extends StatelessWidget {
   final String id;

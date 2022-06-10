@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../util/extensions.dart';
 
-import '/common/data/cart.dart';
-import '/common/data/model/product.dart';
-import '/common/data/products.dart';
-import '/screens/cart/cart_screen.dart';
-import '/screens/product_list/product_item.dart';
-import '/widgets/app_drawer.dart';
-import '/widgets/badge.dart';
-import '/widgets/mixins/progress.dart';
-import '/util/extensions.dart';
+import '../../common/data/cart.dart';
+import '../../common/data/model/product.dart';
+import '../../common/data/products.dart';
+import '../../widgets/app_drawer.dart';
+import '../../widgets/badge.dart';
+import '../../widgets/mixins/progress.dart';
+import '../cart/cart_screen.dart';
+import 'product_item.dart';
 
 class ProductsOverviewScreen extends StatefulWidget {
   static const String routeName = '/';
