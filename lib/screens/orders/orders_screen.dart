@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/common/data/auth.dart';
 import 'package:store_app/common/data/model/order_item.dart';
 import 'package:store_app/screens/orders/bloc/orders_bloc.dart';
-import 'package:store_app/screens/orders/data/orders_repository.dart';
+import 'package:store_app/common/data/repository/orders_repository.dart';
 
 import '/util/extensions.dart';
 import '/screens/orders/order_item.dart';

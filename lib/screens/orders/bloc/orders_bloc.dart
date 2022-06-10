@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
-import 'package:store_app/screens/orders/data/orders_repository.dart';
+import 'package:store_app/common/data/repository/orders_repository.dart';
 
 import '/common/data/model/order_item.dart';
 
