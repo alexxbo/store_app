@@ -8,17 +8,17 @@ import '../../common/data/repository/orders_repository.dart';
 import '../../util/extensions.dart';
 import '../../widgets/mixins/progress.dart';
 import '../product_list/products_overview.dart';
-import 'cart_item.dart';
+import 'cart_detail_item.dart';
 
 //TODO refactor: make it simple
-class CartScreen extends StatelessWidget {
+class CartDetailScreen extends StatelessWidget {
   static const String routeName = '/cart';
 
   static void launch({required BuildContext context}) {
     Navigator.of(context).pushNamed(routeName);
   }
 
-  const CartScreen({Key? key}) : super(key: key);
+  const CartDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class CartScreen extends StatelessWidget {
               itemBuilder: (_, index) {
                 final item = cartState.products[index];
 
-                return CartItem(
+                return CartDetailItem(
                   id: item.product.id,
                   productId: item.productId,
                   title: item.product.title,

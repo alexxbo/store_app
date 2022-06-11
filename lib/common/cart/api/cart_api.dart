@@ -1,4 +1,4 @@
-import '../../data/model/cart_item.dart';
+import '../../model/cart_item.dart';
 
 abstract class ICartApi {
   const ICartApi();

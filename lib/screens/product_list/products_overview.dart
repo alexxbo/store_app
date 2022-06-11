@@ -9,7 +9,7 @@ import '../../util/extensions.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/badge.dart';
 import '../../widgets/mixins/progress.dart';
-import '../cart/cart_screen.dart';
+import '../cart_detail/cart_detail_screen.dart';
 import 'product_item.dart';
 
 class ProductsOverviewScreen extends StatefulWidget {
@@ -112,7 +112,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen>
   }
 
   void _openCartDetail(BuildContext context) {
-    CartScreen.launch(context: context);
+    CartDetailScreen.launch(context: context);
   }
 
   void _setFilter(Object? filter) {

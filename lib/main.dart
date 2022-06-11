@@ -13,7 +13,7 @@ import 'common/data/products.dart';
 import 'screens/add_edit_product/add_product_screen.dart';
 import 'screens/add_edit_product/edit_product_screen.dart';
 import 'screens/auth/auth_screen.dart';
-import 'screens/cart/cart_screen.dart';
+import 'screens/cart_detail/cart_detail_screen.dart';
 import 'screens/orders/orders_screen.dart';
 import 'screens/product_detail/product_detail_screen.dart';
 import 'screens/product_list/products_overview.dart';
@@ -81,7 +81,7 @@ class FlutterShop extends StatelessWidget {
               routes: {
                 ProductDetailScreen.routeName: (_) =>
                     const ProductDetailScreen(),
-                CartScreen.routeName: (_) => const CartScreen(),
+                CartDetailScreen.routeName: (_) => const CartDetailScreen(),
                 OrderScreen.routeName: (_) => const OrderScreen(),
                 UserProductScreen.routeName: (_) => const UserProductScreen(),
                 EditProductScreen.routeName: (_) => const EditProductScreen(),
