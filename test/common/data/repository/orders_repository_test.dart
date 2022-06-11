@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:store_app/common/data/model/cart_item.dart';
 import 'package:store_app/common/data/model/order_item.dart';
 import 'package:store_app/common/data/repository/orders_repository.dart';
 
@@ -46,14 +45,14 @@ List<OrderItem> get mockOrderList {
     OrderItem(
       id: '12',
       amount: 1,
-      products: <CartItem>[],
+      products: <OrderProduct>[],
       date: DateTime.now(),
     ),
     OrderItem(
       id: '13',
       amount: 26,
-      products: <CartItem>[
-        const CartItem(
+      products: <OrderProduct>[
+        const OrderProduct(
           id: '12',
           title: 'pants',
           quantity: 1,

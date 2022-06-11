@@ -5,6 +5,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:store_app/common/data/model/cart_item.dart' as _i5;
 import 'package:store_app/common/data/model/order_item.dart' as _i4;
 import 'package:store_app/common/data/repository/orders_repository.dart' as _i2;
 
@@ -31,4 +32,9 @@ class MockIOrdersRepository extends _i1.Mock implements _i2.IOrdersRepository {
       (super.noSuchMethod(Invocation.method(#getOrders, []),
               returnValue: Future<List<_i4.OrderItem>>.value(<_i4.OrderItem>[]))
           as _i3.Future<List<_i4.OrderItem>>);
+  @override
+  _i3.Future<void> add(List<_i5.CartItem>? products, double? total) =>
+      (super.noSuchMethod(Invocation.method(#add, [products, total]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import '../../util/extensions.dart';
 
-import '../../common/data/cart.dart';
+import '../../common/cart/bloc/cart_bloc.dart';
 import '../../common/data/model/product.dart';
 import '../../common/data/products.dart';
+import '../../util/extensions.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/badge.dart';
 import '../../widgets/mixins/progress.dart';
@@ -50,16 +51,13 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen>
       appBar: AppBar(
         title: const Text('Products'),
         actions: [
-          Consumer<Cart>(
-            builder: (_, cart, child) => Badge(
-              value: '${cart.itemCount}',
-              child: child ?? Container(),
-            ),
-            child: IconButton(
-              onPressed: () {
-                CartScreen.launch(context: context);
-              },
-              icon: const Icon(Icons.shopping_cart),
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) => Badge(
+              value: '${state.itemCount}',
+              child: IconButton(
+                onPressed: () => _openCartDetail(context),
+                icon: const Icon(Icons.shopping_cart),
+              ),
             ),
           ),
           PopupMenuButton(
@@ -111,6 +109,10 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen>
                   },
                 ),
     );
+  }
+
+  void _openCartDetail(BuildContext context) {
+    CartScreen.launch(context: context);
   }
 
   void _setFilter(Object? filter) {

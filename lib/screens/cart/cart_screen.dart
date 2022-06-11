@@ -1,13 +1,16 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '/common/data/cart.dart';
-import '/common/data/orders.dart';
-import '/screens/cart/cart_item.dart';
-import '/screens/product_list/products_overview.dart';
+import '../../common/cart/bloc/cart_bloc.dart';
+import '../../common/data/auth.dart';
+import '../../common/data/repository/orders_repository.dart';
+import '../../util/extensions.dart';
+import '../../widgets/mixins/progress.dart';
+import '../product_list/products_overview.dart';
+import 'cart_item.dart';
 
+//TODO refactor: make it simple
 class CartScreen extends StatelessWidget {
   static const String routeName = '/cart';
 
@@ -19,7 +22,8 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = context.watch<Cart>();
+    final cartBloc = context.watch<CartBloc>();
+    final cartState = cartBloc.state;
 
     return Scaffold(
       appBar: AppBar(
@@ -39,9 +43,9 @@ class CartScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                   ),
                   const Spacer(),
-                  Chip(label: Text('\$${cart.totalAmount}')),
+                  Chip(label: Text('\$${cartState.totalAmount}')),
                   const SizedBox(width: 8),
-                  OrderButton(cart: cart),
+                  OrderButton(cartBloc: cartBloc),
                 ],
               ),
             ),
@@ -49,16 +53,16 @@ class CartScreen extends StatelessWidget {
           const SizedBox(height: 8),
           Expanded(
             child: ListView.builder(
-              itemCount: cart.items.length,
+              itemCount: cartState.items.length,
               itemBuilder: (_, index) {
-                final item = cart.items.values.toList()[index];
+                final item = cartState.products[index];
 
                 return CartItem(
-                  id: item.id,
-                  productId: cart.items.keys.toList()[index],
-                  title: item.title,
-                  quantity: item.quantity,
-                  price: item.price,
+                  id: item.product.id,
+                  productId: item.productId,
+                  title: item.product.title,
+                  quantity: item.product.quantity,
+                  price: item.product.price,
                 );
               },
             ),
@@ -70,30 +74,32 @@ class CartScreen extends StatelessWidget {
 }
 
 class OrderButton extends StatefulWidget {
-  final Cart _cart;
+  final CartBloc _cartBloc;
 
-  const OrderButton({Key? key, required Cart cart})
-      : _cart = cart,
+  const OrderButton({Key? key, required CartBloc cartBloc})
+      : _cartBloc = cartBloc,
         super(key: key);
 
   @override
   State<OrderButton> createState() => _OrderButtonState();
 }
 
-class _OrderButtonState extends State<OrderButton> {
-  bool _onProgress = false;
+class _OrderButtonState extends State<OrderButton> with ProgressState {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 130,
-      child: _onProgress
+      child: inProgress
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : TextButton(
-              onPressed: widget._cart.totalAmount == 0.0
+              onPressed: widget._cartBloc.state.totalAmount == 0.0
                   ? null
-                  : () => _onOrderNowClicked(context, widget._cart),
+                  : () => _onOrderNowClicked(
+                        context: context,
+                        cartBloc: widget._cartBloc,
+                      ),
               child: const Text(
                 'ORDER NOW',
                 style: TextStyle(
@@ -105,32 +111,31 @@ class _OrderButtonState extends State<OrderButton> {
     );
   }
 
-  void _onOrderNowClicked(BuildContext context, Cart cart) {
-    _showProgress(true);
-    context
-        .read<Orders>()
+  void _onOrderNowClicked({
+    required BuildContext context,
+    required CartBloc cartBloc,
+  }) {
+    showProgress(true);
+
+    //TODO refactor: implements cart detail bloc
+    final _auth = context.read<Auth>();
+    final IOrdersRepository repository = IOrdersRepository.call(
+      userId: _auth.userId.orEmpty(),
+      token: _auth.token.orEmpty(),
+    );
+
+    repository
         .add(
-          cart.items.values.toList(),
-          cart.totalAmount,
+          cartBloc.state.products.map((item) => item.product).toList(),
+          cartBloc.state.totalAmount,
         )
         .then(
-      (_) {
-        cart.clear();
-        ProductsOverviewScreen.launch(context: context);
-      },
-    ).catchError((error) {
-      log(error.toString());
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Some thing went wrong'),
-        ),
-      );
-    }).whenComplete(() => _showProgress(false));
-  }
-
-  void _showProgress(bool show) {
-    setState(() {
-      _onProgress = show;
-    });
+          (_) {
+            cartBloc.add(const CartEvent.clear());
+            ProductsOverviewScreen.launch(context: context);
+          },
+        )
+        .onErrorMessage(context)
+        .whenComplete(() => showProgress(false));
   }
 }

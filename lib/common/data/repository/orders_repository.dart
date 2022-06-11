@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:store_app/common/data/constants.dart';
 
-import 'package:store_app/common/data/model/order_item.dart';
+import '../constants.dart';
+import '../model/cart_item.dart';
+import '../model/order_item.dart';
 
 abstract class IOrdersRepository {
   static IOrdersRepository call({
@@ -13,6 +14,8 @@ abstract class IOrdersRepository {
       _OrdersRepository(userId: userId, token: token);
 
   Future<List<OrderItem>> getOrders();
+
+  Future<void> add(List<CartItem> products, double total);
 }
 
 class _OrdersRepository implements IOrdersRepository {
@@ -47,6 +50,35 @@ class _OrdersRepository implements IOrdersRepository {
       );
 
       return loadedOrders.reversed.toList();
+    }
+  }
+
+  @override
+  Future<void> add(List<CartItem> products, double total) async {
+    final date = DateTime.now();
+
+    final url = Uri.parse('$productsBaseUrl/orders/$_userId.json?auth=$_token');
+    final response = await http.post(
+      url,
+      body: json.encode({
+        'amount': total,
+        'products': products
+            .map((product) => {
+                  'id': product.id,
+                  'title': product.title,
+                  'price': product.price,
+                  'quantity': product.quantity,
+                })
+            .toList(growable: false),
+        'date': date.toIso8601String(),
+      }),
+    );
+
+    if (response.statusCode != 200) {
+      throw HttpException(
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
     }
   }
 }

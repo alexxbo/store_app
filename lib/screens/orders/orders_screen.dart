@@ -23,24 +23,26 @@ class OrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _auth = context.read<Auth>();
-    final IOrdersRepository _repository = IOrdersRepository.call(
-      userId: _auth.userId.orEmpty(),
-      token: _auth.token.orEmpty(),
-    );
 
-    return BlocProvider(
-      create: (context) => OrdersBloc(_repository),
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Orders')),
-        drawer: const AppDrawer(),
-        body: BlocConsumer<OrdersBloc, OrdersState>(
-          listener: (context, state) =>
-              _showErrorMessage(state.errorMessageOrNull, context),
-          builder: (context, state) => state.when(
-            inProgress: () => const ProgressWidget(),
-            empty: () => _buildEmptyState(context),
-            success: (list) => _buildOrderList(list),
-            error: (_, __) => _buildError(context),
+    return RepositoryProvider(
+      create: (context) => IOrdersRepository.call(
+        userId: _auth.userId.orEmpty(),
+        token: _auth.token.orEmpty(),
+      ),
+      child: BlocProvider(
+        create: (context) => OrdersBloc(context.read<IOrdersRepository>()),
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Orders')),
+          drawer: const AppDrawer(),
+          body: BlocConsumer<OrdersBloc, OrdersState>(
+            listener: (context, state) =>
+                _showErrorMessage(state.errorMessageOrNull, context),
+            builder: (context, state) => state.when(
+              inProgress: () => const ProgressWidget(),
+              empty: () => _buildEmptyState(context),
+              success: (list) => _buildOrderList(list),
+              error: (_, __) => _buildError(context),
+            ),
           ),
         ),
       ),

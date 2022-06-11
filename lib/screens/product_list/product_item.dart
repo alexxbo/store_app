@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/cart/bloc/cart_bloc.dart';
 import '../../common/data/auth.dart';
-import '../../common/data/cart.dart';
 import '../../common/data/model/product.dart';
 import '../product_detail/product_detail_screen.dart';
 
@@ -75,14 +75,18 @@ class ProductItem extends StatelessWidget {
     required BuildContext context,
     required Product product,
   }) {
-    final cart = context.read<Cart>();
-    cart.add(product.id, product.title, product.price);
+    final cartBloc = context.read<CartBloc>();
+    cartBloc.add(CartEvent.addProduct(
+      productId: product.id,
+      title: product.title,
+      price: product.price,
+    ));
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: const Text('Add product to card'),
       action: SnackBarAction(
         label: 'UNDO',
         onPressed: () {
-          cart.removeSingle(product.id);
+          cartBloc.add(CartEvent.reduceQuantityOrRemoveProduct(product.id));
         },
       ),
     ));

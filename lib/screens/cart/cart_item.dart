@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/data/cart.dart';
+import '../../common/cart/bloc/cart_bloc.dart';
 
 class CartItem extends StatelessWidget {
   final String id;
@@ -24,28 +24,8 @@ class CartItem extends StatelessWidget {
     return Dismissible(
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
-      confirmDismiss: (direction) {
-        return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Delete'),
-            content: const Text('Do you want to delete the item from cart? '),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(true),
-                child: const Text('Delete'),
-              ),
-            ],
-          ),
-        );
-      },
-      onDismissed: (direction) {
-        Provider.of<Cart>(context, listen: false).remove(productId);
-      },
+      confirmDismiss: (direction) => _showConfirmDeleteDialog(context),
+      onDismissed: (direction) => _removeProduct(context),
       background: Container(
         margin: const EdgeInsets.all(24),
         alignment: Alignment.centerRight,
@@ -80,5 +60,31 @@ class CartItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _removeProduct(BuildContext context) {
+    context.read<CartBloc>().add(CartEvent.removeProduct(productId));
+  }
+
+  Future<bool> _showConfirmDeleteDialog(BuildContext context) async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete'),
+        content: const Text('Do you want to delete the item from cart? '),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+
+    return result ?? false;
   }
 }

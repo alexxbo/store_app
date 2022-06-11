@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../util/extensions.dart';
 import '../../common/data/products.dart';
+import '../../util/extensions.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/progress.dart';
 import '../add_edit_product/add_product_screen.dart';
