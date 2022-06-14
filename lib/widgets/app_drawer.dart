@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/common/authorization/bloc/authorization_bloc.dart';
 
-import '../common/data/auth.dart';
 import '../screens/orders/orders_screen.dart';
 import '../screens/product_list/products_overview.dart';
 import '../screens/user_products/user_products_screen.dart';
@@ -62,5 +62,5 @@ class AppDrawer extends StatelessWidget {
 
 void _logout(BuildContext context) {
   Navigator.of(context).pop();
-  context.read<Auth>().logout();
+  context.read<AuthorizationBloc>().add(const AuthorizationEvent.logout());
 }

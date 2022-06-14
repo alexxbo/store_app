@@ -9,10 +9,6 @@ part 'cart_bloc.freezed.dart';
 part 'cart_event.dart';
 part 'cart_state.dart';
 
-/// To run the code generator, execute the following command:
-/// - flutter pub run build_runner build
-/// or
-/// - flutter pub run build_runner watch --delete-conflicting-outputs
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc(ICartRepository repository)
       : _repository = repository,

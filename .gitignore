@@ -46,4 +46,4 @@ app.*.map.json
 /android/app/release
 
 # ApiKeys
-/lib/data/auth/secrets.dart
+/lib/screens/authentication/api/secrets.dart

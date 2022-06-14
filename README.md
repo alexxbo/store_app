@@ -1,16 +1,16 @@
-# store_app
+# Flutter Store App
 
-A new Flutter project.
+A Flutter pet project.
+## [Freezed](https://pub.dev/packages/freezed)
+code generator for data-classes/unions/pattern-matching/cloning.
 
-## Getting Started
+To run the code generator, execute the following command:
+- flutter pub run build_runner build
+or
+- flutter pub run build_runner watch --delete-conflicting-outputs
 
-This project is a starting point for a Flutter application.
+## [Mockito](https://pub.dev/packages/mockito)
+A mock framework inspired by Mockito with APIs for Fakes, Mocks, behavior verification, and stubbing.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+generate the mocks running the following command:
+- flutter pub run build_runner build

@@ -6,8 +6,6 @@ import 'package:store_app/common/data/repository/orders_repository.dart';
 
 import 'orders_repository_test.mocks.dart';
 
-/// generate the mocks running the following command:
-/// flutter pub run build_runner build
 @GenerateMocks([IOrdersRepository])
 void main() {
   late IOrdersRepository repository;
