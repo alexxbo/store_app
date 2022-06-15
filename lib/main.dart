@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/screens/authentication/authentication_screen.dart';
 
 import 'common/authorization/bloc/authorization_bloc.dart';
 import 'common/authorization/data/authorization_repository.dart';
@@ -13,15 +13,19 @@ import 'common/data/auth.dart';
 import 'common/data/model/product.dart';
 import 'common/data/products.dart';
 import 'common/data/storage/user_storage.dart';
+import 'common/products/api/products_api.dart';
+import 'common/products/repository/products_repository.dart';
 import 'screens/add_edit_product/add_product_screen.dart';
 import 'screens/add_edit_product/edit_product_screen.dart';
+import 'screens/authentication/authentication_screen.dart';
 import 'screens/cart_detail/cart_detail_screen.dart';
 import 'screens/orders/orders_screen.dart';
 import 'screens/product_detail/product_detail_screen.dart';
-import 'screens/product_list/products_overview.dart';
+import 'screens/products_overview/products_overview.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/user_products/user_products_screen.dart';
 import 'theme/app_theme.dart';
+import 'util/logger_intercepter.dart';
 
 void main() {
   BlocOverrides.runZoned(
@@ -38,11 +42,22 @@ class FlutterShop extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
+          create: (context) => IUserStorage(),
+        ),
+        RepositoryProvider(
           create: (context) => ICartRepository.call(ICartApi.call()),
         ),
         RepositoryProvider(
           create: (context) =>
-              IAuthorizationRepository(storage: IUserStorage()),
+              IAuthorizationRepository(storage: context.read<IUserStorage>()),
+        ),
+        RepositoryProvider(
+          create: (context) => IProductsRepository(
+            api: IProductsApi(
+              InterceptedClient.build(interceptors: [LoggerInterceptor()]),
+            ),
+            userStorage: context.read<IUserStorage>(),
+          ),
         ),
       ],
       child: MultiBlocProvider(

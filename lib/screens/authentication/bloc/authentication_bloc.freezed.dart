@@ -1827,7 +1827,7 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
       this.email = const EmailInput.dirty(),
       this.password = const PasswordInput.dirty(),
       this.repeatPassword = const PasswordInput.dirty(),
-      this.message = 'Something went wrong'})
+      this.message = 'Could not authenticate you. Please try again later.'})
       : super._();
 
   @override

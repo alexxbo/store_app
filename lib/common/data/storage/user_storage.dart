@@ -34,8 +34,8 @@ class _UserPreferencesStorage implements IUserStorage {
     }
 
     final user = AuthenticatedUser(
-      userId: data['token'],
-      token: data['userId'],
+      userId: data['userId'],
+      token: data['token'],
       expiryDate: expiryDate,
     );
 

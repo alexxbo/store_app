@@ -2,43 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/data/auth.dart';
 import '../../common/data/model/product.dart';
 import '../product_detail/product_detail_screen.dart';
+import 'bloc/products_overview_bloc.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key}) : super(key: key);
+class ProductsOverviewItem extends StatelessWidget {
+  const ProductsOverviewItem({
+    Key? key,
+    required final Product product,
+  })  : _product = product,
+        super(key: key);
+
+  final Product _product;
 
   @override
   Widget build(BuildContext context) {
-    final product = context.read<Product>();
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: GestureDetector(
-        onTap: () => ProductDetailScreen.launch(
-          context: context,
-          productId: product.id,
-        ),
+        onTap: () => _openProductDetail(context, _product),
         child: GridTile(
           footer: GridTileBar(
             title: Text(
-              product.title,
+              _product.title,
               textAlign: TextAlign.center,
             ),
             backgroundColor: Colors.black54,
             leading: IconButton(
-              icon: Consumer<Product>(
-                builder: (_, value, __) {
-                  return Icon(
-                    value.isFavorite
-                        ? Icons.favorite
-                        : Icons.favorite_border_outlined,
-                    color: Theme.of(context).colorScheme.onSecondary,
-                  );
-                },
+              icon: Icon(
+                _product.isFavorite
+                    ? Icons.favorite
+                    : Icons.favorite_border_outlined,
+                color: Theme.of(context).colorScheme.onSecondary,
               ),
-              onPressed: () => _setFavorite(context, product),
+              onPressed: () => _setFavorite(context, _product),
             ),
             trailing: IconButton(
               icon: Icon(
@@ -47,17 +44,17 @@ class ProductItem extends StatelessWidget {
               ),
               onPressed: () => _onAddToCardClicked(
                 context: context,
-                product: product,
+                product: _product,
               ),
             ),
           ),
           child: Hero(
-            tag: product.id,
+            tag: _product.id,
             child: FadeInImage(
               placeholderFit: BoxFit.cover,
               placeholder:
                   const AssetImage('assets/images/product_placeholder.png'),
-              image: NetworkImage(product.imageUrl),
+              image: NetworkImage(_product.imageUrl),
               fit: BoxFit.cover,
             ),
           ),
@@ -66,9 +63,17 @@ class ProductItem extends StatelessWidget {
     );
   }
 
+  void _openProductDetail(BuildContext context, Product product) {
+    return ProductDetailScreen.launch(
+      context: context,
+      productId: product.id,
+    );
+  }
+
   void _setFavorite(BuildContext context, Product product) {
-    final auth = context.read<Auth>();
-    product.setFavorite(auth.token, auth.userId);
+    context
+        .read<ProductsOverviewBloc>()
+        .add(ProductsOverviewEvent.onFavoriteToggled(product: product));
   }
 
   void _onAddToCardClicked({

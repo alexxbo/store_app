@@ -7,7 +7,7 @@ import '../../common/data/auth.dart';
 import '../../common/data/repository/orders_repository.dart';
 import '../../util/extensions.dart';
 import '../../widgets/mixins/progress.dart';
-import '../product_list/products_overview.dart';
+import '../products_overview/products_overview.dart';
 import 'cart_detail_item.dart';
 
 //TODO refactor: make it simple

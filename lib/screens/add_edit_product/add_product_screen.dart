@@ -34,6 +34,7 @@ class _AddProductScreenState
       price: newProduct.price,
       imageUrl: newProduct.imageUrl,
       userId: context.read<Auth>().userId!,
+      isFavorite: false,
     );
 
     return context.read<Products>().add(product);

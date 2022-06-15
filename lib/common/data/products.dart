@@ -8,8 +8,6 @@ import 'package:http/http.dart' as http;
 import 'constants.dart';
 import 'model/product.dart';
 
-//TODO refactor: separate server model/ui model
-
 class Products with ChangeNotifier {
   final String? _token;
   final String? _userId;
@@ -28,38 +26,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> fetchProducts([bool filterByUser = false]) async {
-    final filterQuery =
-        filterByUser ? '&orderBy="creatorId"&equalTo="$_userId"' : '';
-    final url =
-        Uri.parse('$productsBaseUrl/products.json?auth=$_token$filterQuery');
-
-    final response = await http.get(url);
-
-    if (response.statusCode != 200) {
-      throw HttpException(
-        'Status code: ${response.statusCode} message: ${response.body}',
-        uri: url,
-      );
-    } else {
-      final data = json.decode(response.body) as Map<String, dynamic>?;
-      if (data == null) return;
-
-      final url = Uri.parse(
-        '$productsBaseUrl/user_favorites/$_userId.json?auth=$_token',
-      );
-      final favResponse = await http.get(url);
-      final favoriteDate = jsonDecode(favResponse.body);
-
-      final loadedProducts = <Product>[];
-      data.forEach((productId, json) {
-        final product = Product.fromJson(productId, json);
-        product.isFavorite =
-            favoriteDate == null ? false : favoriteDate[productId] ?? false;
-        loadedProducts.add(product);
-      });
-      _items = loadedProducts;
-      notifyListeners();
-    }
+    //TODO remove after refactor
   }
 
   Product getById(String id) {
@@ -97,6 +64,7 @@ class Products with ChangeNotifier {
         price: product.price,
         imageUrl: product.imageUrl,
         userId: _userId!,
+        isFavorite: false,
       );
       _items.add(product);
       notifyListeners();
@@ -139,8 +107,9 @@ class Products with ChangeNotifier {
           price: price,
           imageUrl: imageUrl,
           userId: current.userId,
+          isFavorite: current.isFavorite,
         );
-        newProduct.isFavorite = current.isFavorite;
+
         _items[index] = newProduct;
         notifyListeners();
       }

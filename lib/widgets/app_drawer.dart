@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/common/authorization/bloc/authorization_bloc.dart';
 
 import '../screens/orders/orders_screen.dart';
-import '../screens/product_list/products_overview.dart';
+import '../screens/products_overview/products_overview.dart';
 import '../screens/user_products/user_products_screen.dart';
 
 class AppDrawer extends StatelessWidget {

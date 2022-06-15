@@ -9,11 +9,10 @@ class UserResponse {
   final DateTime? expiryDate;
   final String? userId;
 
-  ///FIXME:
-  /// API does not return [expiryDate], set to one hour
   factory UserResponse.fromJson(Map<String, dynamic> json) => UserResponse(
         userId: json['localId'],
         token: json['idToken'],
-        expiryDate: DateTime.now().add(const Duration(hours: 1)),
+        expiryDate: DateTime.now()
+            .add(Duration(seconds: int.tryParse(json['expiresIn']) ?? 0)),
       );
 }
