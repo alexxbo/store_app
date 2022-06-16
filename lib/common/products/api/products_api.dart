@@ -32,6 +32,10 @@ abstract class IProductsApi {
     required final String userId,
     required final String productId,
   });
+  Future<ProductResponse> getProductById({
+    required final String userToken,
+    required final String productId,
+  });
 }
 
 class _ProductsApi implements IProductsApi {
@@ -134,5 +138,19 @@ class _ProductsApi implements IProductsApi {
 
       return loadedProducts;
     }
+  }
+
+  @override
+  Future<ProductResponse> getProductById({
+    required String userToken,
+    required String productId,
+  }) async {
+    final url = Uri.parse(
+      '$productsBaseUrl/products/$productId.json?auth=$userToken',
+    );
+    final response = await _client.get(url);
+    final json = jsonDecode(response.body) as Map<String, dynamic>;
+
+    return ProductResponse.fromJson(productId, json);
   }
 }

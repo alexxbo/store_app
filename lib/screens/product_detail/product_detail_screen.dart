@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/data/products.dart';
+import '../../common/products/repository/products_repository.dart';
+import '../../widgets/progress.dart';
+import 'bloc/product_detail_bloc.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   static String routeName = '/product_details';
@@ -21,54 +23,81 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)?.settings.arguments as String;
-    final product =
-        Provider.of<Products>(context, listen: false).getById(productId);
+    final repository = context.read<IProductsRepository>();
 
+    return BlocProvider(
+      create: (context) => ProductDetailBloc(repository)
+        ..add(ProductDetailEvent.onStarted(productId)),
+      child: const ProductDetailView(),
+    );
+  }
+}
+
+class ProductDetailView extends StatelessWidget {
+  const ProductDetailView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 300,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(product.title),
-              background: Hero(
-                tag: product.id,
-                child: Image.network(
-                  product.imageUrl,
-                  height: 300,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+      body: BlocBuilder<ProductDetailBloc, ProductDetailState>(
+        builder: (context, state) => state.when(
+          progress: () => const ProgressWidget(),
+          error: (message) => _buildErrorState(context, message),
+          success: (product) => CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                expandedHeight: 300,
+                pinned: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Text(product.title),
+                  background: Hero(
+                    tag: product.id,
+                    child: Image.network(
+                      product.imageUrl,
+                      height: 300,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                const SizedBox(height: 12),
-                Text(
-                  '\$${product.price}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 24,
-                  ),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    const SizedBox(height: 12),
+                    Text(
+                      '\$${product.price}',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        product.description,
+                        style: const TextStyle(),
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    product.description,
-                    style: const TextStyle(),
-                    softWrap: true,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildErrorState(BuildContext context, String message) {
+    return Center(
+      child: Text(
+        message,
+        style: Theme.of(context).textTheme.headline6,
       ),
     );
   }

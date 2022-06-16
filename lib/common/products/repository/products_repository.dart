@@ -13,6 +13,7 @@ abstract class IProductsRepository {
   Future<List<Product>> getAllProducts();
   Future<List<Product>> getUserProducts();
   Future<void> toggleProductFavorite(Product product);
+  Future<Product> getProductById(String productId);
 }
 
 class _ProductRepository implements IProductsRepository {
@@ -76,5 +77,23 @@ class _ProductRepository implements IProductsRepository {
       userId: user.userId,
       product: product,
     );
+  }
+
+  @override
+  Future<Product> getProductById(String productId) async {
+    final user = await _userStorage.getSavedUser();
+    if (user == null) throw Exception('User is null');
+    final productResponse = await _api.getProductById(
+      userToken: user.token,
+      productId: productId,
+    );
+
+    final favorite = await _api.isProductFavorite(
+      userToken: user.token,
+      userId: user.userId,
+      productId: productId,
+    );
+
+    return productResponse.mapToProduct(favorite);
   }
 }
