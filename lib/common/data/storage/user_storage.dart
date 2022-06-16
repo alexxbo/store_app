@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:store_app/common/model/user.dart';
+
+import '../model/user.dart';
 
 abstract class IUserStorage {
   factory IUserStorage() => _UserPreferencesStorage();

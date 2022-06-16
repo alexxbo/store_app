@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import '../../../common/data/storage/user_storage.dart';
-import '../../../common/model/user.dart';
+import '../../../common/data/model/user.dart';
 import '../api/authentication_api.dart';
 import '../api/model/user_response.dart';
 import 'exception/invalid_user_exception.dart';

@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 
-import '../../screens/authentication/api/model/user_response.dart';
+import '../../../screens/authentication/api/model/user_response.dart';
 import '/../util/extensions.dart';
 
 @immutable
