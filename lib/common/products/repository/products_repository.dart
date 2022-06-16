@@ -14,6 +14,7 @@ abstract class IProductsRepository {
   Future<List<Product>> getUserProducts();
   Future<void> toggleProductFavorite(Product product);
   Future<Product> getProductById(String productId);
+  Future<void> removeUserProduct(String productId);
 }
 
 class _ProductRepository implements IProductsRepository {
@@ -95,5 +96,12 @@ class _ProductRepository implements IProductsRepository {
     );
 
     return productResponse.mapToProduct(favorite);
+  }
+
+  @override
+  Future<void> removeUserProduct(String productId) async {
+    final user = await _userStorage.getSavedUser();
+    if (user == null) throw Exception('User is null');
+    await _api.removeUserProduct(userToken: user.token, productId: productId);
   }
 }

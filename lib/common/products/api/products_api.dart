@@ -14,25 +14,35 @@ abstract class IProductsApi {
   Future<List<ProductResponse>> getAllProducts({
     required final String userToken,
   });
+
   Future<List<ProductResponse>> getUserProducts({
     required final String userToken,
     required final String userId,
   });
+
   Future<List<ProductFavoriteResponse>> getUserFavorites({
     required final String userToken,
     required final String userId,
   });
+
   Future<void> toggleFavoriteProduct({
     required final String userToken,
     required final String userId,
     required final Product product,
   });
+
   Future<bool> isProductFavorite({
     required final String userToken,
     required final String userId,
     required final String productId,
   });
+
   Future<ProductResponse> getProductById({
+    required final String userToken,
+    required final String productId,
+  });
+
+  Future<void> removeUserProduct({
     required final String userToken,
     required final String productId,
   });
@@ -152,5 +162,22 @@ class _ProductsApi implements IProductsApi {
     final json = jsonDecode(response.body) as Map<String, dynamic>;
 
     return ProductResponse.fromJson(productId, json);
+  }
+
+  @override
+  Future<void> removeUserProduct({
+    required final String userToken,
+    required final String productId,
+  }) async {
+    final url =
+        Uri.parse('$productsBaseUrl/products/$productId.json?auth=$userToken');
+    final response = await _client.delete(url);
+
+    if (response.statusCode != 200) {
+      throw HttpException(
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
+    }
   }
 }

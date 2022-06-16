@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/products/repository/products_repository.dart';
+import '../../widgets/error_view.dart';
 import '../../widgets/progress.dart';
 import 'bloc/product_detail_bloc.dart';
 
@@ -42,7 +43,7 @@ class ProductDetailView extends StatelessWidget {
       body: BlocBuilder<ProductDetailBloc, ProductDetailState>(
         builder: (context, state) => state.when(
           progress: () => const ProgressWidget(),
-          error: (message) => _buildErrorState(context, message),
+          error: (message) => ErrorView(message: message),
           success: (product) => CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -89,15 +90,6 @@ class ProductDetailView extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildErrorState(BuildContext context, String message) {
-    return Center(
-      child: Text(
-        message,
-        style: Theme.of(context).textTheme.headline6,
       ),
     );
   }

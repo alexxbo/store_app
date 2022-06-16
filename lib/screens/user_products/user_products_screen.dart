@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/data/products.dart';
-import '../../util/extensions.dart';
+import '../../common/data/model/product.dart';
+import '../../common/products/repository/products_repository.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/progress.dart';
 import '../add_edit_product/add_product_screen.dart';
+import 'bloc/user_products_bloc.dart';
 import 'user_products_item.dart';
 
 class UserProductScreen extends StatelessWidget {
@@ -16,6 +17,21 @@ class UserProductScreen extends StatelessWidget {
   }
 
   const UserProductScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final repository = context.read<IProductsRepository>();
+
+    return BlocProvider(
+      create: (context) => UserProductsBloc(repository)
+        ..add(const UserProductsEvent.onStarted()),
+      child: const UserProductView(),
+    );
+  }
+}
+
+class UserProductView extends StatelessWidget {
+  const UserProductView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,54 +47,41 @@ class UserProductScreen extends StatelessWidget {
       ),
       drawer: const AppDrawer(),
       body: RefreshIndicator(
-        onRefresh: (() => _refreshProducts(context)),
-        child: FutureBuilder(
-          future: _refreshProducts(context),
-          builder: (context, snapshot) {
-            if (snapshot.isDone) {
-              return _buildProductList();
-            } else if (snapshot.hasError) {
-              return _buildError();
-            } else {
-              return const ProgressWidget();
-            }
-          },
+        onRefresh: () async => _refreshProducts(context),
+        child: BlocBuilder<UserProductsBloc, UserProductsState>(
+          builder: (context, state) => state.when(
+            progress: (_) => const ProgressWidget(),
+            success: (list) => _buildProductList(list),
+            error: (_, message) => ErrorWidget(message),
+          ),
         ),
       ),
     );
+  }
+
+  Widget _buildProductList(List<Product> list) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          final item = list[index];
+
+          return UserProductsItem(
+            id: item.id,
+            title: item.title,
+            imageUrl: item.imageUrl,
+          );
+        },
+      ),
+    );
+  }
+
+  Future<void> _refreshProducts(BuildContext context) async {
+    context.read<UserProductsBloc>().add(const UserProductsEvent.onStarted());
   }
 
   void _openEditProductScreen(BuildContext context) {
     AddProductScreen.launch(context: context);
-  }
-
-  Future<void> _refreshProducts(BuildContext context) async {
-    await context.read<Products>().fetchProducts(true);
-  }
-
-  Widget _buildProductList() {
-    return Consumer<Products>(
-      builder: (context, catalog, child) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ListView.builder(
-          itemCount: catalog.items.length,
-          itemBuilder: (context, index) {
-            final item = catalog.items[index];
-
-            return UserProductsItem(
-              id: item.id,
-              title: item.title,
-              imageUrl: item.imageUrl,
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildError() {
-    return const Center(
-      child: Text('Some thing went wrong. Please try again.'),
-    );
   }
 }

@@ -10,7 +10,6 @@ import 'common/cart/api/cart_api.dart';
 import 'common/cart/bloc/cart_bloc.dart';
 import 'common/cart/data/cart_repository.dart';
 import 'common/data/auth.dart';
-import 'common/data/model/product.dart';
 import 'common/data/products.dart';
 import 'common/data/storage/user_storage.dart';
 import 'common/products/api/products_api.dart';
@@ -80,12 +79,10 @@ class FlutterShop extends StatelessWidget {
               create: (context) => Products(
                 context.read<Auth>().token,
                 context.read<Auth>().userId,
-                <Product>[],
               ),
               update: (context, auth, previous) => Products(
                 auth.token,
                 auth.userId,
-                previous?.items ?? <Product>[],
               ),
             ),
           ],

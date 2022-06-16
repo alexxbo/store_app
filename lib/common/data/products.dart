@@ -13,21 +13,7 @@ class Products with ChangeNotifier {
   final String? _userId;
   List<Product> _items = [];
 
-  Products(this._token, this._userId, List<Product> items) {
-    _items.addAll(items);
-  }
-
-  List<Product> get items {
-    return List.unmodifiable(_items);
-  }
-
-  List<Product> get favoriteItems {
-    return List.unmodifiable(_items.where((item) => item.isFavorite));
-  }
-
-  Future<void> fetchProducts([bool filterByUser = false]) async {
-    //TODO remove after refactor
-  }
+  Products(this._token, this._userId);
 
   Product getById(String id) {
     return _items.firstWhere((item) => item.id == id);
@@ -113,23 +99,6 @@ class Products with ChangeNotifier {
         _items[index] = newProduct;
         notifyListeners();
       }
-    }
-  }
-
-  Future<void> remove(String productId) async {
-    final url =
-        Uri.parse('$productsBaseUrl/products/$productId.json?auth=$_token');
-    final response = await http.delete(url);
-
-    if (response.statusCode != 200) {
-      throw HttpException(
-        'Status code: ${response.statusCode} message: ${response.body}',
-        uri: url,
-      );
-    } else {
-      final index = _items.indexWhere((product) => product.id == productId);
-      _items.removeAt(index);
-      notifyListeners();
     }
   }
 }
