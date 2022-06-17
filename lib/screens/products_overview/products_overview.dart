@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
 import '../../common/data/model/product.dart';
+import '../../common/service_locator/injection_container.dart';
 import '../../common/products/repository/products_repository.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/badge.dart';
@@ -23,9 +24,10 @@ class ProductsOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final repository = locator.get<IProductsRepository>();
+
     return BlocProvider<ProductsOverviewBloc>(
-      create: (context) =>
-          ProductsOverviewBloc(context.read<IProductsRepository>()),
+      create: (context) => ProductsOverviewBloc(repository),
       child: const ProductsOverviewView(),
     );
   }

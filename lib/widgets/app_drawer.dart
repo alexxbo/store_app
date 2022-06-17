@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/common/authorization/bloc/authorization_bloc.dart';
 
+import '../common/authorization/bloc/authorization_bloc.dart';
 import '../screens/orders/orders_screen.dart';
 import '../screens/products_overview/products_overview.dart';
 import '../screens/user_products/user_products_screen.dart';

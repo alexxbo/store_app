@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 
-import '../../../screens/authentication/api/model/user_response.dart';
 import '/../util/extensions.dart';
+import '../../../screens/authentication/api/model/user_response.dart';
 
 @immutable
 abstract class User {

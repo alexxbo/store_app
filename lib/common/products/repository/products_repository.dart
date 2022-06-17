@@ -1,7 +1,8 @@
+import 'package:collection/collection.dart';
+
 import '../../data/model/product.dart';
 import '../../data/storage/user_storage.dart';
 import '../api/products_api.dart';
-import 'package:collection/collection.dart';
 
 abstract class IProductsRepository {
   factory IProductsRepository({

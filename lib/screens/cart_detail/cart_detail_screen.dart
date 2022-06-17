@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/data/auth.dart';
 import '../../common/data/repository/orders_repository.dart';
+import '../../common/service_locator/injection_container.dart';
 import '../../util/extensions.dart';
 import '../../widgets/mixins/progress.dart';
 import '../products_overview/products_overview.dart';
@@ -118,11 +118,7 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
     showProgress(true);
 
     //TODO refactor: implements cart detail bloc
-    final _auth = context.read<Auth>();
-    final IOrdersRepository repository = IOrdersRepository.call(
-      userId: _auth.userId.orEmpty(),
-      token: _auth.token.orEmpty(),
-    );
+    final IOrdersRepository repository = locator.get<IOrdersRepository>();
 
     repository
         .add(

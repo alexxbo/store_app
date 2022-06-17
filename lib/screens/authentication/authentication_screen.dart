@@ -4,6 +4,7 @@ import 'package:http_interceptor/http/intercepted_client.dart';
 
 import '../../common/authorization/bloc/authorization_bloc.dart';
 import '../../common/data/storage/user_storage.dart';
+import '../../common/service_locator/injection_container.dart';
 import '../../util/logger_intercepter.dart';
 import '../../widgets/shop_logo.dart';
 import 'api/authentication_api.dart';
@@ -48,7 +49,7 @@ class AuthenticationScreen extends StatelessWidget {
                       ),
                       child: BlocProvider<AuthenticationBloc>(
                         create: (context) => AuthenticationBloc(
-                          context.read<IAuthenticationRepository>(),
+                          locator.get<IAuthenticationRepository>(),
                         ),
                         child: const AuthCard(),
                       ),

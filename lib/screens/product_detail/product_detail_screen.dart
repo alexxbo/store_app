@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/products/repository/products_repository.dart';
+import '../../common/service_locator/injection_container.dart';
 import '../../widgets/error_view.dart';
 import '../../widgets/progress.dart';
 import 'bloc/product_detail_bloc.dart';
@@ -24,7 +25,7 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)?.settings.arguments as String;
-    final repository = context.read<IProductsRepository>();
+    final repository = locator.get<IProductsRepository>();
 
     return BlocProvider(
       create: (context) => ProductDetailBloc(repository)

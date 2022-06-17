@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/data/model/product.dart';
+import '../../common/service_locator/injection_container.dart';
 import '../../common/products/repository/products_repository.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/progress.dart';
@@ -20,7 +21,7 @@ class UserProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository = context.read<IProductsRepository>();
+    final repository = locator.get<IProductsRepository>();
 
     return BlocProvider(
       create: (context) => UserProductsBloc(repository)

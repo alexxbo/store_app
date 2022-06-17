@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:store_app/common/products/repository/product_favorite.dart';
 
 import '../../data/constants.dart';
 import '../../data/model/product.dart';
+import '../repository/product_favorite.dart';
 import 'model/product_response.dart';
 
 abstract class IProductsApi {
