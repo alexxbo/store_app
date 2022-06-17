@@ -1,8 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'package:store_app/common/data/model/order_item.dart';
-import 'package:store_app/common/data/repository/orders_repository.dart';
+import 'package:store_app/common/orders/repository/orders_repository.dart';
 
 import 'orders_repository_test.mocks.dart';
 

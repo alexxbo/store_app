@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/data/repository/orders_repository.dart';
+import '../../common/orders/repository/orders_repository.dart';
 import '../../common/service_locator/injection_container.dart';
 import '../../util/extensions.dart';
 import '../../widgets/mixins/progress.dart';

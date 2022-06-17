@@ -3,7 +3,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../common/data/model/order_item.dart';
-import '../../../common/data/repository/orders_repository.dart';
+import '../../../common/orders/repository/orders_repository.dart';
 
 part 'orders_bloc.freezed.dart';
 part 'orders_event.dart';

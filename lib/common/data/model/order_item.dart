@@ -10,17 +10,6 @@ class OrderItem {
     required this.products,
     required this.date,
   });
-
-  factory OrderItem.fromJson(String orderId, Map<String, dynamic> json) {
-    return OrderItem(
-      id: orderId,
-      amount: json['amount'],
-      date: DateTime.parse(json['date']),
-      products: (json['products'] as List<dynamic>)
-          .map((productJson) => OrderProduct.fromJson(productJson))
-          .toList(),
-    );
-  }
 }
 
 class OrderProduct {
@@ -35,13 +24,4 @@ class OrderProduct {
     required this.quantity,
     required this.price,
   });
-
-  factory OrderProduct.fromJson(Map<String, dynamic> json) {
-    return OrderProduct(
-      id: json['id'],
-      title: json['title'],
-      price: json['price'],
-      quantity: json['quantity'],
-    );
-  }
 }
