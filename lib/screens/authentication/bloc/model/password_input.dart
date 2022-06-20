@@ -2,7 +2,6 @@ import 'package:formz/formz.dart';
 
 enum PasswordValidationError { invalid }
 
-//TODO implement: make a stronger password
 class PasswordInput extends FormzInput<String, PasswordValidationError> {
   const PasswordInput.pure() : super.pure('');
 

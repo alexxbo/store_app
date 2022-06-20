@@ -8,7 +8,6 @@ part 'authorization_bloc.freezed.dart';
 part 'authorization_event.dart';
 part 'authorization_state.dart';
 
-//TODO implement: autoLogOut;
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   AuthorizationBloc(final IAuthorizationRepository repository)
       : _repository = repository,

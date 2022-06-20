@@ -10,7 +10,6 @@ import '../../widgets/mixins/progress.dart';
 import '../products_overview/products_overview.dart';
 import 'cart_detail_item.dart';
 
-//TODO refactor: make it simple
 class CartDetailScreen extends StatelessWidget {
   static const String routeName = '/cart';
 
@@ -116,8 +115,6 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
     required CartBloc cartBloc,
   }) {
     showProgress(true);
-
-    //TODO refactor: implements cart detail bloc
     final IOrdersRepository repository = locator.get<IOrdersRepository>();
 
     repository

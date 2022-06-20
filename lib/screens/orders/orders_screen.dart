@@ -9,7 +9,6 @@ import '../../widgets/progress.dart';
 import 'bloc/orders_bloc.dart';
 import 'order_item.dart';
 
-//TODO add swipe to refresh
 class OrderScreen extends StatelessWidget {
   static const String routeName = '/orders';
 
