@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'common/authorization/bloc/authorization_bloc.dart';
@@ -10,6 +11,7 @@ import 'common/cart/data/cart_repository.dart';
 import 'common/data/auth.dart';
 import 'common/data/products.dart';
 import 'common/service_locator/injection_container.dart';
+import 'l10n/localization.dart';
 import 'screens/add_edit_product/add_product_screen.dart';
 import 'screens/add_edit_product/edit_product_screen.dart';
 import 'screens/authentication/authentication_screen.dart';
@@ -62,8 +64,12 @@ class FlutterShop extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          title: 'Flutter Shop',
           theme: appTheme(Theme.of(context)),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
           home: BlocConsumer<AuthorizationBloc, AuthorizationState>(
             listener: ((context, state) {
               final message = state.whenOrNull(error: (message) => message);
