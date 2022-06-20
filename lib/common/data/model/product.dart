@@ -1,58 +1,57 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-import '/common/data/constants.dart';
+import '../../products/api/model/product_response.dart';
 
-class Product with ChangeNotifier {
+@immutable
+class Product {
   final String id;
   final String title;
   final String description;
   final double price;
   final String imageUrl;
   final String userId;
+  final bool isFavorite;
 
-  bool isFavorite = false;
-
-  Product({
+  const Product({
     required this.id,
     required this.title,
     required this.description,
     required this.price,
     required this.imageUrl,
     required this.userId,
+    required this.isFavorite,
   });
 
-  factory Product.fromJson(String productId, Map<String, dynamic> json) {
-    return Product(
-      id: productId,
-      title: json['title'],
-      description: json['description'],
-      price: json['price'],
-      imageUrl: json['imageUrl'],
-      userId: json['creatorId'],
-    );
-  }
-
-  void setFavorite(
-    String? token,
-    String? userId,
-  ) async {
-    final url = Uri.parse(
-      '$productsBaseUrl/user_favorites/$userId/$id.json?auth=$token',
-    );
-    final response = await http.put(url, body: json.encode(!isFavorite));
-
-    if (response.statusCode != 200) {
-      throw HttpException(
-        'Status code: ${response.statusCode} message: ${response.body}',
-        uri: url,
+  Product copyWith({
+    final String? id,
+    final String? title,
+    final String? description,
+    final double? price,
+    final String? imageUrl,
+    final String? userId,
+    final bool? isFavorite,
+  }) =>
+      Product(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        price: price ?? this.price,
+        imageUrl: imageUrl ?? this.imageUrl,
+        userId: userId ?? this.userId,
+        isFavorite: isFavorite ?? this.isFavorite,
       );
-    } else {
-      isFavorite = !isFavorite;
-      notifyListeners();
-    }
-  }
+}
+
+extension ProductMapper on ProductResponse {
+  Product mapToProduct(bool isFavorite) => Product(
+        id: id,
+        title: title,
+        description: description,
+        price: price,
+        imageUrl: imageUrl,
+        userId: userId,
+        isFavorite: isFavorite,
+      );
 }

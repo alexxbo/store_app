@@ -1,9 +1,7 @@
-import 'package:store_app/common/data/model/cart_item.dart';
-
 class OrderItem {
   final String id;
   final double amount;
-  final List<CartItem> products;
+  final List<OrderProduct> products;
   final DateTime date;
 
   const OrderItem({
@@ -12,15 +10,18 @@ class OrderItem {
     required this.products,
     required this.date,
   });
+}
 
-  factory OrderItem.fromJson(String orderId, Map<String, dynamic> json) {
-    return OrderItem(
-      id: orderId,
-      amount: json['amount'],
-      date: DateTime.parse(json['date']),
-      products: (json['products'] as List<dynamic>)
-          .map((productJson) => CartItem.fromJson(productJson))
-          .toList(),
-    );
-  }
+class OrderProduct {
+  final String id;
+  final String title;
+  final int quantity;
+  final double price;
+
+  const OrderProduct({
+    required this.id,
+    required this.title,
+    required this.quantity,
+    required this.price,
+  });
 }

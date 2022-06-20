@@ -5,15 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '/screens/auth/exceptions/authenticate_exception.dart';
+import '../../screens/authentication/api/exceptions/authenticate_exception.dart';
+import '../../screens/authentication/api/secrets.dart';
 
 /// Docs https://firebase.google.com/docs/reference/rest/auth
 
 const String _userDataKey = 'user_data_key';
 
+@Deprecated('use IAuthRepository')
 class Auth with ChangeNotifier {
   static const _baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
-  static const _apiKey = 'AIzaSyAYZHqDYBz5h8C-97UmYxunH6WY87qjMUc';
 
   String? _token;
   DateTime? _expiryDate;
@@ -36,7 +37,7 @@ class Auth with ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    final url = Uri.parse('$_baseUrl:signUp?key=$_apiKey');
+    final url = Uri.parse('$_baseUrl:signUp?key=$firebaseApiKey');
     final response = await http.post(
       url,
       body: jsonEncode({
@@ -52,7 +53,7 @@ class Auth with ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    final url = Uri.parse('$_baseUrl:signInWithPassword?key=$_apiKey');
+    final url = Uri.parse('$_baseUrl:signInWithPassword?key=$firebaseApiKey');
     final response = await http.post(
       url,
       body: jsonEncode({

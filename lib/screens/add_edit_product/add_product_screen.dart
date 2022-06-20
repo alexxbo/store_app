@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/common/data/auth.dart';
-import '/common/data/products.dart';
-import '/common/data/model/product.dart';
-import '/screens/add_edit_product/common/add_edit_product.dart';
-import '/screens/add_edit_product/model/create_product.dart';
+import '../../common/data/auth.dart';
+import '../../common/data/model/product.dart';
+import '../../common/data/products.dart';
+import 'common/add_edit_product.dart';
+import 'model/create_product.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add_products';
@@ -34,6 +34,7 @@ class _AddProductScreenState
       price: newProduct.price,
       imageUrl: newProduct.imageUrl,
       userId: context.read<Auth>().userId!,
+      isFavorite: false,
     );
 
     return context.read<Products>().add(product);

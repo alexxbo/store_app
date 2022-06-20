@@ -14,6 +14,10 @@ analyzer:
     invalid_annotation_target: ignore
   plugins:
     - dart_code_metrics
+  exclude: 
+    - "test/**.mocks.dart"
+    - "**/**.g.dart"
+    - "**/**.freezed.dart"
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -52,3 +56,12 @@ dart_code_metrics:
     - prefer-trailing-comma
     - prefer-conditional-expressions
     - no-equal-then-else
+  rules-exclude:
+    - test/**
+    - lib/**.freezed.dart
+    - lib/**.g.dart
+    - no-equal-arguments:
+        exclude:
+          - lib/**.freezed.dart
+          - lib/**.g.dart
+          - test/**

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_app/common/data/auth.dart';
-import 'package:store_app/common/data/model/order_item.dart';
-import 'package:store_app/screens/orders/bloc/orders_bloc.dart';
-import 'package:store_app/screens/orders/data/orders_repository.dart';
 
-import '/util/extensions.dart';
-import '/screens/orders/order_item.dart';
-import '/widgets/progress.dart';
-import '/widgets/app_drawer.dart';
+import '../../common/data/model/order_item.dart';
+import '../../common/orders/repository/orders_repository.dart';
+import '../../common/service_locator/injection_container.dart';
+import '../../widgets/app_drawer.dart';
+import '../../widgets/progress.dart';
+import 'bloc/orders_bloc.dart';
+import 'order_item.dart';
 
 //TODO add swipe to refresh
 class OrderScreen extends StatelessWidget {
@@ -22,26 +21,31 @@ class OrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = context.read<Auth>();
-    final IOrdersRepository _repository = IOrdersRepository.call(
-      userId: _auth.userId.orEmpty(),
-      token: _auth.token.orEmpty(),
-    );
+    final repository = locator.get<IOrdersRepository>();
 
     return BlocProvider(
-      create: (context) => OrdersBloc(_repository),
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Orders')),
-        drawer: const AppDrawer(),
-        body: BlocConsumer<OrdersBloc, OrdersState>(
-          listener: (context, state) =>
-              _showErrorMessage(state.errorMessageOrNull, context),
-          builder: (context, state) => state.when(
-            inProgress: () => const ProgressWidget(),
-            empty: () => _buildEmptyState(context),
-            success: (list) => _buildOrderList(list),
-            error: (_, __) => _buildError(context),
-          ),
+      create: (context) => OrdersBloc(repository),
+      child: const OrdersView(),
+    );
+  }
+}
+
+class OrdersView extends StatelessWidget {
+  const OrdersView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Orders')),
+      drawer: const AppDrawer(),
+      body: BlocConsumer<OrdersBloc, OrdersState>(
+        listener: (context, state) =>
+            _showErrorMessage(state.errorMessageOrNull, context),
+        builder: (context, state) => state.when(
+          inProgress: () => const ProgressWidget(),
+          empty: () => _buildEmptyState(context),
+          success: (list) => _buildOrderList(list),
+          error: (_, __) => _buildError(context),
         ),
       ),
     );

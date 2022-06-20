@@ -4,62 +4,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:store_app/common/data/model/product.dart';
-import 'package:store_app/common/data/constants.dart';
 
-//TODO refactor: separate server model/ui model
+import 'constants.dart';
+import 'model/product.dart';
 
 class Products with ChangeNotifier {
   final String? _token;
   final String? _userId;
   List<Product> _items = [];
 
-  Products(this._token, this._userId, List<Product> items) {
-    _items.addAll(items);
-  }
-
-  List<Product> get items {
-    return List.unmodifiable(_items);
-  }
-
-  List<Product> get favoriteItems {
-    return List.unmodifiable(_items.where((item) => item.isFavorite));
-  }
-
-  Future<void> fetchProducts([bool filterByUser = false]) async {
-    final filterQuery =
-        filterByUser ? '&orderBy="creatorId"&equalTo="$_userId"' : '';
-    final url =
-        Uri.parse('$productsBaseUrl/products.json?auth=$_token$filterQuery');
-
-    final response = await http.get(url);
-
-    if (response.statusCode != 200) {
-      throw HttpException(
-        'Status code: ${response.statusCode} message: ${response.body}',
-        uri: url,
-      );
-    } else {
-      final data = json.decode(response.body) as Map<String, dynamic>?;
-      if (data == null) return;
-
-      final url = Uri.parse(
-        '$productsBaseUrl/user_favorites/$_userId.json?auth=$_token',
-      );
-      final favResponse = await http.get(url);
-      final favoriteDate = jsonDecode(favResponse.body);
-
-      final loadedProducts = <Product>[];
-      data.forEach((productId, json) {
-        final product = Product.fromJson(productId, json);
-        product.isFavorite =
-            favoriteDate == null ? false : favoriteDate[productId] ?? false;
-        loadedProducts.add(product);
-      });
-      _items = loadedProducts;
-      notifyListeners();
-    }
-  }
+  Products(this._token, this._userId);
 
   Product getById(String id) {
     return _items.firstWhere((item) => item.id == id);
@@ -96,6 +50,7 @@ class Products with ChangeNotifier {
         price: product.price,
         imageUrl: product.imageUrl,
         userId: _userId!,
+        isFavorite: false,
       );
       _items.add(product);
       notifyListeners();
@@ -138,28 +93,12 @@ class Products with ChangeNotifier {
           price: price,
           imageUrl: imageUrl,
           userId: current.userId,
+          isFavorite: current.isFavorite,
         );
-        newProduct.isFavorite = current.isFavorite;
+
         _items[index] = newProduct;
         notifyListeners();
       }
-    }
-  }
-
-  Future<void> remove(String productId) async {
-    final url =
-        Uri.parse('$productsBaseUrl/products/$productId.json?auth=$_token');
-    final response = await http.delete(url);
-
-    if (response.statusCode != 200) {
-      throw HttpException(
-        'Status code: ${response.statusCode} message: ${response.body}',
-        uri: url,
-      );
-    } else {
-      final index = _items.indexWhere((product) => product.id == productId);
-      _items.removeAt(index);
-      notifyListeners();
     }
   }
 }

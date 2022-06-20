@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '/screens/add_edit_product/model/create_product.dart';
-import '/util/extensions.dart';
+import '/../../util/extensions.dart';
+import '../model/create_product.dart';
 
 abstract class AddEditProductScreenState<T extends StatefulWidget>
     extends State<T> {
