@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/l10n/localization.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
 
@@ -21,6 +22,8 @@ class CartDetailItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localization = context.localization;
+
     return Dismissible(
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
@@ -32,7 +35,7 @@ class CartDetailItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Text('Delete'),
+            Text(localization.common_delete),
             const SizedBox(width: 4),
             Icon(
               Icons.delete,
@@ -50,12 +53,12 @@ class CartDetailItem extends StatelessWidget {
             leading: CircleAvatar(
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
-                child: FittedBox(child: Text('\$$price')),
+                child: FittedBox(child: Text(localization.common_price(price))),
               ),
             ),
             title: Text(title),
-            subtitle: Text('Total: \$${(price * quantity).toStringAsFixed(2)}'),
-            trailing: Text('$quantity x'),
+            subtitle: Text(localization.cartDetailItem_total(price * quantity)),
+            trailing: Text(localization.cartDetailItem_quantity(quantity)),
           ),
         ),
       ),
@@ -67,19 +70,21 @@ class CartDetailItem extends StatelessWidget {
   }
 
   Future<bool> _showConfirmDeleteDialog(BuildContext context) async {
+    final localization = context.localization;
+
     final result = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete'),
-        content: const Text('Do you want to delete the item from cart? '),
+        title: Text(localization.common_delete),
+        content: Text(localization.cartDetailItem_confirmDelete),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(localization.common_cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete'),
+            child: Text(localization.common_delete),
           ),
         ],
       ),

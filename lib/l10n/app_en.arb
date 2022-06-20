@@ -1,0 +1,63 @@
+{
+    "@@locale": "en",
+   
+    "appTitle": "FlutterShop",
+
+    "common_cancel": "Cancel",
+    "common_delete": "Delete",
+    "common_price": "{price}",
+    "@common_price": {
+        "placeholders": {
+            "price": {
+                "type": "double",
+                "format": "currency",
+                "optionalParameters": {
+                    "symbol": "$",
+                    "decimalDigits": 2
+                }
+            }
+        }
+    },
+
+    "authentication_login": "LOGIN",
+    "authentication_signup": "SIGN UP",
+    "authentication_instead": "{ACTION} INSTEAD",
+    "@authentication_instead": {
+        "placeholders": {
+            "ACTION": {
+                "type": "String"
+            }
+        }
+    },
+    "authentication_email": "Email",
+    "authentication_invalidEmail": "Invalid email!",
+    "authentication_password": "Password",
+    "authentication_shortPassword": "Password is too short!",
+    "authentication_confirmPassword": "Confirm Password",
+    "authentication_NotMatchConfirmPassword": "Passwords do not match!",
+
+    "cartDetailItem_total": "Total: {price}",
+    "@cartDetailItem_total": {
+        "placeholders": {
+            "price": {
+                "type": "double",
+                "format": "currency",
+                "optionalParameters": {
+                    "symbol": "$",
+                    "decimalDigits": 2
+                }
+            }
+        }
+    },
+    "cartDetailItem_quantity": "{qty} x",
+    "@cartDetailItem_quantity": {
+        "placeholders": {
+            "qty": {
+                "type": "int"
+            }
+        }
+    },
+    "cartDetailItem_confirmDelete": "Do you want to delete the item from cart?"
+}
+
+

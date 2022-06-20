@@ -5,6 +5,7 @@ import 'package:http_interceptor/http/intercepted_client.dart';
 import '../../common/authorization/bloc/authorization_bloc.dart';
 import '../../common/data/storage/user_storage.dart';
 import '../../common/service_locator/injection_container.dart';
+import '../../l10n/localization.dart';
 import '../../util/logger_intercepter.dart';
 import '../../widgets/shop_logo.dart';
 import 'api/authentication_api.dart';
@@ -70,6 +71,7 @@ class AuthCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localization = context.localization;
     final deviceSize = MediaQuery.of(context).size;
 
     return Card(
@@ -110,7 +112,13 @@ class AuthCard extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      '${state.isLoginMode ? 'LOGIN' : 'SIGN UP'} INSTEAD',
+                      state.isLoginMode
+                          ? localization.authentication_instead(
+                              localization.authentication_login,
+                            )
+                          : localization.authentication_instead(
+                              localization.authentication_signup,
+                            ),
                     ),
                   ),
                 ],
@@ -132,6 +140,8 @@ class AuthCard extends StatelessWidget {
 class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localization = context.localization;
+
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         final errorMessage = state.whenOrNull(
@@ -165,7 +175,9 @@ class _SubmitButton extends StatelessWidget {
             ),
             onPressed: () => _submit(context),
             child: Text(
-              state.isLoginMode ? 'LOGIN' : 'SIGN UP',
+              state.isLoginMode
+                  ? localization.authentication_login
+                  : localization.authentication_signup,
             ),
           ),
         );
@@ -193,14 +205,18 @@ class _SubmitButton extends StatelessWidget {
 class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localization = context.localization;
+
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       buildWhen: ((previous, current) => previous.email != current.email),
       builder: (context, state) {
         return TextField(
           key: const Key('authenticationForm_emailInput'),
           decoration: InputDecoration(
-            labelText: 'Email',
-            errorText: state.isEmailValid ? null : 'Invalid email!',
+            labelText: localization.authentication_email,
+            errorText: state.isEmailValid
+                ? null
+                : localization.authentication_invalidEmail,
           ),
           keyboardType: TextInputType.emailAddress,
           onChanged: (email) => context
@@ -215,14 +231,18 @@ class _EmailInput extends StatelessWidget {
 class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localization = context.localization;
+
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       buildWhen: ((previous, current) => previous.password != current.password),
       builder: (context, state) {
         return TextField(
           key: const Key('authenticationForm_passwordInput'),
           decoration: InputDecoration(
-            labelText: 'Password',
-            errorText: state.isPasswordValid ? null : 'Password is too short!',
+            labelText: localization.authentication_password,
+            errorText: state.isPasswordValid
+                ? null
+                : localization.authentication_shortPassword,
           ),
           obscureText: true,
           onChanged: (password) => context
@@ -237,6 +257,8 @@ class _PasswordInput extends StatelessWidget {
 class _RepeatPasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final localization = context.localization;
+
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
         return AnimatedContainer(
@@ -252,10 +274,10 @@ class _RepeatPasswordInput extends StatelessWidget {
               key: const Key('authenticationForm_repeatPasswordInput'),
               enabled: !state.isLoginMode,
               decoration: InputDecoration(
-                labelText: 'Confirm Password',
+                labelText: localization.authentication_confirmPassword,
                 errorText: state.isRepeatPasswordValid
                     ? null
-                    : 'Passwords do not match!',
+                    : localization.authentication_NotMatchConfirmPassword,
               ),
               obscureText: true,
               onChanged: (password) => context.read<AuthenticationBloc>().add(
