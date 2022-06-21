@@ -1,4 +1,4 @@
-import 'package:store_app/entry_point.dart';
+import 'entry_point.dart';
 
 import 'app/app.dart';
 

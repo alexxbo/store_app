@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/l10n/localization.dart';
+import '../../l10n/localization.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
 
