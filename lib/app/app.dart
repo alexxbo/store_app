@@ -3,33 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-import 'common/authorization/bloc/authorization_bloc.dart';
-import 'common/authorization/data/authorization_repository.dart';
-import 'common/bloc/block_observer.dart';
-import 'common/cart/bloc/cart_bloc.dart';
-import 'common/cart/data/cart_repository.dart';
-import 'common/data/auth.dart';
-import 'common/data/products.dart';
-import 'common/service_locator/injection_container.dart';
-import 'l10n/localization.dart';
-import 'screens/add_edit_product/add_product_screen.dart';
-import 'screens/add_edit_product/edit_product_screen.dart';
-import 'screens/authentication/authentication_screen.dart';
-import 'screens/cart_detail/cart_detail_screen.dart';
-import 'screens/orders/orders_screen.dart';
-import 'screens/product_detail/product_detail_screen.dart';
-import 'screens/products_overview/products_overview.dart';
-import 'screens/splash/splash_screen.dart';
-import 'screens/user_products/user_products_screen.dart';
-import 'theme/app_theme.dart';
-
-void main() {
-  setupServiceLocator();
-  BlocOverrides.runZoned(
-    () => runApp(const FlutterShop()),
-    blocObserver: AppBlocObserver(),
-  );
-}
+import '../common/authorization/bloc/authorization_bloc.dart';
+import '../common/authorization/data/authorization_repository.dart';
+import '../common/cart/bloc/cart_bloc.dart';
+import '../common/cart/data/cart_repository.dart';
+import '../common/data/auth.dart';
+import '../common/data/products.dart';
+import '../common/service_locator/injection_container.dart';
+import '../l10n/localization.dart';
+import '../screens/add_edit_product/add_product_screen.dart';
+import '../screens/add_edit_product/edit_product_screen.dart';
+import '../screens/authentication/authentication_screen.dart';
+import '../screens/cart_detail/cart_detail_screen.dart';
+import '../screens/orders/orders_screen.dart';
+import '../screens/product_detail/product_detail_screen.dart';
+import '../screens/products_overview/products_overview.dart';
+import '../screens/splash/splash_screen.dart';
+import '../screens/user_products/user_products_screen.dart';
+import '../theme/app_theme.dart';
 
 class FlutterShop extends StatelessWidget {
   const FlutterShop({Key? key}) : super(key: key);
@@ -71,10 +62,10 @@ class FlutterShop extends StatelessWidget {
           ],
           supportedLocales: AppLocalizations.supportedLocales,
           home: BlocConsumer<AuthorizationBloc, AuthorizationState>(
-            listener: ((context, state) {
+            listener: (context, state) {
               final message = state.whenOrNull(error: (message) => message);
               _showErrorMessage(message, context);
-            }),
+            },
             builder: (context, state) => state.when(
               authorized: () => const ProductsOverviewScreen(),
               notAuthorized: () => const AuthenticationScreen(),
