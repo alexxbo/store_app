@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../screens/authentication/api/exceptions/authenticate_exception.dart';
-import '../../../secrets.dart';
+import '/secrets.dart';
 
 /// Docs https://firebase.google.com/docs/reference/rest/auth
 
