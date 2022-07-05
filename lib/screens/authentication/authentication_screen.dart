@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/authorization/bloc/authorization_bloc.dart';
+import 'package:flutter_shop/common/data/storage/user_storage.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/l10n/localization.dart';
+import 'package:flutter_shop/util/logger_intercepter.dart';
+import 'package:flutter_shop/widgets/shop_logo.dart';
 import 'package:http_interceptor/http/intercepted_client.dart';
 
-import '../../common/authorization/bloc/authorization_bloc.dart';
-import '../../common/data/storage/user_storage.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../l10n/localization.dart';
-import '../../util/logger_intercepter.dart';
-import '../../widgets/shop_logo.dart';
 import 'api/authentication_api.dart';
 import 'bloc/authentication_bloc.dart';
 import 'data/authentication_repository.dart';
