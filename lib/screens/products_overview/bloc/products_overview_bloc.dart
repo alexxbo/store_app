@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 

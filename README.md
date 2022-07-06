@@ -1,5 +1,9 @@
 # Flutter Store App
 
+[![Codemagic build status][codemagic_badge]][codemagic_link]
+[![Development][dev_workflow_badge]][dev_workflow_link]
+[![License: MIT][license_badge]][license_link]
+
 A Flutter pet project.
 ### [Freezed](https://pub.dev/packages/freezed)
 code generator for data-classes/unions/pattern-matching/cloning.
@@ -22,3 +26,10 @@ A mock framework inspired by Mockito with APIs for Fakes, Mocks, behavior verifi
 
 generate the mocks running the following command:
 - flutter pub run build_runner build
+
+[codemagic_badge]: https://api.codemagic.io/apps/62c421f31d850157f705c0b0/62c421f31d850157f705c0af/status_badge.svg
+[codemagic_link]: https://codemagic.io/apps/62c421f31d850157f705c0b0/62c421f31d850157f705c0af/latest_build
+[dev_workflow_badge]: https://github.com/alexxbo/store_app/actions/workflows/dev_workflow.yml/badge.svg?branch=develop
+[dev_workflow_link]: https://github.com/alexxbo/store_app/actions/workflows/dev_workflow.yml
+[license_badge]: https://img.shields.io/badge/License-MIT-yellow.svg
+[license_link]: https://opensource.org/licenses/MIT

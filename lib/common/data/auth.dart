@@ -2,17 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/secrets.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../screens/authentication/api/exceptions/authenticate_exception.dart';
-import '/secrets.dart';
 
 /// Docs https://firebase.google.com/docs/reference/rest/auth
 
 const String _userDataKey = 'user_data_key';
 
-@Deprecated('use IAuthRepository')
+// TODO (aborovskoy): 'use IAuthRepository'
 class Auth with ChangeNotifier {
   static const _baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
 

@@ -172,7 +172,9 @@ abstract class AddEditProductScreenState<T extends StatefulWidget>
 
   void _updateImageUrl() {
     if (_imageUrlInputController.text.isImageUrlValid() == null) {
-      setState(() {});
+      setState(() {
+        true; //Do nothing
+      });
     }
   }
 
