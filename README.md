@@ -10,13 +10,13 @@ code generator for data-classes/unions/pattern-matching/cloning.
 
 To run the code generator, execute the following command:
 - flutter pub run build_runner build
-or
+  or
 - flutter pub run build_runner watch --delete-conflicting-outputs
 
 ### [Flutter_localizations](https://docs.flutter.dev/development/accessibility-and-localization/internationalization#adding-your-own-localized-messages)
 To run the code generator, execute the following command:
- - flutter gen-l10n
- 
+- flutter gen-l10n
+
 Flutter internationalization: .arb files
 Application Resource Bundle (abbr. ARB)  is a localization resource format that is simple (based on JSON) [ApplicationResourceBundleSpecification](https://github.com/google/app-resource-bundle/wiki/ApplicationResourceBundleSpecification#namespace-reference-with-or-without-variation-part)
 
