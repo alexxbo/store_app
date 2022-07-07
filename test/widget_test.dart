@@ -7,9 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/app/app.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+
+  setUp(() {
+    setupServiceLocator();
+  });
+
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const FlutterShop());
