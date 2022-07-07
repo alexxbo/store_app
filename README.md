@@ -1,5 +1,7 @@
 # Flutter Store App
 
+[![build][main_workflow_badge]][main_workflow_link]
+
 A Flutter pet project.
 ### [Freezed](https://pub.dev/packages/freezed)
 code generator for data-classes/unions/pattern-matching/cloning.
@@ -22,3 +24,6 @@ A mock framework inspired by Mockito with APIs for Fakes, Mocks, behavior verifi
 
 generate the mocks running the following command:
 - flutter pub run build_runner build
+
+[main_workflow_badge]: https://github.com/alexxbo/store_app/actions/workflows/main_workflow.yml/badge.svg?branch=main
+[main_workflow_link]: https://github.com/alexxbo/store_app/actions/workflows/main_workflow.yml
