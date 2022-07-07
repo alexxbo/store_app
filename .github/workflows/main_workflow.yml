@@ -53,8 +53,8 @@ jobs:
         env:
           SECRETS_FILE_CONTENT: ${{ secrets.SECRETS_FILE_CONTENT }}
 
-      - run: flutter pub get
       - run: flutter clean
+      - run: flutter pub get
       - run: flutter packages pub run build_runner build --delete-conflicting-outputs
       - run: flutter gen-l10n
       - run: flutter build ios --release --no-codesign --flavor prod --target lib/main_prod.dart
