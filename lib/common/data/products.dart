@@ -11,7 +11,7 @@ import 'model/product.dart';
 class Products with ChangeNotifier {
   final String? _token;
   final String? _userId;
-  List<Product> _items = [];
+  final List<Product> _items = [];
 
   Products(this._token, this._userId);
 

@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '/../util/extensions.dart';
 import '../../../screens/authentication/api/model/user_response.dart';
@@ -7,6 +7,7 @@ import '../../../screens/authentication/api/model/user_response.dart';
 abstract class User {
   @literal
   const factory User.notAuthenticated() = NotAuthenticatedUser;
+
   const factory User.authenticated({
     required final String token,
     required final DateTime expiryDate,

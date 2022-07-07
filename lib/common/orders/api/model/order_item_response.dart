@@ -1,4 +1,4 @@
-import 'order_product_response.dart';
+import 'package:flutter_shop/common/orders/api/model/order_product_response.dart';
 
 class OrderItemResponse {
   final String? id;
