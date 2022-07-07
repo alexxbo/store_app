@@ -1,16 +1,16 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 
 import '../api/exceptions/authentication_input_exception.dart';
 import '../data/authentication_repository.dart';
 import 'model/email_input.dart';
 import 'model/password_input.dart';
 
+part 'authentication_bloc.freezed.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
-part 'authentication_bloc.freezed.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {

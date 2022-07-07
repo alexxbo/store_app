@@ -1,16 +1,16 @@
 import 'dart:io';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 
 import '../../../common/data/model/product.dart';
 import '../../../common/products/repository/products_repository.dart';
 import '../products_overview_filter.dart';
 
+part 'products_overview_bloc.freezed.dart';
 part 'products_overview_event.dart';
 part 'products_overview_state.dart';
-part 'products_overview_bloc.freezed.dart';
 
 class ProductsOverviewBloc
     extends Bloc<ProductsOverviewEvent, ProductsOverviewState> {
