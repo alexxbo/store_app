@@ -10,7 +10,7 @@ dependencies:
   bloc_concurrency: ^0.2.0
   collection: ^1.16.0
   cupertino_icons: ^1.0.5
-  firebase_core: ^1.19.1
+  firebase_core: ^1.17.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
