@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/util/logging/logger.dart';
 import 'package:http/http.dart' as http;
 
 import 'constants.dart';
@@ -21,7 +21,7 @@ class Products with ChangeNotifier {
 
   Future<void> add(Product product) async {
     if (_userId == null) {
-      log('add product => userId is null');
+      logger.e(message: 'add product => userId is null');
 
       return;
     }

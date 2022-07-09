@@ -3,7 +3,7 @@ import 'package:http_interceptor/http/intercepted_client.dart';
 
 import '../../screens/authentication/api/authentication_api.dart';
 import '../../screens/authentication/data/authentication_repository.dart';
-import '../../util/logger_intercepter.dart';
+import '../../util/logging/logger_intercepter.dart';
 import '../authorization/data/authorization_repository.dart';
 import '../cart/api/cart_api.dart';
 import '../cart/data/cart_repository.dart';
