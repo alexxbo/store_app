@@ -3,24 +3,26 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 
-import '../../data/constants.dart';
 import 'model/order_item_response.dart';
 import 'model/order_request.dart';
 
 abstract class IOrderApi {
-  factory IOrderApi(Client client) => _OrderApi(client);
+  factory IOrderApi(Client client, String baseUrl) =>
+      _OrderApi(client, baseUrl);
 
   Future<List<OrderItemResponse>> getOrders({
     required final String userId,
     required final String userToken,
   });
+
   Future<void> add(OrderRequest order);
 }
 
 class _OrderApi implements IOrderApi {
-  _OrderApi(this._client);
+  _OrderApi(this._client, this._baseUrl);
 
   final Client _client;
+  final String _baseUrl;
 
   @override
   Future<void> add(OrderRequest order) {
@@ -33,8 +35,7 @@ class _OrderApi implements IOrderApi {
     required final String userId,
     required final String userToken,
   }) async {
-    final url =
-        Uri.parse('$productsBaseUrl/orders/$userId.json?auth=$userToken');
+    final url = Uri.parse('$_baseUrl/orders/$userId.json?auth=$userToken');
     final response = await _client.get(url);
 
     if (response.statusCode != 200) {

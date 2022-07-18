@@ -1,9 +1,7 @@
 import '../../data/model/cart_item.dart';
 
 abstract class ICartApi {
-  const ICartApi();
-
-  static ICartApi call() => _CartApi();
+  factory ICartApi() => _CartApi();
 
   Future<List<CartModel>> getItems();
   Future<void> add(AddProduct product);

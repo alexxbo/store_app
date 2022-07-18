@@ -1,3 +1,4 @@
+import 'package:flutter_shop/app/environment.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_interceptor/http/intercepted_client.dart';
 
@@ -15,15 +16,15 @@ import '../products/repository/products_repository.dart';
 
 final locator = GetIt.I;
 
-void setupServiceLocator() {
+void setupServiceLocator(Environment environment) {
   final userStorage = IUserStorage();
   final client = InterceptedClient.build(interceptors: [LoggerInterceptor()]);
-  // final user = await userStorage.getSavedUser();
+
   // Api
-  final productApi = IProductsApi(client);
-  final cartApi = ICartApi.call();
+  final productApi = IProductsApi(client, environment.shopBaseUrl);
+  final cartApi = ICartApi();
   final authenticationApi = IAuthenticationApi(client);
-  final orderApi = IOrderApi(client);
+  final orderApi = IOrderApi(client, environment.shopBaseUrl);
 
   // Repository
   locator.registerLazySingleton(
@@ -41,15 +42,15 @@ void setupServiceLocator() {
   );
 
   locator.registerLazySingleton(
-    () => ICartRepository.call(cartApi),
+        () => ICartRepository.call(cartApi),
   );
 
   locator.registerLazySingleton(
-    () => IAuthorizationRepository(storage: userStorage),
+        () => IAuthorizationRepository(storage: userStorage),
   );
 
   locator.registerLazySingleton<IOrdersRepository>(
-    () => IOrdersRepository(
+        () => IOrdersRepository(
       userStorage: userStorage,
       api: orderApi,
     ),

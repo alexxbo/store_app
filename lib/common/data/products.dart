@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/util/logging/logger.dart';
 import 'package:http/http.dart' as http;
 
-import 'constants.dart';
 import 'model/product.dart';
 
 class Products with ChangeNotifier {
+  final String _productsBaseUrl;
   final String? _token;
   final String? _userId;
   final List<Product> _items = [];
 
-  Products(this._token, this._userId);
+  Products(this._productsBaseUrl, this._token, this._userId);
 
   Product getById(String id) {
     return _items.firstWhere((item) => item.id == id);
@@ -25,7 +25,7 @@ class Products with ChangeNotifier {
 
       return;
     }
-    final url = Uri.parse('$productsBaseUrl/products.json?auth=$_token');
+    final url = Uri.parse('$_productsBaseUrl/products.json?auth=$_token');
     final response = await http.post(
       url,
       body: json.encode({
@@ -69,7 +69,7 @@ class Products with ChangeNotifier {
     if (index >= 0) {
       final current = _items[index];
       final url = Uri.parse(
-        '$productsBaseUrl/products/${current.id}.json?auth=$_token',
+        '$_productsBaseUrl/products/${current.id}.json?auth=$_token',
       );
       final response = await http.patch(
         url,

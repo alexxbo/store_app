@@ -3,13 +3,13 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 
-import '../../data/constants.dart';
 import '../../data/model/product.dart';
 import '../repository/product_favorite.dart';
 import 'model/product_response.dart';
 
 abstract class IProductsApi {
-  factory IProductsApi(final Client client) => _ProductsApi(client);
+  factory IProductsApi(Client client, String baseUrl) =>
+      _ProductsApi(client, baseUrl);
 
   Future<List<ProductResponse>> getAllProducts({
     required final String userToken,
@@ -49,9 +49,12 @@ abstract class IProductsApi {
 }
 
 class _ProductsApi implements IProductsApi {
-  const _ProductsApi(final Client client) : _client = client;
+  const _ProductsApi(Client client, String baseUrl)
+      : _client = client,
+        _baseUrl = baseUrl;
 
   final Client _client;
+  final String _baseUrl;
 
   @override
   Future<List<ProductResponse>> getAllProducts({
@@ -75,8 +78,9 @@ class _ProductsApi implements IProductsApi {
     required final Product product,
   }) async {
     final url = Uri.parse(
-      '$productsBaseUrl/user_favorites/$userId/${product.id}.json?auth=$userToken',
+      '$_baseUrl/user_favorites/$userId/${product.id}.json?auth=$userToken',
     );
+
     final response =
         await _client.put(url, body: json.encode(!product.isFavorite));
 
@@ -94,7 +98,7 @@ class _ProductsApi implements IProductsApi {
     required final String userId,
   }) async {
     final url = Uri.parse(
-      '$productsBaseUrl/user_favorites/$userId.json?auth=$userToken',
+      '$_baseUrl/user_favorites/$userId.json?auth=$userToken',
     );
     final favResponse = await _client.get(url);
     final favoriteDate = jsonDecode(favResponse.body) as Map<String, dynamic>;
@@ -111,7 +115,7 @@ class _ProductsApi implements IProductsApi {
     required final String productId,
   }) async {
     final url = Uri.parse(
-      '$productsBaseUrl/user_favorites/$userId.json?auth=$userToken',
+      '$_baseUrl/user_favorites/$userId.json?auth=$userToken',
     );
     final favResponse = await _client.get(url);
     final favoriteDate = jsonDecode(favResponse.body) ?? {};
@@ -126,7 +130,7 @@ class _ProductsApi implements IProductsApi {
     final filterQuery =
         userId.isNotEmpty ? '&orderBy="creatorId"&equalTo="$userId"' : '';
     final url = Uri.parse(
-      '$productsBaseUrl/products.json?auth=$userToken$filterQuery',
+      '$_baseUrl/products.json?auth=$userToken$filterQuery',
     );
 
     final response = await _client.get(url);
@@ -156,7 +160,7 @@ class _ProductsApi implements IProductsApi {
     required String productId,
   }) async {
     final url = Uri.parse(
-      '$productsBaseUrl/products/$productId.json?auth=$userToken',
+      '$_baseUrl/products/$productId.json?auth=$userToken',
     );
     final response = await _client.get(url);
     final json = jsonDecode(response.body) as Map<String, dynamic>;
@@ -169,8 +173,7 @@ class _ProductsApi implements IProductsApi {
     required final String userToken,
     required final String productId,
   }) async {
-    final url =
-        Uri.parse('$productsBaseUrl/products/$productId.json?auth=$userToken');
+    final url = Uri.parse('$_baseUrl/products/$productId.json?auth=$userToken');
     final response = await _client.delete(url);
 
     if (response.statusCode != 200) {

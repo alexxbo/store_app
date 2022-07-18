@@ -5,12 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/app/app_config.dart';
 
 import 'common/bloc/block_observer.dart';
 import 'common/service_locator/injection_container.dart';
 import 'util/logging/logger.dart';
 
-Future<void> entryPoint(FutureOr<Widget> Function() builder) async {
+Future<void> entryPoint(FutureOr<AppConfig> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   // Don't allow landscape mode
   await SystemChrome.setPreferredOrientations([
@@ -31,10 +32,11 @@ Future<void> entryPoint(FutureOr<Widget> Function() builder) async {
 
   await runZonedGuarded(
     () async {
-      setupServiceLocator();
+      final app = await builder();
+      setupServiceLocator(app.environment);
 
       await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
+        () async => runApp(app),
         blocObserver: AppBlocObserver(),
       );
     },
