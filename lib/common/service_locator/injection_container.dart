@@ -42,15 +42,15 @@ void setupServiceLocator(Environment environment) {
   );
 
   locator.registerLazySingleton(
-        () => ICartRepository.call(cartApi),
+    () => ICartRepository.call(cartApi),
   );
 
   locator.registerLazySingleton(
-        () => IAuthorizationRepository(storage: userStorage),
+    () => IAuthorizationRepository(storage: userStorage),
   );
 
   locator.registerLazySingleton<IOrdersRepository>(
-        () => IOrdersRepository(
+    () => IOrdersRepository(
       userStorage: userStorage,
       api: orderApi,
     ),
