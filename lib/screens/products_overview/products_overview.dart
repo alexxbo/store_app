@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/screens/products_overview/popular/bloc/popular_products_bloc.dart';
 import 'package:flutter_shop/screens/products_overview/popular/popular_products.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
@@ -96,16 +97,37 @@ class ProductsOverviewView extends StatelessWidget {
   }
 
   Widget _buildBody(List<Product> products) {
-    return CustomScrollView(
-      slivers: [
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 250,
-            child: PopularProducts(),
-          ),
-        ),
-        _buildProductList(products),
-      ],
+    final repository = locator.get<IProductsRepository>();
+
+    return BlocProvider<PopularProductsBloc>(
+      create: (context) => PopularProductsBloc(repository)
+        ..add(const PopularProductsEvent.started()),
+      child: Builder(builder: (context) {
+        return BlocBuilder<PopularProductsBloc, PopularProductsState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              slivers: [
+                if (state.products.isNotEmpty)
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Text(
+                        'Popular products',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ),
+                  ),
+                if (state.products.isNotEmpty)
+                  SliverToBoxAdapter(
+                    child: PopularProducts(products: state.products),
+                  ),
+                _buildProductList(products),
+              ],
+            );
+          },
+        );
+      }),
     );
   }
 
