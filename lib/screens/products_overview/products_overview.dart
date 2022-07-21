@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/screens/products_overview/popular/bloc/popular_products_bloc.dart';
+import 'package:flutter_shop/screens/products_overview/popular/popular_products.dart';
 
 import '../../common/cart/bloc/cart_bloc.dart';
 import '../../common/data/model/product.dart';
-import '../../common/service_locator/injection_container.dart';
 import '../../common/products/repository/products_repository.dart';
+import '../../common/service_locator/injection_container.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/badge.dart';
 import '../../widgets/progress.dart';
@@ -76,10 +78,10 @@ class ProductsOverviewView extends StatelessWidget {
         },
         builder: (context, state) => state.when(
           progress: (filter, products) => const ProgressWidget(),
-          error: (filter, products, _) => _buildProductList(products),
+          error: (filter, products, _) => _buildBody(products),
           success: (filter, products) => products.isEmpty
               ? _buildEmptyState(context)
-              : _buildProductList(products),
+              : _buildBody(products),
         ),
       ),
     );
@@ -94,19 +96,56 @@ class ProductsOverviewView extends StatelessWidget {
     );
   }
 
+  Widget _buildBody(List<Product> products) {
+    final repository = locator.get<IProductsRepository>();
+
+    return BlocProvider<PopularProductsBloc>(
+      create: (context) => PopularProductsBloc(repository)
+        ..add(const PopularProductsEvent.started()),
+      child: Builder(builder: (context) {
+        return BlocBuilder<PopularProductsBloc, PopularProductsState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              slivers: [
+                if (state.products.isNotEmpty)
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Text(
+                        'Popular products',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ),
+                  ),
+                if (state.products.isNotEmpty)
+                  SliverToBoxAdapter(
+                    child: PopularProducts(products: state.products),
+                  ),
+                _buildProductList(products),
+              ],
+            );
+          },
+        );
+      }),
+    );
+  }
+
   Widget _buildProductList(List<Product> products) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: products.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
+    return SliverPadding(
+      padding: const EdgeInsets.all(16),
+      sliver: SliverGrid(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) => ProductsOverviewItem(product: products[index]),
+          childCount: products.length,
+        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+        ),
       ),
-      itemBuilder: (_, index) {
-        return ProductsOverviewItem(product: products[index]);
-      },
     );
   }
 

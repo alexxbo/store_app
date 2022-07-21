@@ -12,10 +12,16 @@ abstract class IProductsRepository {
       _ProductRepository(api: api, userStorage: userStorage);
 
   Future<List<Product>> getAllProducts();
+
   Future<List<Product>> getUserProducts();
+
   Future<void> toggleProductFavorite(Product product);
+
   Future<Product> getProductById(String productId);
+
   Future<void> removeUserProduct(String productId);
+
+  Future<List<Product>> getPopularProducts();
 }
 
 class _ProductRepository implements IProductsRepository {
@@ -104,5 +110,13 @@ class _ProductRepository implements IProductsRepository {
     final user = await _userStorage.getSavedUser();
     if (user == null) throw Exception('User is null');
     await _api.removeUserProduct(userToken: user.token, productId: productId);
+  }
+
+  @override
+  Future<List<Product>> getPopularProducts() async {
+    final products = await getAllProducts();
+    products.shuffle();
+
+    return products.take(5).toList(growable: false);
   }
 }
