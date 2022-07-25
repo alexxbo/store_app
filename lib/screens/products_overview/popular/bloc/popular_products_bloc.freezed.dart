@@ -21,32 +21,27 @@ mixin _$PopularProductsEvent {
     required TResult Function() started,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StartedPopularProductsEvent value) started,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StartedPopularProductsEvent value)? started,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StartedPopularProductsEvent value)? started,
@@ -68,7 +63,6 @@ class _$PopularProductsEventCopyWithImpl<$Res>
   _$PopularProductsEventCopyWithImpl(this._value, this._then);
 
   final PopularProductsEvent _value;
-
   // ignore: unused_field
   final $Res Function(PopularProductsEvent) _then;
 }
@@ -185,7 +179,6 @@ mixin _$PopularProductsState {
     required TResult Function(List<Product> products, String message) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inProgress,
@@ -193,7 +186,6 @@ mixin _$PopularProductsState {
     TResult Function(List<Product> products, String message)? error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
@@ -202,7 +194,6 @@ mixin _$PopularProductsState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InProgressPopularProductsState value) inProgress,
@@ -210,7 +201,6 @@ mixin _$PopularProductsState {
     required TResult Function(_ErrorPopularProductsState value) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_InProgressPopularProductsState value)? inProgress,
@@ -218,7 +208,6 @@ mixin _$PopularProductsState {
     TResult Function(_ErrorPopularProductsState value)? error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InProgressPopularProductsState value)? inProgress,
@@ -242,7 +231,6 @@ class _$PopularProductsStateCopyWithImpl<$Res>
   _$PopularProductsStateCopyWithImpl(this._value, this._then);
 
   final PopularProductsState _value;
-
   // ignore: unused_field
   final $Res Function(PopularProductsState) _then;
 }
@@ -362,7 +350,6 @@ class _$_InProgressPopularProductsState
 abstract class _InProgressPopularProductsState extends PopularProductsState {
   const factory _InProgressPopularProductsState() =
       _$_InProgressPopularProductsState;
-
   const _InProgressPopularProductsState._() : super._();
 }
 
@@ -372,7 +359,6 @@ abstract class _$$_SuccessPopularProductsStateCopyWith<$Res> {
           _$_SuccessPopularProductsState value,
           $Res Function(_$_SuccessPopularProductsState) then) =
       __$$_SuccessPopularProductsStateCopyWithImpl<$Res>;
-
   $Res call({List<Product> products});
 }
 
@@ -410,7 +396,6 @@ class _$_SuccessPopularProductsState extends _SuccessPopularProductsState {
         super._();
 
   final List<Product> _products;
-
   @override
   List<Product> get products {
     // ignore: implicit_dynamic_type
@@ -512,11 +497,9 @@ class _$_SuccessPopularProductsState extends _SuccessPopularProductsState {
 abstract class _SuccessPopularProductsState extends PopularProductsState {
   const factory _SuccessPopularProductsState(
       {required final List<Product> products}) = _$_SuccessPopularProductsState;
-
   const _SuccessPopularProductsState._() : super._();
 
   List<Product> get products => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   _$$_SuccessPopularProductsStateCopyWith<_$_SuccessPopularProductsState>
       get copyWith => throw _privateConstructorUsedError;
@@ -528,7 +511,6 @@ abstract class _$$_ErrorPopularProductsStateCopyWith<$Res> {
           _$_ErrorPopularProductsState value,
           $Res Function(_$_ErrorPopularProductsState) then) =
       __$$_ErrorPopularProductsStateCopyWithImpl<$Res>;
-
   $Res call({List<Product> products, String message});
 }
 
@@ -573,7 +555,6 @@ class _$_ErrorPopularProductsState extends _ErrorPopularProductsState {
         super._();
 
   final List<Product> _products;
-
   @override
   @JsonKey()
   List<Product> get products {
@@ -684,13 +665,10 @@ abstract class _ErrorPopularProductsState extends PopularProductsState {
   const factory _ErrorPopularProductsState(
       {final List<Product> products,
       final String message}) = _$_ErrorPopularProductsState;
-
   const _ErrorPopularProductsState._() : super._();
 
   List<Product> get products => throw _privateConstructorUsedError;
-
   String get message => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   _$$_ErrorPopularProductsStateCopyWith<_$_ErrorPopularProductsState>
       get copyWith => throw _privateConstructorUsedError;

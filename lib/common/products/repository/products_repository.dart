@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flutter_shop/screens/add_edit_product/bloc/models/create_product.dart';
 
 import '../../data/model/product.dart';
 import '../../data/storage/user_storage.dart';
@@ -22,6 +23,10 @@ abstract class IProductsRepository {
   Future<void> removeUserProduct(String productId);
 
   Future<List<Product>> getPopularProducts();
+
+  Future<void> editUserProduct(CreateProduct product);
+
+  Future<void> createUserProduct(CreateProduct product);
 }
 
 class _ProductRepository implements IProductsRepository {
@@ -118,5 +123,25 @@ class _ProductRepository implements IProductsRepository {
     products.shuffle();
 
     return products.take(5).toList(growable: false);
+  }
+
+  @override
+  Future<void> createUserProduct(CreateProduct product) async {
+    final user = await _userStorage.getSavedUser();
+    if (user == null) throw Exception('User is null');
+    await _api.addUserProduct(
+      userToken: user.token,
+      product: product.toProductModel(user.userId),
+    );
+  }
+
+  @override
+  Future<void> editUserProduct(CreateProduct product) async {
+    final user = await _userStorage.getSavedUser();
+    if (user == null) throw Exception('User is null');
+    await _api.updateUserProduct(
+      userToken: user.token,
+      product: product.toProductModel(user.userId),
+    );
   }
 }

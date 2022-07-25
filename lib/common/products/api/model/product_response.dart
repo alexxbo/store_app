@@ -1,5 +1,5 @@
-class ProductResponse {
-  ProductResponse({
+class ProductModel {
+  ProductModel({
     required this.id,
     required this.title,
     required this.description,
@@ -15,11 +15,11 @@ class ProductResponse {
   final String imageUrl;
   final String userId;
 
-  factory ProductResponse.fromJson(
+  factory ProductModel.fromJson(
     String productId,
     Map<String, dynamic> json,
   ) =>
-      ProductResponse(
+      ProductModel(
         id: productId,
         title: json['title'],
         description: json['description'],
@@ -27,4 +27,19 @@ class ProductResponse {
         imageUrl: json['imageUrl'],
         userId: json['creatorId'],
       );
+
+  Map<String, dynamic> toCreateProductJson() => {
+        'title': title,
+        'description': description,
+        'price': price,
+        'imageUrl': imageUrl,
+        'creatorId': userId,
+      };
+
+  Map<String, dynamic> toUpdateProductJson() => {
+        'title': title,
+        'description': description,
+        'price': price,
+        'imageUrl': imageUrl,
+      };
 }
