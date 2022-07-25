@@ -50,6 +50,14 @@ class UserProductsItem extends StatelessWidget {
   }
 
   void _openEditItemScreen(BuildContext context) {
-    AddEditProductScreen.launchEdit(context: context, productId: id);
+    AddEditProductScreen.launchEdit(
+      context: context,
+      productId: id,
+      onSuccess: () {
+        context
+            .read<UserProductsBloc>()
+            .add(const UserProductsEvent.onStarted());
+      },
+    );
   }
 }

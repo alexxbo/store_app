@@ -17,12 +17,23 @@ class AddEditProductScreen extends StatelessWidget {
   static void launchEdit({
     required BuildContext context,
     required String productId,
-  }) {
-    Navigator.of(context).pushNamed(routeName, arguments: productId);
+    required VoidCallback onSuccess,
+  }) async {
+    final result =
+        await Navigator.of(context).pushNamed(routeName, arguments: productId);
+    if (result is bool && result) {
+      onSuccess.call();
+    }
   }
 
-  static void launchAdd({required BuildContext context}) {
-    Navigator.of(context).pushNamed(routeName);
+  static void launchAdd({
+    required BuildContext context,
+    required VoidCallback onSuccess,
+  }) async {
+    final result = await Navigator.of(context).pushNamed(routeName);
+    if (result is bool && result) {
+      onSuccess.call();
+    }
   }
 
   @override
@@ -280,6 +291,6 @@ class _AddEditViewState extends State<_AddEditView> {
 
   void _goBack(BuildContext context, String? message) {
     context.showMessage(message);
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }

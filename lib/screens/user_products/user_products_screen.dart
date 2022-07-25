@@ -83,6 +83,13 @@ class UserProductView extends StatelessWidget {
   }
 
   void _openAddProductScreen(BuildContext context) {
-    AddEditProductScreen.launchAdd(context: context);
+    AddEditProductScreen.launchAdd(
+      context: context,
+      onSuccess: () {
+        context
+            .read<UserProductsBloc>()
+            .add(const UserProductsEvent.onStarted());
+      },
+    );
   }
 }
