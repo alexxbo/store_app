@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/screens/add_edit_product/add_edit_product.dart';
 import 'package:provider/provider.dart';
 
-import '../add_edit_product/edit_product_screen.dart';
 import 'bloc/user_products_bloc.dart';
 
 class UserProductsItem extends StatelessWidget {
@@ -50,6 +50,14 @@ class UserProductsItem extends StatelessWidget {
   }
 
   void _openEditItemScreen(BuildContext context) {
-    EditProductScreen.launch(context: context, productId: id);
+    AddEditProductScreen.launchEdit(
+      context: context,
+      productId: id,
+      onSuccess: () {
+        context
+            .read<UserProductsBloc>()
+            .add(const UserProductsEvent.onStarted());
+      },
+    );
   }
 }

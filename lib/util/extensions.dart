@@ -19,13 +19,16 @@ extension AsyncSnapshotState on AsyncSnapshot<Object?> {
   bool get isWaiting => connectionState == ConnectionState.waiting;
 }
 
-extension ContextExtension on State {
-  void showShackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
+extension BuildContextX on BuildContext {
+  void showMessage(String? message) {
+    ScaffoldMessenger.of(this).removeCurrentSnackBar();
+    if (message != null) {
+      ScaffoldMessenger.of(this)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(content: Text(message)),
+        );
+    }
   }
 }
 

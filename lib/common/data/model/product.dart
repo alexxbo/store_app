@@ -43,7 +43,7 @@ class Product {
       );
 }
 
-extension ProductMapper on ProductResponse {
+extension ProductModelX on ProductModel {
   Product mapToProduct(bool isFavorite) => Product(
         id: id,
         title: title,

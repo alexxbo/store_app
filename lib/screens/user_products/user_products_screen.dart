@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/screens/add_edit_product/add_edit_product.dart';
 
 import '../../common/data/model/product.dart';
-import '../../common/service_locator/injection_container.dart';
 import '../../common/products/repository/products_repository.dart';
+import '../../common/service_locator/injection_container.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/progress.dart';
-import '../add_edit_product/add_product_screen.dart';
 import 'bloc/user_products_bloc.dart';
 import 'user_products_item.dart';
 
@@ -41,7 +41,7 @@ class UserProductView extends StatelessWidget {
         title: const Text('Your Products'),
         actions: [
           IconButton(
-            onPressed: () => _openEditProductScreen(context),
+            onPressed: () => _openAddProductScreen(context),
             icon: const Icon(Icons.add),
           ),
         ],
@@ -82,7 +82,14 @@ class UserProductView extends StatelessWidget {
     context.read<UserProductsBloc>().add(const UserProductsEvent.onStarted());
   }
 
-  void _openEditProductScreen(BuildContext context) {
-    AddProductScreen.launch(context: context);
+  void _openAddProductScreen(BuildContext context) {
+    AddEditProductScreen.launchAdd(
+      context: context,
+      onSuccess: () {
+        context
+            .read<UserProductsBloc>()
+            .add(const UserProductsEvent.onStarted());
+      },
+    );
   }
 }

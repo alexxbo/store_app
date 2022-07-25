@@ -11,11 +11,11 @@ abstract class IProductsApi {
   factory IProductsApi(Client client, String baseUrl) =>
       _ProductsApi(client, baseUrl);
 
-  Future<List<ProductResponse>> getAllProducts({
+  Future<List<ProductModel>> getAllProducts({
     required final String userToken,
   });
 
-  Future<List<ProductResponse>> getUserProducts({
+  Future<List<ProductModel>> getUserProducts({
     required final String userToken,
     required final String userId,
   });
@@ -37,7 +37,7 @@ abstract class IProductsApi {
     required final String productId,
   });
 
-  Future<ProductResponse> getProductById({
+  Future<ProductModel> getProductById({
     required final String userToken,
     required final String productId,
   });
@@ -45,6 +45,16 @@ abstract class IProductsApi {
   Future<void> removeUserProduct({
     required final String userToken,
     required final String productId,
+  });
+
+  Future<void> addUserProduct({
+    required final String userToken,
+    required ProductModel product,
+  });
+
+  Future<void> updateUserProduct({
+    required userToken,
+    required ProductModel product,
   });
 }
 
@@ -57,14 +67,14 @@ class _ProductsApi implements IProductsApi {
   final String _baseUrl;
 
   @override
-  Future<List<ProductResponse>> getAllProducts({
+  Future<List<ProductModel>> getAllProducts({
     required final String userToken,
   }) {
     return _fetchProducts(userToken: userToken);
   }
 
   @override
-  Future<List<ProductResponse>> getUserProducts({
+  Future<List<ProductModel>> getUserProducts({
     required final String userToken,
     required final String userId,
   }) {
@@ -123,7 +133,7 @@ class _ProductsApi implements IProductsApi {
     return favoriteDate.isEmpty ? false : favoriteDate[productId] ?? false;
   }
 
-  Future<List<ProductResponse>> _fetchProducts({
+  Future<List<ProductModel>> _fetchProducts({
     required final String userToken,
     final String userId = '',
   }) async {
@@ -144,9 +154,9 @@ class _ProductsApi implements IProductsApi {
       final data = json.decode(response.body) as Map<String, dynamic>?;
       if (data == null) return [];
 
-      final loadedProducts = <ProductResponse>[];
+      final loadedProducts = <ProductModel>[];
       data.forEach((productId, json) {
-        final product = ProductResponse.fromJson(productId, json);
+        final product = ProductModel.fromJson(productId, json);
         loadedProducts.add(product);
       });
 
@@ -155,7 +165,7 @@ class _ProductsApi implements IProductsApi {
   }
 
   @override
-  Future<ProductResponse> getProductById({
+  Future<ProductModel> getProductById({
     required String userToken,
     required String productId,
   }) async {
@@ -165,7 +175,7 @@ class _ProductsApi implements IProductsApi {
     final response = await _client.get(url);
     final json = jsonDecode(response.body) as Map<String, dynamic>;
 
-    return ProductResponse.fromJson(productId, json);
+    return ProductModel.fromJson(productId, json);
   }
 
   @override
@@ -175,6 +185,46 @@ class _ProductsApi implements IProductsApi {
   }) async {
     final url = Uri.parse('$_baseUrl/products/$productId.json?auth=$userToken');
     final response = await _client.delete(url);
+
+    if (response.statusCode != 200) {
+      throw HttpException(
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
+    }
+  }
+
+  @override
+  Future<void> addUserProduct({
+    required final String userToken,
+    required final ProductModel product,
+  }) async {
+    final url = Uri.parse('$_baseUrl/products.json?auth=$userToken');
+    final response = await _client.post(
+      url,
+      body: json.encode(product.toCreateProductJson()),
+    );
+
+    if (response.statusCode != 200) {
+      throw HttpException(
+        'Status code: ${response.statusCode} message: ${response.body}',
+        uri: url,
+      );
+    }
+  }
+
+  @override
+  Future<void> updateUserProduct({
+    required userToken,
+    required ProductModel product,
+  }) async {
+    final url = Uri.parse(
+      '$_baseUrl/products/${product.id}.json?auth=$userToken',
+    );
+    final response = await _client.patch(
+      url,
+      body: json.encode(product.toUpdateProductJson()),
+    );
 
     if (response.statusCode != 200) {
       throw HttpException(
