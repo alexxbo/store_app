@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_shop/app/app_config.dart';
 import 'package:flutter_shop/screens/add_edit_product/add_edit_product.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +9,6 @@ import '../common/authorization/data/authorization_repository.dart';
 import '../common/cart/bloc/cart_bloc.dart';
 import '../common/cart/data/cart_repository.dart';
 import '../common/data/auth.dart';
-import '../common/data/products.dart';
 import '../common/service_locator/injection_container.dart';
 import '../l10n/localization.dart';
 import '../screens/authentication/authentication_screen.dart';
@@ -29,7 +27,6 @@ class FlutterShop extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartRepository = locator.get<ICartRepository>();
     final authorizationRepository = locator.get<IAuthorizationRepository>();
-    final environment = AppConfig.of(context).environment;
 
     return MultiBlocProvider(
       providers: [
@@ -44,18 +41,6 @@ class FlutterShop extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => Auth()),
-          ChangeNotifierProxyProvider<Auth, Products>(
-            create: (context) => Products(
-              environment.shopBaseUrl,
-              context.read<Auth>().token,
-              context.read<Auth>().userId,
-            ),
-            update: (context, auth, previous) => Products(
-              environment.shopBaseUrl,
-              auth.token,
-              auth.userId,
-            ),
-          ),
         ],
         child: MaterialApp(
           theme: appTheme(Theme.of(context)),
