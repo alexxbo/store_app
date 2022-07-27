@@ -7,7 +7,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../data/authorization_repository.dart';
 
 part 'authorization_bloc.freezed.dart';
+
 part 'authorization_event.dart';
+
 part 'authorization_state.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
@@ -56,8 +58,10 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
     }
   }
 
-  Future<void> _tryAutoLogin(_TryAutoLogInAuthorizationEvent event,
-      Emitter<AuthorizationState> emit,) async {
+  Future<void> _tryAutoLogin(
+    _TryAutoLogInAuthorizationEvent event,
+    Emitter<AuthorizationState> emit,
+  ) async {
     emit(const AuthorizationState.inProgress());
     final user = await _repository.getUser();
     if (user.isAuthenticated) {
@@ -71,9 +75,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   void _autoLogout(DateTime? expiryDate) {
     timer?.cancel();
 
-    final timeToExpiry = expiryDate
-        ?.difference(DateTime.now())
-        .inSeconds ?? 0;
+    final timeToExpiry = expiryDate?.difference(DateTime.now()).inSeconds ?? 0;
     timer = Timer(Duration(seconds: timeToExpiry), () {
       add(const AuthorizationEvent.logout());
     });
