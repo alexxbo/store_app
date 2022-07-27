@@ -1,4 +1,5 @@
 import 'package:flutter_shop/app/environment.dart';
+import 'package:flutter_shop/util/interceptor/user_token_interceptor.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_interceptor/http/intercepted_client.dart';
 
@@ -20,8 +21,13 @@ void setupServiceLocator(Environment environment) {
   final userStorage = IUserStorage();
   final client = InterceptedClient.build(interceptors: [LoggerInterceptor()]);
 
+  final productsApiClient = InterceptedClient.build(interceptors: [
+    LoggerInterceptor(),
+    UserTokenInterceptor(userStorage),
+  ]);
+
   // Api
-  final productApi = IProductsApi(client, environment.shopBaseUrl);
+  final productApi = IProductsApi(productsApiClient, environment.shopBaseUrl);
   final cartApi = ICartApi();
   final authenticationApi = IAuthenticationApi(client);
   final orderApi = IOrderApi(client, environment.shopBaseUrl);
