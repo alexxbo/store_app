@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/common/data/model/user.dart';
+import 'package:flutter_shop/common/data/storage/user_storage.dart';
+import 'package:flutter_shop/common/products/api/products_api.dart';
 import 'package:flutter_shop/screens/add_edit_product/bloc/models/create_product.dart';
-
-import '../../data/model/product.dart';
-import '../../data/storage/user_storage.dart';
-import '../api/products_api.dart';
 
 abstract class IProductsRepository {
   factory IProductsRepository({
@@ -41,12 +41,9 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<List<Product>> getAllProducts() async {
-    final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
-    final productResponseList =
-        await _api.getAllProducts(userToken: user.token);
-    final userFavorites =
-        await _api.getUserFavorites(userToken: user.token, userId: user.userId);
+    final user = await _getUser();
+    final productResponseList = await _api.getAllProducts();
+    final userFavorites = await _api.getUserFavorites(userId: user.userId);
 
     final products = productResponseList.map(
       (item) => item.mapToProduct(
@@ -62,12 +59,9 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<List<Product>> getUserProducts() async {
-    final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
-    final productResponseList =
-        await _api.getUserProducts(userToken: user.token, userId: user.userId);
-    final userFavorites =
-        await _api.getUserFavorites(userToken: user.token, userId: user.userId);
+    final user = await _getUser();
+    final productResponseList = await _api.getUserProducts(userId: user.userId);
+    final userFavorites = await _api.getUserFavorites(userId: user.userId);
 
     final products = productResponseList.map(
       (item) => item.mapToProduct(
@@ -83,10 +77,8 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<void> toggleProductFavorite(Product product) async {
-    final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
+    AuthenticatedUser? user = await _getUser();
     _api.toggleFavoriteProduct(
-      userToken: user.token,
       userId: user.userId,
       product: product,
     );
@@ -94,15 +86,12 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<Product> getProductById(String productId) async {
-    final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
+    AuthenticatedUser? user = await _getUser();
     final productResponse = await _api.getProductById(
-      userToken: user.token,
       productId: productId,
     );
 
     final favorite = await _api.isProductFavorite(
-      userToken: user.token,
       userId: user.userId,
       productId: productId,
     );
@@ -112,9 +101,7 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<void> removeUserProduct(String productId) async {
-    final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
-    await _api.removeUserProduct(userToken: user.token, productId: productId);
+    await _api.removeUserProduct(productId: productId);
   }
 
   @override
@@ -127,21 +114,24 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<void> createUserProduct(CreateProduct product) async {
-    final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
+    final user = await _getUser();
     await _api.addUserProduct(
-      userToken: user.token,
       product: product.toProductModel(user.userId),
     );
   }
 
   @override
   Future<void> editUserProduct(CreateProduct product) async {
-    final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
+    final user = await _getUser();
     await _api.updateUserProduct(
-      userToken: user.token,
       product: product.toProductModel(user.userId),
     );
+  }
+
+  Future<AuthenticatedUser> _getUser() async {
+    final user = await _userStorage.getSavedUser();
+    if (user == null) throw Exception('User is null');
+
+    return user;
   }
 }
