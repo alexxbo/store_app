@@ -16,7 +16,7 @@ import 'products_overview_filter.dart';
 import 'products_overview_item.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
-  static const String routeName = '/';
+  static const String routeName = '/products';
 
   static void launch({required BuildContext context}) {
     Navigator.of(context).pushReplacementNamed(routeName);

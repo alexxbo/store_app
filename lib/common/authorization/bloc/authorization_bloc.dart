@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -5,7 +7,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../data/authorization_repository.dart';
 
 part 'authorization_bloc.freezed.dart';
+
 part 'authorization_event.dart';
+
 part 'authorization_state.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
@@ -23,6 +27,14 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   }
 
   final IAuthorizationRepository _repository;
+  Timer? timer;
+
+  @override
+  Future<void> close() {
+    _clearTimer();
+
+    return super.close();
+  }
 
   Future<void> _logout(
     _LogoutAuthorizationEvent event,
@@ -30,6 +42,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   ) async {
     try {
       emit(const AuthorizationState.inProgress());
+      _clearTimer();
       await _repository.logout();
       emit(const AuthorizationState.notAuthorized());
     } on Object catch (_) {
@@ -52,9 +65,24 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
     emit(const AuthorizationState.inProgress());
     final user = await _repository.getUser();
     if (user.isAuthenticated) {
+      _autoLogout(user.authenticatedOrNull?.expiryDate);
       emit(const AuthorizationState.authorized());
     } else {
       emit(const AuthorizationState.notAuthorized());
     }
+  }
+
+  void _autoLogout(DateTime? expiryDate) {
+    timer?.cancel();
+
+    final timeToExpiry = expiryDate?.difference(DateTime.now()).inSeconds ?? 0;
+    timer = Timer(Duration(seconds: timeToExpiry), () {
+      add(const AuthorizationEvent.logout());
+    });
+  }
+
+  void _clearTimer() {
+    timer?.cancel();
+    timer = null;
   }
 }
