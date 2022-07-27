@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../widgets/shop_logo.dart';
 
 class SplashScreen extends StatelessWidget {
+  static String routeName = '/';
+
   const SplashScreen({Key? key}) : super(key: key);
 
   @override

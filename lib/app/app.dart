@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_shop/common/authorization/bloc/authorization_bloc.dart';
+import 'package:flutter_shop/common/authorization/data/authorization_repository.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
+import 'package:flutter_shop/common/cart/data/cart_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/l10n/localization.dart';
 import 'package:flutter_shop/screens/add_edit_product/add_edit_product.dart';
-import 'package:provider/provider.dart';
-
-import '../common/authorization/bloc/authorization_bloc.dart';
-import '../common/authorization/data/authorization_repository.dart';
-import '../common/cart/bloc/cart_bloc.dart';
-import '../common/cart/data/cart_repository.dart';
-import '../common/data/auth.dart';
-import '../common/service_locator/injection_container.dart';
-import '../l10n/localization.dart';
-import '../screens/authentication/authentication_screen.dart';
-import '../screens/cart_detail/cart_detail_screen.dart';
-import '../screens/orders/orders_screen.dart';
-import '../screens/product_detail/product_detail_screen.dart';
-import '../screens/products_overview/products_overview.dart';
-import '../screens/splash/splash_screen.dart';
-import '../screens/user_products/user_products_screen.dart';
-import '../theme/app_theme.dart';
+import 'package:flutter_shop/screens/authentication/authentication_screen.dart';
+import 'package:flutter_shop/screens/cart_detail/cart_detail_screen.dart';
+import 'package:flutter_shop/screens/orders/orders_screen.dart';
+import 'package:flutter_shop/screens/product_detail/product_detail_screen.dart';
+import 'package:flutter_shop/screens/products_overview/products_overview.dart';
+import 'package:flutter_shop/screens/splash/splash_screen.dart';
+import 'package:flutter_shop/screens/user_products/user_products_screen.dart';
+import 'package:flutter_shop/theme/app_theme.dart';
 
 class FlutterShop extends StatelessWidget {
   const FlutterShop({Key? key}) : super(key: key);
@@ -38,48 +35,57 @@ class FlutterShop extends StatelessWidget {
               AuthorizationBloc(authorizationRepository),
         ),
       ],
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => Auth()),
-        ],
-        child: MaterialApp(
-          theme: appTheme(Theme.of(context)),
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: BlocConsumer<AuthorizationBloc, AuthorizationState>(
-            listener: (context, state) {
-              final message = state.whenOrNull(error: (message) => message);
-              _showErrorMessage(message, context);
-            },
-            builder: (context, state) => state.when(
-              authorized: () => const ProductsOverviewScreen(),
-              notAuthorized: () => const AuthenticationScreen(),
-              inProgress: () => const SplashScreen(),
-              error: (message) => const AuthenticationScreen(),
-            ),
-          ),
-          routes: {
-            ProductDetailScreen.routeName: (_) => const ProductDetailScreen(),
-            CartDetailScreen.routeName: (_) => const CartDetailScreen(),
-            OrderScreen.routeName: (_) => const OrderScreen(),
-            UserProductScreen.routeName: (_) => const UserProductScreen(),
-            AddEditProductScreen.routeName: (_) => const AddEditProductScreen(),
-          },
-        ),
-      ),
+      child: const FlutterShopView(),
     );
   }
+}
 
-  void _showErrorMessage(String? message, BuildContext context) {
-    if (message != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
+class FlutterShopView extends StatefulWidget {
+  const FlutterShopView({Key? key}) : super(key: key);
+
+  @override
+  State<FlutterShopView> createState() => _FlutterShopViewState();
+}
+
+class _FlutterShopViewState extends State<FlutterShopView> {
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
+  NavigatorState get _navigator => _navigatorKey.currentState!;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      navigatorKey: _navigatorKey,
+      theme: appTheme(Theme.of(context)),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      builder: (context, child) =>
+          BlocListener<AuthorizationBloc, AuthorizationState>(
+        listener: (context, state) => state.maybeWhen(
+          authorized: () => _navigator.pushNamedAndRemoveUntil(
+            ProductsOverviewScreen.routeName,
+            (route) => false,
+          ),
+          orElse: () => _navigator.pushNamedAndRemoveUntil(
+            AuthenticationScreen.routeName,
+            (route) => false,
+          ),
         ),
-      );
-    }
+        child: child,
+      ),
+      routes: {
+        SplashScreen.routeName: (_) => const SplashScreen(),
+        AuthenticationScreen.routeName: (_) => const AuthenticationScreen(),
+        ProductsOverviewScreen.routeName: (_) => const ProductsOverviewScreen(),
+        ProductDetailScreen.routeName: (_) => const ProductDetailScreen(),
+        CartDetailScreen.routeName: (_) => const CartDetailScreen(),
+        OrderScreen.routeName: (_) => const OrderScreen(),
+        UserProductScreen.routeName: (_) => const UserProductScreen(),
+        AddEditProductScreen.routeName: (_) => const AddEditProductScreen(),
+      },
+    );
   }
 }
