@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/common/data/model/order_item.dart';
 import 'package:intl/intl.dart';
-
-import '../../common/data/model/order_item.dart';
 
 class OrderItemView extends StatelessWidget {
   final OrderItem order;

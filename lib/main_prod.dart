@@ -1,8 +1,7 @@
+import 'package:flutter_shop/app/app.dart';
 import 'package:flutter_shop/app/app_config.dart';
 import 'package:flutter_shop/app/environment.dart';
-
-import 'app/app.dart';
-import 'entry_point.dart';
+import 'package:flutter_shop/entry_point.dart';
 
 void main() {
   const configuredApp = AppConfig(

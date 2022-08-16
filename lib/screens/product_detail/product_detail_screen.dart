@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../common/products/repository/products_repository.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../widgets/error_view.dart';
-import '../../widgets/progress.dart';
-import 'bloc/product_detail_bloc.dart';
+import 'package:flutter_shop/common/products/repository/products_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/screens/product_detail/bloc/product_detail_bloc.dart';
+import 'package:flutter_shop/widgets/error_view.dart';
+import 'package:flutter_shop/widgets/progress.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   static String routeName = '/product_details';

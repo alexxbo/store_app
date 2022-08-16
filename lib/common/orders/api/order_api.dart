@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter_shop/common/orders/api/model/order_item_response.dart';
+import 'package:flutter_shop/common/orders/api/model/order_request.dart';
 import 'package:http/http.dart';
-
-import 'model/order_item_response.dart';
-import 'model/order_request.dart';
 
 abstract class IOrderApi {
   factory IOrderApi(Client client, String baseUrl) =>

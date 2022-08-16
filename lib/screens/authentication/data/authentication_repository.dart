@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import '../../../common/data/storage/user_storage.dart';
-import '../../../common/data/model/user.dart';
-import '../api/authentication_api.dart';
-import '../api/model/user_response.dart';
-import 'exception/invalid_user_exception.dart';
+import 'package:flutter_shop/common/data/model/user.dart';
+import 'package:flutter_shop/common/data/storage/user_storage.dart';
+import 'package:flutter_shop/screens/authentication/api/authentication_api.dart';
+import 'package:flutter_shop/screens/authentication/api/model/user_response.dart';
+import 'package:flutter_shop/screens/authentication/data/exception/invalid_user_exception.dart';
 
 abstract class IAuthenticationRepository {
   factory IAuthenticationRepository({

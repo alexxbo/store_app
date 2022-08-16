@@ -1,9 +1,8 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/cart/api/cart_api.dart';
+import 'package:flutter_shop/common/cart/data/cart_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../api/cart_api.dart';
-import '../data/cart_repository.dart';
 
 part 'cart_bloc.freezed.dart';
 part 'cart_event.dart';

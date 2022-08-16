@@ -1,4 +1,4 @@
-import '../../data/model/cart_item.dart';
+import 'package:flutter_shop/common/data/model/cart_item.dart';
 
 abstract class ICartApi {
   factory ICartApi() => _CartApi();

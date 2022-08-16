@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/screens/product_detail/product_detail_screen.dart';
+import 'package:flutter_shop/screens/products_overview/bloc/products_overview_bloc.dart';
 import 'package:provider/provider.dart';
-
-import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/data/model/product.dart';
-import '../product_detail/product_detail_screen.dart';
-import 'bloc/products_overview_bloc.dart';
 
 class ProductsOverviewItem extends StatelessWidget {
   const ProductsOverviewItem({

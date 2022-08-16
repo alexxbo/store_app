@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/common/products/repository/products_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/screens/cart_detail/cart_detail_screen.dart';
+import 'package:flutter_shop/screens/products_overview/bloc/products_overview_bloc.dart';
 import 'package:flutter_shop/screens/products_overview/popular/bloc/popular_products_bloc.dart';
 import 'package:flutter_shop/screens/products_overview/popular/popular_products.dart';
-
-import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/data/model/product.dart';
-import '../../common/products/repository/products_repository.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../widgets/app_drawer.dart';
-import '../../widgets/badge.dart';
-import '../../widgets/progress.dart';
-import '../cart_detail/cart_detail_screen.dart';
-import 'bloc/products_overview_bloc.dart';
-import 'products_overview_filter.dart';
-import 'products_overview_item.dart';
+import 'package:flutter_shop/screens/products_overview/products_overview_filter.dart';
+import 'package:flutter_shop/screens/products_overview/products_overview_item.dart';
+import 'package:flutter_shop/widgets/app_drawer.dart';
+import 'package:flutter_shop/widgets/badge.dart';
+import 'package:flutter_shop/widgets/progress.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
   static const String routeName = '/products';

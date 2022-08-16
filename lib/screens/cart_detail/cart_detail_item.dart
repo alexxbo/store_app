@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
 import 'package:flutter_shop/l10n/localization.dart';
 import 'package:provider/provider.dart';
-
-import '../../common/cart/bloc/cart_bloc.dart';
 
 class CartDetailItem extends StatelessWidget {
   final String id;

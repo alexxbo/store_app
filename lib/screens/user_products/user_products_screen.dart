@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/common/products/repository/products_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
 import 'package:flutter_shop/screens/add_edit_product/add_edit_product.dart';
-
-import '../../common/data/model/product.dart';
-import '../../common/products/repository/products_repository.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../widgets/app_drawer.dart';
-import '../../widgets/progress.dart';
-import 'bloc/user_products_bloc.dart';
-import 'user_products_item.dart';
+import 'package:flutter_shop/screens/user_products/bloc/user_products_bloc.dart';
+import 'package:flutter_shop/screens/user_products/user_products_item.dart';
+import 'package:flutter_shop/widgets/app_drawer.dart';
+import 'package:flutter_shop/widgets/progress.dart';
 
 class UserProductScreen extends StatelessWidget {
   static const String routeName = '/user_products';

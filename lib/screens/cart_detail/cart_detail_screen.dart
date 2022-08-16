@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
+import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/screens/cart_detail/cart_detail_item.dart';
+import 'package:flutter_shop/screens/products_overview/products_overview.dart';
+import 'package:flutter_shop/util/extensions.dart';
+import 'package:flutter_shop/widgets/mixins/progress.dart';
 import 'package:provider/provider.dart';
-
-import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/orders/repository/orders_repository.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../util/extensions.dart';
-import '../../widgets/mixins/progress.dart';
-import '../products_overview/products_overview.dart';
-import 'cart_detail_item.dart';
 
 class CartDetailScreen extends StatelessWidget {
   static const String routeName = '/cart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import '../../data/model/user.dart';
-import '../../data/storage/user_storage.dart';
+import 'package:flutter_shop/common/data/model/user.dart';
+import 'package:flutter_shop/common/data/storage/user_storage.dart';
 
 abstract class IAuthorizationRepository {
   factory IAuthorizationRepository({

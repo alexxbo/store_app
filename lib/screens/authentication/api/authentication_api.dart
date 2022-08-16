@@ -1,12 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter_shop/screens/authentication/api/exceptions/authenticate_exception.dart';
+import 'package:flutter_shop/screens/authentication/api/exceptions/authentication_input_exception.dart';
+import 'package:flutter_shop/screens/authentication/api/model/user_response.dart';
 import 'package:flutter_shop/secrets.dart';
+import 'package:flutter_shop/util/extensions.dart';
 import 'package:http/http.dart';
-
-import '/../util/extensions.dart';
-import 'exceptions/authenticate_exception.dart';
-import 'exceptions/authentication_input_exception.dart';
-import 'model/user_response.dart';
 
 abstract class IAuthenticationApi {
   factory IAuthenticationApi(Client client) => _AuthenticationApi(client);

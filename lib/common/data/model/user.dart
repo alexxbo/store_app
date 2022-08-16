@@ -1,7 +1,6 @@
+import 'package:flutter_shop/screens/authentication/api/model/user_response.dart';
+import 'package:flutter_shop/util/extensions.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '/../util/extensions.dart';
-import '../../../screens/authentication/api/model/user_response.dart';
 
 @immutable
 abstract class User {
@@ -15,7 +14,9 @@ abstract class User {
   }) = AuthenticatedUser;
 
   bool get isAuthenticated;
+
   bool get isNotAuthenticated;
+
   AuthenticatedUser? get authenticatedOrNull;
 
   T when<T extends Object?>({
@@ -28,6 +29,7 @@ abstract class User {
 class NotAuthenticatedUser implements User {
   @literal
   const NotAuthenticatedUser();
+
   @override
   AuthenticatedUser? get authenticatedOrNull => null;
 

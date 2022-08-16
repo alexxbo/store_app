@@ -1,4 +1,4 @@
-import '../../common/data/model/product.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
 
 enum ProductsOverviewFilter {
   all,

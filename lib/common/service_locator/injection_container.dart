@@ -1,19 +1,18 @@
 import 'package:flutter_shop/app/environment.dart';
+import 'package:flutter_shop/common/authorization/data/authorization_repository.dart';
+import 'package:flutter_shop/common/cart/api/cart_api.dart';
+import 'package:flutter_shop/common/cart/data/cart_repository.dart';
+import 'package:flutter_shop/common/data/storage/user_storage.dart';
+import 'package:flutter_shop/common/orders/api/order_api.dart';
+import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
+import 'package:flutter_shop/common/products/api/products_api.dart';
+import 'package:flutter_shop/common/products/repository/products_repository.dart';
+import 'package:flutter_shop/screens/authentication/api/authentication_api.dart';
+import 'package:flutter_shop/screens/authentication/data/authentication_repository.dart';
 import 'package:flutter_shop/util/interceptor/user_token_interceptor.dart';
+import 'package:flutter_shop/util/logging/logger_intercepter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_interceptor/http/intercepted_client.dart';
-
-import '../../screens/authentication/api/authentication_api.dart';
-import '../../screens/authentication/data/authentication_repository.dart';
-import '../../util/logging/logger_intercepter.dart';
-import '../authorization/data/authorization_repository.dart';
-import '../cart/api/cart_api.dart';
-import '../cart/data/cart_repository.dart';
-import '../data/storage/user_storage.dart';
-import '../orders/api/order_api.dart';
-import '../orders/repository/orders_repository.dart';
-import '../products/api/products_api.dart';
-import '../products/repository/products_repository.dart';
 
 final locator = GetIt.I;
 

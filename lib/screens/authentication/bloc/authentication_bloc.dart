@@ -1,12 +1,11 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/screens/authentication/api/exceptions/authentication_input_exception.dart';
+import 'package:flutter_shop/screens/authentication/bloc/model/email_input.dart';
+import 'package:flutter_shop/screens/authentication/bloc/model/password_input.dart';
+import 'package:flutter_shop/screens/authentication/data/authentication_repository.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../api/exceptions/authentication_input_exception.dart';
-import '../data/authentication_repository.dart';
-import 'model/email_input.dart';
-import 'model/password_input.dart';
 
 part 'authentication_bloc.freezed.dart';
 part 'authentication_event.dart';

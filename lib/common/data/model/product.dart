@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_shop/common/products/api/model/product_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../products/api/model/product_response.dart';
 
 @immutable
 class Product {

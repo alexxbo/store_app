@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../util/custom_route.dart';
+import 'package:flutter_shop/util/custom_route.dart';
 
 ThemeData appTheme(ThemeData parentThemeData) {
   return ThemeData(

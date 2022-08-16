@@ -2,10 +2,9 @@ import 'dart:io';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/common/products/repository/products_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../common/data/model/product.dart';
-import '../../../common/products/repository/products_repository.dart';
 
 part 'user_products_bloc.freezed.dart';
 part 'user_products_event.dart';

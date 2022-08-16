@@ -1,4 +1,4 @@
-import '../api/cart_api.dart';
+import 'package:flutter_shop/common/cart/api/cart_api.dart';
 
 abstract class ICartRepository {
   static ICartRepository call(ICartApi api) => _CartRepository(api);
