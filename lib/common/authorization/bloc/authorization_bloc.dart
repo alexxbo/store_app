@@ -14,7 +14,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
       : _repository = repository,
         super(const AuthorizationState.inProgress()) {
     on<AuthorizationEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         logout: (event) => _logout(event, emit),
         tryAutoLogin: (event) => _tryAutoLogin(event, emit),
       ),

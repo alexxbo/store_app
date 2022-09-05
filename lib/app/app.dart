@@ -65,11 +65,11 @@ class _FlutterShopViewState extends State<FlutterShopView> {
       builder: (context, child) =>
           BlocListener<AuthorizationBloc, AuthorizationState>(
         listener: (context, state) => state.maybeWhen(
-          authorized: () => _navigator.pushNamedAndRemoveUntil(
+          authorized: () async => _navigator.pushNamedAndRemoveUntil(
             ProductsOverviewScreen.routeName,
             (route) => false,
           ),
-          orElse: () => _navigator.pushNamedAndRemoveUntil(
+          orElse: () async => _navigator.pushNamedAndRemoveUntil(
             AuthenticationScreen.routeName,
             (route) => false,
           ),

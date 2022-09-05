@@ -14,7 +14,7 @@ class PopularProductsBloc
       : _repository = repository,
         super(const PopularProductsState.inProgress()) {
     on<PopularProductsEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         started: (event) => _started(event, emit),
       ),
       transformer: bloc_concurrency.sequential(),

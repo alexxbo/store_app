@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 class CartDetailScreen extends StatelessWidget {
   static const String routeName = '/cart';
 
-  static void launch({required BuildContext context}) {
+  static Future<void> launch({required BuildContext context}) async {
     Navigator.of(context).pushNamed(routeName);
   }
 
@@ -74,8 +74,10 @@ class CartDetailScreen extends StatelessWidget {
 class OrderButton extends StatefulWidget {
   final CartBloc _cartBloc;
 
-  const OrderButton({Key? key, required CartBloc cartBloc})
-      : _cartBloc = cartBloc,
+  const OrderButton({
+    required CartBloc cartBloc,
+    Key? key,
+  })  : _cartBloc = cartBloc,
         super(key: key);
 
   @override
@@ -94,7 +96,7 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
           : TextButton(
               onPressed: widget._cartBloc.state.totalAmount == 0.0
                   ? null
-                  : () => _onOrderNowClicked(
+                  : () async => _onOrderNowClicked(
                         context: context,
                         cartBloc: widget._cartBloc,
                       ),
@@ -109,10 +111,10 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
     );
   }
 
-  void _onOrderNowClicked({
+  Future<void> _onOrderNowClicked({
     required BuildContext context,
     required CartBloc cartBloc,
-  }) {
+  }) async {
     showProgress(true);
     final IOrdersRepository repository = locator.get<IOrdersRepository>();
 

@@ -17,7 +17,7 @@ class AuthenticationBloc
       : _repository = repository,
         super(const AuthenticationState.inputData()) {
     on<AuthenticationEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         onSubmit: (event) => _submit(event, emit),
         onPasswordChanged: (event) => _passwordChanged(event, emit),
         onRepeatPasswordChanged: (event) => _repeatPasswordChanged(event, emit),

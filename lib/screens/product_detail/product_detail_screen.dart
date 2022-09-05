@@ -9,10 +9,10 @@ import 'package:flutter_shop/widgets/progress.dart';
 class ProductDetailScreen extends StatelessWidget {
   static String routeName = '/product_details';
 
-  static void launch({
+  static Future<void> launch({
     required BuildContext context,
     required String productId,
-  }) {
+  }) async {
     Navigator.of(context).pushNamed(
       routeName,
       arguments: productId,

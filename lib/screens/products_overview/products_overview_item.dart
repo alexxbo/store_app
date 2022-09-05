@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 
 class ProductsOverviewItem extends StatelessWidget {
   const ProductsOverviewItem({
-    Key? key,
     required final Product product,
+    Key? key,
   })  : _product = product,
         super(key: key);
 

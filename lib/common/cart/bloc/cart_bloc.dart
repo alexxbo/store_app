@@ -13,7 +13,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       : _repository = repository,
         super(const CartState.empty()) {
     on<CartEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         addProduct: (event) => _addProduct(event, emit),
         removeProduct: (event) => _removeProduct(event, emit),
         reduceQuantityOrRemoveProduct: (event) =>

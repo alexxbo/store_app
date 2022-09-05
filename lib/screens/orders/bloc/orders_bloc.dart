@@ -15,7 +15,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       : _repository = repository,
         super(const OrdersState.inProgress()) {
     on<OrdersEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         fetchOrders: (event) => _fetchOrders(event, emit),
       ),
       transformer: bloc_concurrency.sequential(),

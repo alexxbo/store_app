@@ -11,12 +11,12 @@ class CartDetailItem extends StatelessWidget {
   final int quantity;
 
   const CartDetailItem({
-    Key? key,
     required this.id,
     required this.productId,
     required this.title,
     required this.price,
     required this.quantity,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class CartDetailItem extends StatelessWidget {
     return Dismissible(
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
-      confirmDismiss: (direction) => _showConfirmDeleteDialog(context),
+      confirmDismiss: (direction) async => _showConfirmDeleteDialog(context),
       onDismissed: (direction) => _removeProduct(context),
       background: Container(
         margin: const EdgeInsets.all(24),

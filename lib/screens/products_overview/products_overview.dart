@@ -17,7 +17,7 @@ import 'package:flutter_shop/widgets/progress.dart';
 class ProductsOverviewScreen extends StatelessWidget {
   static const String routeName = '/products';
 
-  static void launch({required BuildContext context}) {
+  static Future<void> launch({required BuildContext context}) async {
     Navigator.of(context).pushReplacementNamed(routeName);
   }
 
@@ -47,7 +47,7 @@ class ProductsOverviewView extends StatelessWidget {
             builder: (context, state) => Badge(
               value: '${state.itemCount}',
               child: IconButton(
-                onPressed: () => _openCartDetail(context),
+                onPressed: () async => _openCartDetail(context),
                 icon: const Icon(Icons.shopping_cart),
               ),
             ),
@@ -148,7 +148,7 @@ class ProductsOverviewView extends StatelessWidget {
     );
   }
 
-  void _openCartDetail(BuildContext context) {
+  Future<void> _openCartDetail(BuildContext context) async {
     CartDetailScreen.launch(context: context);
   }
 

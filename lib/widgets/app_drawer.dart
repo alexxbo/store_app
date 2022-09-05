@@ -21,19 +21,19 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.shop),
             title: const Text('Shop'),
-            onTap: () => _openProductsScreen(context),
+            onTap: () async => _openProductsScreen(context),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.payment),
             title: const Text('Orders'),
-            onTap: () => _openOrderScreen(context),
+            onTap: () async => _openOrderScreen(context),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.edit),
             title: const Text('Manage Products'),
-            onTap: () => _openUserProductsScreen(context),
+            onTap: () async => _openUserProductsScreen(context),
           ),
           const Divider(),
           ListTile(
@@ -46,15 +46,15 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  void _openUserProductsScreen(BuildContext context) {
+  Future<void> _openUserProductsScreen(BuildContext context) async {
     UserProductScreen.launch(context: context);
   }
 
-  void _openOrderScreen(BuildContext context) {
+  Future<void> _openOrderScreen(BuildContext context) async {
     OrderScreen.launch(context: context);
   }
 
-  void _openProductsScreen(BuildContext context) {
+  Future<void> _openProductsScreen(BuildContext context) async {
     ProductsOverviewScreen.launch(context: context);
   }
 }

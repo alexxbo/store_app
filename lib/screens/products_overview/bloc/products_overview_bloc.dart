@@ -17,7 +17,7 @@ class ProductsOverviewBloc
       : _repository = repository,
         super(const ProductsOverviewState.progress()) {
     on<ProductsOverviewEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         onSubscribe: (event) => _onSubscribe(event, emit),
         onFilterChanged: (event) => _onFilterChanged(event, emit),
         onFavoriteToggled: (event) => _onFavoriteToggled(event, emit),

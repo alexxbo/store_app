@@ -11,7 +11,7 @@ import 'package:flutter_shop/widgets/progress.dart';
 class OrderScreen extends StatelessWidget {
   static const String routeName = '/orders';
 
-  static void launch({required BuildContext context}) {
+  static Future<void> launch({required BuildContext context}) async {
     Navigator.of(context).pushReplacementNamed(routeName);
   }
 

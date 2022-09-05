@@ -12,7 +12,7 @@ import 'package:flutter_shop/widgets/progress.dart';
 class UserProductScreen extends StatelessWidget {
   static const String routeName = '/user_products';
 
-  static void launch({required BuildContext context}) {
+  static Future<void> launch({required BuildContext context}) async {
     Navigator.of(context).pushReplacementNamed(routeName);
   }
 

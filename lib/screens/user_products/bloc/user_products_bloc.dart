@@ -15,7 +15,7 @@ class UserProductsBloc extends Bloc<UserProductsEvent, UserProductsState> {
       : _repository = repository,
         super(const _ProgressUserProductsState()) {
     on<UserProductsEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         onStarted: (event) => _onStarted(event, emit),
         onRemove: (event) => _onRemove(event, emit),
       ),

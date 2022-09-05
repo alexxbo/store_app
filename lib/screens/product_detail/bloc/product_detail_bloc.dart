@@ -15,7 +15,7 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
       : _repository = repository,
         super(const _ProgressProductDetailState()) {
     on<ProductDetailEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         onStarted: (event) => _onStarted(event, emit),
       ),
       transformer: bloc_concurrency.droppable(),
