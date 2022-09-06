@@ -32,32 +32,29 @@ void setupServiceLocator(Environment environment) {
   final orderApi = IOrderApi(client, environment.shopBaseUrl);
 
   // Repository
-  locator.registerLazySingleton(
-    () => IAuthenticationRepository(
-      api: authenticationApi,
-      storage: userStorage,
-    ),
-  );
-
-  locator.registerLazySingleton(
-    () => IProductsRepository(
-      api: productApi,
-      userStorage: userStorage,
-    ),
-  );
-
-  locator.registerLazySingleton(
-    () => ICartRepository.call(cartApi),
-  );
-
-  locator.registerLazySingleton(
-    () => IAuthorizationRepository(storage: userStorage),
-  );
-
-  locator.registerLazySingleton<IOrdersRepository>(
-    () => IOrdersRepository(
-      userStorage: userStorage,
-      api: orderApi,
-    ),
-  );
+  locator
+    ..registerLazySingleton(
+      () => IAuthenticationRepository(
+        api: authenticationApi,
+        storage: userStorage,
+      ),
+    )
+    ..registerLazySingleton(
+      () => IProductsRepository(
+        api: productApi,
+        userStorage: userStorage,
+      ),
+    )
+    ..registerLazySingleton(
+      () => ICartRepository.call(cartApi),
+    )
+    ..registerLazySingleton(
+      () => IAuthorizationRepository(storage: userStorage),
+    )
+    ..registerLazySingleton<IOrdersRepository>(
+      () => IOrdersRepository(
+        userStorage: userStorage,
+        api: orderApi,
+      ),
+    );
 }

@@ -15,13 +15,13 @@ import 'package:flutter_shop/widgets/badge.dart';
 import 'package:flutter_shop/widgets/progress.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
+  const ProductsOverviewScreen({Key? key}) : super(key: key);
+
   static const String routeName = '/products';
 
   static Future<void> launch({required BuildContext context}) async {
-    Navigator.of(context).pushReplacementNamed(routeName);
+    await Navigator.of(context).pushReplacementNamed(routeName);
   }
-
-  const ProductsOverviewScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +149,7 @@ class ProductsOverviewView extends StatelessWidget {
   }
 
   Future<void> _openCartDetail(BuildContext context) async {
-    CartDetailScreen.launch(context: context);
+    await CartDetailScreen.launch(context: context);
   }
 
   void _setFilter(BuildContext context, final Object? filter) {

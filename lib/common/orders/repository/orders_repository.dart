@@ -31,7 +31,11 @@ class _OrdersRepository implements IOrdersRepository {
   @override
   Future<List<OrderItem>> getOrders() async {
     final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('user is null');
+
+    if (user == null) {
+      throw Exception('user is null');
+    }
+
     final ordersResponse =
         await _api.getOrders(userId: user.userId, userToken: user.token);
     final orders = ordersResponse

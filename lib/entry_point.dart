@@ -18,9 +18,12 @@ Future<void> entryPoint(FutureOr<AppConfig> Function() builder) async {
     DeviceOrientation.portraitDown,
   ]);
 
-  FlutterError.onError = (FlutterErrorDetails details) {
+  FlutterError.onError = (details) {
     FlutterError.presentError(details);
-    if (kReleaseMode) exit(1);
+    if (kReleaseMode) {
+      exit(1);
+    }
+
     logger.e(
       tag: 'FlutterError',
       message: details.exceptionAsString(),

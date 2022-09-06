@@ -28,11 +28,10 @@ class FlutterShop extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<CartBloc>(
-          create: (BuildContext context) => CartBloc(cartRepository),
+          create: (context) => CartBloc(cartRepository),
         ),
         BlocProvider<AuthorizationBloc>(
-          create: (BuildContext context) =>
-              AuthorizationBloc(authorizationRepository),
+          create: (context) => AuthorizationBloc(authorizationRepository),
         ),
       ],
       child: const FlutterShopView(),
@@ -64,12 +63,12 @@ class _FlutterShopViewState extends State<FlutterShopView> {
       supportedLocales: AppLocalizations.supportedLocales,
       builder: (context, child) =>
           BlocListener<AuthorizationBloc, AuthorizationState>(
-        listener: (context, state) => state.maybeWhen(
-          authorized: () async => _navigator.pushNamedAndRemoveUntil(
+        listener: (context, state) async => state.maybeWhen(
+          authorized: () => _navigator.pushNamedAndRemoveUntil(
             ProductsOverviewScreen.routeName,
             (route) => false,
           ),
-          orElse: () async => _navigator.pushNamedAndRemoveUntil(
+          orElse: () => _navigator.pushNamedAndRemoveUntil(
             AuthenticationScreen.routeName,
             (route) => false,
           ),

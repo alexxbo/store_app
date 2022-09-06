@@ -8,13 +8,6 @@ class ProductModel {
     required this.userId,
   });
 
-  final String id;
-  final String title;
-  final String description;
-  final double price;
-  final String imageUrl;
-  final String userId;
-
   factory ProductModel.fromJson(
     String productId,
     Map<String, dynamic> json,
@@ -27,6 +20,13 @@ class ProductModel {
         imageUrl: json['imageUrl'],
         userId: json['creatorId'],
       );
+
+  final String id;
+  final String title;
+  final String description;
+  final double price;
+  final String imageUrl;
+  final String userId;
 
   Map<String, dynamic> toCreateProductJson() => {
         'title': title,

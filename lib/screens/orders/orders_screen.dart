@@ -9,13 +9,13 @@ import 'package:flutter_shop/widgets/app_drawer.dart';
 import 'package:flutter_shop/widgets/progress.dart';
 
 class OrderScreen extends StatelessWidget {
+  const OrderScreen({Key? key}) : super(key: key);
+
   static const String routeName = '/orders';
 
   static Future<void> launch({required BuildContext context}) async {
-    Navigator.of(context).pushReplacementNamed(routeName);
+    await Navigator.of(context).pushReplacementNamed(routeName);
   }
-
-  const OrderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

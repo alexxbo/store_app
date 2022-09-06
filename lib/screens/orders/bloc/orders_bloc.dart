@@ -9,8 +9,6 @@ part 'orders_event.dart';
 part 'orders_state.dart';
 
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
-  final IOrdersRepository _repository;
-
   OrdersBloc(IOrdersRepository repository)
       : _repository = repository,
         super(const OrdersState.inProgress()) {
@@ -22,6 +20,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     );
     add(const OrdersEvent.fetchOrders());
   }
+
+  final IOrdersRepository _repository;
 
   Future<void> _fetchOrders(
     OrdersEvent event,

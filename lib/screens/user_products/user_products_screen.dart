@@ -10,13 +10,13 @@ import 'package:flutter_shop/widgets/app_drawer.dart';
 import 'package:flutter_shop/widgets/progress.dart';
 
 class UserProductScreen extends StatelessWidget {
+  const UserProductScreen({Key? key}) : super(key: key);
+
   static const String routeName = '/user_products';
 
   static Future<void> launch({required BuildContext context}) async {
-    Navigator.of(context).pushReplacementNamed(routeName);
+    await Navigator.of(context).pushReplacementNamed(routeName);
   }
-
-  const UserProductScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class UserProductView extends StatelessWidget {
         title: const Text('Your Products'),
         actions: [
           IconButton(
-            onPressed: () => _openAddProductScreen(context),
+            onPressed: () async => _openAddProductScreen(context),
             icon: const Icon(Icons.add),
           ),
         ],
@@ -51,7 +51,7 @@ class UserProductView extends StatelessWidget {
         child: BlocBuilder<UserProductsBloc, UserProductsState>(
           builder: (context, state) => state.when(
             progress: (_) => const ProgressWidget(),
-            success: (list) => _buildProductList(list),
+            success: _buildProductList,
             error: (_, message) => ErrorWidget(message),
           ),
         ),
@@ -81,8 +81,8 @@ class UserProductView extends StatelessWidget {
     context.read<UserProductsBloc>().add(const UserProductsEvent.onStarted());
   }
 
-  void _openAddProductScreen(BuildContext context) {
-    AddEditProductScreen.launchAdd(
+  Future<void> _openAddProductScreen(BuildContext context) async {
+    await AddEditProductScreen.launchAdd(
       context: context,
       onSuccess: () {
         context

@@ -28,7 +28,7 @@ class _UserPreferencesStorage implements IUserStorage {
     final expiryDate = DateTime.parse(data['expiryDate']);
 
     if (expiryDate.isBefore(DateTime.now())) {
-      removeSavedUser();
+      await removeSavedUser();
 
       return null;
     }

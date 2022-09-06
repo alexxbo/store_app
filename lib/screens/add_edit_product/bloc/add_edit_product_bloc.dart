@@ -125,7 +125,7 @@ class AddEditProductBloc
       ),
     );
 
-    var valid = state.product.validate();
+    final valid = state.product.validate();
 
     if (!valid) {
       emit(AddEditProductState.invalid(

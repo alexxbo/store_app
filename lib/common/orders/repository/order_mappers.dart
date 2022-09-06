@@ -8,7 +8,9 @@ import 'package:flutter_shop/util/extensions.dart';
 
 extension OrderItemX on OrderItemResponse {
   OrderItem? toOrderItem() {
-    if (id == null) return null;
+    if (id == null) {
+      return null;
+    }
 
     return OrderItem(
       id: id!,
@@ -25,7 +27,9 @@ extension OrderItemX on OrderItemResponse {
 
 extension OrderProductX on OrderProductResponse {
   OrderProduct? toOrderProduct() {
-    if (id == null) return null;
+    if (id == null) {
+      return null;
+    }
 
     return OrderProduct(
       id: id!,

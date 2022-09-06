@@ -5,8 +5,8 @@ import 'package:flutter_shop/common/data/model/product.dart';
 
 class PopularProductDescriptionCard extends StatelessWidget {
   const PopularProductDescriptionCard({
-    Key? key,
     required Product product,
+    Key? key,
   })  : _product = product,
         super(key: key);
 
@@ -24,7 +24,6 @@ class PopularProductDescriptionCard extends StatelessWidget {
         color: Colors.white,
         border: Border.all(
           color: Colors.black12,
-          width: 1,
         ),
         boxShadow: const [
           BoxShadow(
@@ -86,12 +85,12 @@ class PopularProductDescriptionCard extends StatelessWidget {
     required BuildContext context,
     required Product product,
   }) {
-    final cartBloc = context.read<CartBloc>();
-    cartBloc.add(CartEvent.addProduct(
-      productId: product.id,
-      title: product.title,
-      price: product.price,
-    ));
+    final cartBloc = context.read<CartBloc>()
+      ..add(CartEvent.addProduct(
+        productId: product.id,
+        title: product.title,
+        price: product.price,
+      ));
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
       ..showSnackBar(

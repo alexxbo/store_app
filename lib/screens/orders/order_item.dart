@@ -3,12 +3,12 @@ import 'package:flutter_shop/common/data/model/order_item.dart';
 import 'package:intl/intl.dart';
 
 class OrderItemView extends StatelessWidget {
-  final OrderItem order;
-
   const OrderItemView({
-    Key? key,
     required this.order,
+    Key? key,
   }) : super(key: key);
+
+  final OrderItem order;
 
   @override
   Widget build(BuildContext context) {

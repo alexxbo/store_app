@@ -38,7 +38,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _ReduceQuantityOrRemoveProductCartEvent event,
     Emitter<CartState> emit,
   ) async {
-    _repository.removeSingle(event.productId);
+    await _repository.removeSingle(event.productId);
     final items = await _repository.getItems();
     items.isEmpty
         ? emit(const CartState.empty())
@@ -49,7 +49,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _RemoveProductCartEvent event,
     Emitter<CartState> emit,
   ) async {
-    _repository.remove(event.productId);
+    await _repository.remove(event.productId);
     final items = await _repository.getItems();
     items.isEmpty
         ? emit(const CartState.empty())
@@ -60,7 +60,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _AddProductCartEvent event,
     Emitter<CartState> emit,
   ) async {
-    _repository.add(
+    await _repository.add(
       AddProduct(
         productId: event.productId,
         title: event.title,

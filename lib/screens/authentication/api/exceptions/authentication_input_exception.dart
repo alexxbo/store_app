@@ -1,7 +1,7 @@
 class AuthenticationInputException implements Exception {
-  final String message;
-
   AuthenticationInputException(this.message);
+
+  final String message;
 
   @override
   String toString() {

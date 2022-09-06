@@ -5,7 +5,7 @@ mixin ProgressState<T extends StatefulWidget> on State<T> {
 
   bool get inProgress => _inProgress;
 
-  void showProgress(bool show) {
+  void showProgress({required bool show}) {
     setState(() {
       _inProgress = show;
     });

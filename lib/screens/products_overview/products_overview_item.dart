@@ -19,7 +19,7 @@ class ProductsOverviewItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: GestureDetector(
-        onTap: () => _openProductDetail(context, _product),
+        onTap: () async => _openProductDetail(context, _product),
         child: GridTile(
           footer: GridTileBar(
             title: Text(
@@ -62,8 +62,8 @@ class ProductsOverviewItem extends StatelessWidget {
     );
   }
 
-  void _openProductDetail(BuildContext context, Product product) {
-    return ProductDetailScreen.launch(
+  Future<void> _openProductDetail(BuildContext context, Product product) async {
+    await ProductDetailScreen.launch(
       context: context,
       productId: product.id,
     );
@@ -79,12 +79,12 @@ class ProductsOverviewItem extends StatelessWidget {
     required BuildContext context,
     required Product product,
   }) {
-    final cartBloc = context.read<CartBloc>();
-    cartBloc.add(CartEvent.addProduct(
-      productId: product.id,
-      title: product.title,
-      price: product.price,
-    ));
+    final cartBloc = context.read<CartBloc>()
+      ..add(CartEvent.addProduct(
+        productId: product.id,
+        title: product.title,
+        price: product.price,
+      ));
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: const Text('Add product to card'),
       action: SnackBarAction(

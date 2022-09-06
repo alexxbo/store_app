@@ -31,12 +31,14 @@ class _AuthorizationRepository implements IAuthorizationRepository {
 
     final user = await _storage.getSavedUser();
 
-    if (user == null) return const NotAuthenticatedUser();
+    if (user == null) {
+      return const NotAuthenticatedUser();
+    }
 
     final expiryDate = user.expiryDate;
 
     if (expiryDate.isBefore(DateTime.now())) {
-      _removeUser();
+      await _removeUser();
 
       return const NotAuthenticatedUser();
     }

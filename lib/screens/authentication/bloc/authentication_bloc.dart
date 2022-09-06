@@ -34,7 +34,7 @@ class AuthenticationBloc
     _SubmitAuthenticationEvent event,
     Emitter<AuthenticationState> emit,
   ) async {
-    var validate = Formz.validate([state.email, state.password]).isValid;
+    final validate = Formz.validate([state.email, state.password]).isValid;
 
     if (!validate) {
       emit(AuthenticationState.error(

@@ -9,5 +9,5 @@ Future<void> main() async {
     child: FlutterShop(),
   );
 
-  entryPoint(() => configuredApp);
+  await entryPoint(() => configuredApp);
 }

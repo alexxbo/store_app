@@ -5,8 +5,8 @@ import 'package:flutter_shop/screens/products_overview/popular/popular_product_i
 
 class PopularProducts extends StatefulWidget {
   const PopularProducts({
-    Key? key,
     required List<Product> products,
+    Key? key,
   })  : _products = products,
         super(key: key);
 
@@ -22,7 +22,7 @@ class _PopularProductsState extends State<PopularProducts> {
 
   final PageController controller =
       PageController(viewportFraction: _scaleFactor);
-  double _currentPageValue = 0.0;
+  double _currentPageValue = 0;
 
   @override
   void initState() {
@@ -61,10 +61,9 @@ class _PopularProductsState extends State<PopularProducts> {
             dotsCount: widget._products.length,
             position: _currentPageValue,
             decorator: DotsDecorator(
-              size: const Size.square(9.0),
-              activeSize: const Size(18.0, 9.0),
+              activeSize: const Size(18, 9),
               activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5),
               ),
             ),
           ),
@@ -80,7 +79,7 @@ class _PopularProductsState extends State<PopularProducts> {
   }
 
   Matrix4 _prepareMatrix(int index) {
-    Matrix4 matrix = Matrix4.identity();
+    var matrix = Matrix4.identity();
     if (index == _currentPageValue.floor()) {
       final currScale = 1 - (_currentPageValue - index) * (1 - _scaleFactor);
       final currTrans = _height * (1 - currScale) / 2;

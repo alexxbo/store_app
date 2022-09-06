@@ -59,9 +59,9 @@ class NotAuthenticatedUser implements User {
 @immutable
 class AuthenticatedUser implements User {
   const AuthenticatedUser({
-    required final this.token,
-    required final this.expiryDate,
-    required final this.userId,
+    required this.token,
+    required this.expiryDate,
+    required this.userId,
   });
 
   final String token;
@@ -103,7 +103,7 @@ class AuthenticatedUser implements User {
 extension UserMapper on UserResponse {
   User mapToUser() {
     final isAuth = userId != null &&
-        expiryDate?.isAfter(DateTime.now()) == true &&
+        (expiryDate?.isAfter(DateTime.now()) ?? false) &&
         token != null;
 
     return isAuth

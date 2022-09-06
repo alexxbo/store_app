@@ -4,11 +4,6 @@ part of 'authorization_bloc.dart';
 class AuthorizationState with _$AuthorizationState {
   const AuthorizationState._();
 
-  bool get inProgress => maybeMap<bool>(
-        orElse: () => false,
-        inProgress: (_) => true,
-      );
-
   const factory AuthorizationState.authorized() = _AuthorizedAuthorizationState;
 
   const factory AuthorizationState.notAuthorized() =
@@ -19,4 +14,9 @@ class AuthorizationState with _$AuthorizationState {
   const factory AuthorizationState.error({
     @Default('Something went wrong') final String message,
   }) = _ErrorAuthorizationState;
+
+  bool get inProgress => maybeMap<bool>(
+        orElse: () => false,
+        inProgress: (_) => true,
+      );
 }

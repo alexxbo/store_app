@@ -42,7 +42,7 @@ class _CartApi implements ICartApi {
     );
 
     if (index >= 0) {
-      final CartModel current = _items[index];
+      final current = _items[index];
       final cartItem = current.product.copyWith(
         title: product.title,
         price: product.price,

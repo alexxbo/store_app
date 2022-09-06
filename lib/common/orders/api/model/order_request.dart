@@ -1,13 +1,13 @@
 class OrderRequest {
-  final double amount;
-  final List<OrderProductRequest> products;
-  final DateTime date;
-
   OrderRequest({
     required this.amount,
     required this.products,
     required this.date,
   });
+
+  final double amount;
+  final List<OrderProductRequest> products;
+  final DateTime date;
 
   Map<String, dynamic> toJson() => {
         'amount': amount,
@@ -19,17 +19,17 @@ class OrderRequest {
 }
 
 class OrderProductRequest {
-  final String id;
-  final String title;
-  final int quantity;
-  final double price;
-
   const OrderProductRequest({
     required this.id,
     required this.title,
     required this.quantity,
     required this.price,
   });
+
+  final String id;
+  final String title;
+  final int quantity;
+  final double price;
 
   Map<String, dynamic> toJson() => {
         'id': id,

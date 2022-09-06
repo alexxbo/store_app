@@ -7,19 +7,19 @@ import 'package:flutter_shop/widgets/error_view.dart';
 import 'package:flutter_shop/widgets/progress.dart';
 
 class ProductDetailScreen extends StatelessWidget {
+  const ProductDetailScreen({Key? key}) : super(key: key);
+
   static String routeName = '/product_details';
 
   static Future<void> launch({
     required BuildContext context,
     required String productId,
   }) async {
-    Navigator.of(context).pushNamed(
+    await Navigator.of(context).pushNamed(
       routeName,
       arguments: productId,
     );
   }
-
-  const ProductDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

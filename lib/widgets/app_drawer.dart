@@ -47,15 +47,15 @@ class AppDrawer extends StatelessWidget {
   }
 
   Future<void> _openUserProductsScreen(BuildContext context) async {
-    UserProductScreen.launch(context: context);
+    await UserProductScreen.launch(context: context);
   }
 
   Future<void> _openOrderScreen(BuildContext context) async {
-    OrderScreen.launch(context: context);
+    await OrderScreen.launch(context: context);
   }
 
   Future<void> _openProductsScreen(BuildContext context) async {
-    ProductsOverviewScreen.launch(context: context);
+    await ProductsOverviewScreen.launch(context: context);
   }
 }
 

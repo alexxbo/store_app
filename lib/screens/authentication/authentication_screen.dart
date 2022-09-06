@@ -13,9 +13,9 @@ import 'package:flutter_shop/widgets/shop_logo.dart';
 import 'package:http_interceptor/http/intercepted_client.dart';
 
 class AuthenticationScreen extends StatelessWidget {
-  static const routeName = '/auth';
-
   const AuthenticationScreen({Key? key}) : super(key: key);
+
+  static const routeName = '/auth';
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,6 @@ class AuthenticationScreen extends StatelessWidget {
               width: deviceSize.width,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   const ShopLogoView(),
                   Flexible(
@@ -75,19 +74,18 @@ class AuthCard extends StatelessWidget {
 
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10),
       ),
-      elevation: 8.0,
+      elevation: 8,
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           return AnimatedContainer(
             duration: const Duration(milliseconds: 450),
-            curve: Curves.linear,
             constraints: BoxConstraints(
               maxHeight: state.isLoginMode ? 360 : 420,
             ),
             width: deviceSize.width * 0.75,
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
@@ -102,7 +100,7 @@ class AuthCard extends StatelessWidget {
                     onPressed: () => _switchAuthMode(context),
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0,
+                        horizontal: 30,
                         vertical: 4,
                       ),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -154,15 +152,15 @@ class _SubmitButton extends StatelessWidget {
               .add(const AuthorizationEvent.tryAutoLogin());
         }
       },
-      builder: ((context, state) {
+      builder: (context, state) {
         return state.maybeWhen<Widget>(
           progress: (mode, email, password, repeatPassword) =>
               const CircularProgressIndicator(),
           orElse: () => ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(
-                horizontal: 30.0,
-                vertical: 8.0,
+                horizontal: 30,
+                vertical: 8,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
@@ -170,7 +168,7 @@ class _SubmitButton extends StatelessWidget {
               textStyle: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
               ),
-              primary: Theme.of(context).colorScheme.primary,
+              backgroundColor: Theme.of(context).colorScheme.primary,
             ),
             onPressed: () => _submit(context),
             child: Text(
@@ -180,7 +178,7 @@ class _SubmitButton extends StatelessWidget {
             ),
           ),
         );
-      }),
+      },
     );
   }
 
@@ -207,7 +205,7 @@ class _EmailInput extends StatelessWidget {
     final localization = context.localization;
 
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      buildWhen: ((previous, current) => previous.email != current.email),
+      buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
           key: const Key('authenticationForm_emailInput'),
@@ -233,7 +231,7 @@ class _PasswordInput extends StatelessWidget {
     final localization = context.localization;
 
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      buildWhen: ((previous, current) => previous.password != current.password),
+      buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return TextField(
           key: const Key('authenticationForm_passwordInput'),
@@ -265,7 +263,6 @@ class _RepeatPasswordInput extends StatelessWidget {
             maxHeight: state.isLoginMode ? 0 : 120,
           ),
           duration: const Duration(milliseconds: 1000),
-          curve: Curves.linear,
           child: AnimatedOpacity(
             opacity: state.isLoginMode ? 0.0 : 1.0,
             duration: const Duration(milliseconds: 500),

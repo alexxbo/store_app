@@ -1,9 +1,8 @@
+import 'package:flutter_shop/common/data/model/order_item.dart';
+import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import 'package:flutter_shop/common/data/model/order_item.dart';
-import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
 
 import 'orders_repository_test.mocks.dart';
 
@@ -19,7 +18,7 @@ void main() {
     test('should get empty list orders', () async {
       when(repository.getOrders()).thenAnswer((_) async => <OrderItem>[]);
 
-      final List<OrderItem> response = await repository.getOrders();
+      final response = await repository.getOrders();
 
       expect(response, isEmpty);
       verify(repository.getOrders());

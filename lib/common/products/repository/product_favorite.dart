@@ -1,11 +1,15 @@
 class ProductFavoriteResponse {
-  ProductFavoriteResponse(this.productId, this.favorite);
-
-  final String productId;
-  final bool favorite;
+  ProductFavoriteResponse({
+    required this.productId,
+    required this.favorite,
+  });
 
   factory ProductFavoriteResponse.fromMapEntry(
     MapEntry<String, dynamic> entry,
   ) =>
-      ProductFavoriteResponse(entry.key, entry.value as bool);
+      ProductFavoriteResponse(
+          productId: entry.key, favorite: entry.value as bool);
+
+  final String productId;
+  final bool favorite;
 }

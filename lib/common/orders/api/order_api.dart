@@ -25,7 +25,7 @@ class _OrderApi implements IOrderApi {
 
   @override
   Future<void> add(OrderRequest order) {
-    // TODO: implement add
+    // TODO(aborovskoy): implement add
     throw UnimplementedError();
   }
 
@@ -44,7 +44,9 @@ class _OrderApi implements IOrderApi {
       );
     } else {
       final data = json.decode(response.body) as Map<String, dynamic>?;
-      if (data == null) return [];
+      if (data == null) {
+        return [];
+      }
 
       final loadedOrders = <OrderItemResponse>[];
       data.forEach(

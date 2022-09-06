@@ -27,9 +27,9 @@ abstract class IAuthenticationApi {
 
 /// Docs https://firebase.google.com/docs/reference/rest/auth
 class _AuthenticationApi implements IAuthenticationApi {
-  static const _baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
-
   const _AuthenticationApi(Client client) : _client = client;
+
+  static const _baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
 
   final Client _client;
 

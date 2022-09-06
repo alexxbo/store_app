@@ -2,6 +2,33 @@ part of 'add_edit_product_bloc.dart';
 
 @freezed
 class AddEditProductState with _$AddEditProductState {
+  const factory AddEditProductState.success({
+    @Default(AddEditProductMode.add) final AddEditProductMode mode,
+    @Default(CreateProduct.empty()) final CreateProduct product,
+  }) = _SuccessAddEditProductState;
+
+  const factory AddEditProductState.invalid({
+    required final AddEditProductMode mode,
+    required final CreateProduct product,
+  }) = _InvalidAddEditProductState;
+
+  const factory AddEditProductState.error({
+    required final AddEditProductMode mode,
+    required final CreateProduct product,
+    @Default('The product could not be saved. Please try again later.')
+        final String message,
+  }) = _ErrorAddEditProductState;
+
+  const factory AddEditProductState.inputData({
+    required final AddEditProductMode mode,
+    required final CreateProduct product,
+  }) = _InputDataAddEditProductState;
+
+  const factory AddEditProductState.progress({
+    @Default(AddEditProductMode.add) final AddEditProductMode mode,
+    @Default(CreateProduct.empty()) final CreateProduct product,
+  }) = _ProgressAddEditProductState;
+
   const AddEditProductState._();
 
   TitleValidationError? get titleError => maybeWhen(
@@ -40,33 +67,6 @@ class AddEditProductState with _$AddEditProductState {
         error: (mode, product, message) => message,
         orElse: () => null,
       );
-
-  const factory AddEditProductState.progress({
-    @Default(AddEditProductMode.add) final AddEditProductMode mode,
-    @Default(CreateProduct.empty()) final CreateProduct product,
-  }) = _ProgressAddEditProductState;
-
-  const factory AddEditProductState.inputData({
-    required final AddEditProductMode mode,
-    required final CreateProduct product,
-  }) = _InputDataAddEditProductState;
-
-  const factory AddEditProductState.error({
-    required final AddEditProductMode mode,
-    required final CreateProduct product,
-    @Default('The product could not be saved. Please try again later.')
-        final String message,
-  }) = _ErrorAddEditProductState;
-
-  const factory AddEditProductState.invalid({
-    required final AddEditProductMode mode,
-    required final CreateProduct product,
-  }) = _InvalidAddEditProductState;
-
-  const factory AddEditProductState.success({
-    @Default(AddEditProductMode.add) final AddEditProductMode mode,
-    @Default(CreateProduct.empty()) final CreateProduct product,
-  }) = _SuccessAddEditProductState;
 }
 
 enum AddEditProductMode { add, edit }

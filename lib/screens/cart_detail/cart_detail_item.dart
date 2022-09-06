@@ -4,12 +4,6 @@ import 'package:flutter_shop/l10n/localization.dart';
 import 'package:provider/provider.dart';
 
 class CartDetailItem extends StatelessWidget {
-  final String id;
-  final String productId;
-  final String title;
-  final double price;
-  final int quantity;
-
   const CartDetailItem({
     required this.id,
     required this.productId,
@@ -18,6 +12,12 @@ class CartDetailItem extends StatelessWidget {
     required this.quantity,
     Key? key,
   }) : super(key: key);
+
+  final String id;
+  final String productId;
+  final String title;
+  final double price;
+  final int quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class CartDetailItem extends StatelessWidget {
           child: ListTile(
             leading: CircleAvatar(
               child: Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(4),
                 child: FittedBox(child: Text(localization.common_price(price))),
               ),
             ),
