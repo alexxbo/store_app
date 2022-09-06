@@ -188,7 +188,7 @@ linter:
 
     prefer_final_parameters: false # use true
     avoid_dynamic_calls: false # use true
-    require_trailing_commas: false # use true
+    require_trailing_commas: true
 
     unnecessary_lambdas: false 
     unnecessary_await_in_return: false

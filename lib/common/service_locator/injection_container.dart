@@ -20,10 +20,12 @@ void setupServiceLocator(Environment environment) {
   final userStorage = IUserStorage();
   final client = InterceptedClient.build(interceptors: [LoggerInterceptor()]);
 
-  final productsApiClient = InterceptedClient.build(interceptors: [
-    LoggerInterceptor(),
-    UserTokenInterceptor(userStorage),
-  ]);
+  final productsApiClient = InterceptedClient.build(
+    interceptors: [
+      LoggerInterceptor(),
+      UserTokenInterceptor(userStorage),
+    ],
+  );
 
   // Api
   final productApi = IProductsApi(productsApiClient, environment.shopBaseUrl);

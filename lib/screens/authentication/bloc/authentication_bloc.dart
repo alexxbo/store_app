@@ -37,22 +37,26 @@ class AuthenticationBloc
     final validate = Formz.validate([state.email, state.password]).isValid;
 
     if (!validate) {
-      emit(AuthenticationState.error(
-        mode: state.mode,
-        email: state.email,
-        password: state.password,
-        message: 'Enter all data please.',
-      ));
+      emit(
+        AuthenticationState.error(
+          mode: state.mode,
+          email: state.email,
+          password: state.password,
+          message: 'Enter all data please.',
+        ),
+      );
 
       return;
     }
 
     try {
-      emit(AuthenticationState.progress(
-        mode: state.mode,
-        email: state.email,
-        password: state.password,
-      ));
+      emit(
+        AuthenticationState.progress(
+          mode: state.mode,
+          email: state.email,
+          password: state.password,
+        ),
+      );
 
       if (state.isLoginMode) {
         await _repository.login(
@@ -66,25 +70,31 @@ class AuthenticationBloc
         );
       }
 
-      emit(AuthenticationState.success(
-        mode: state.mode,
-        email: state.email,
-        password: state.password,
-      ));
+      emit(
+        AuthenticationState.success(
+          mode: state.mode,
+          email: state.email,
+          password: state.password,
+        ),
+      );
     } on AuthenticationInputException catch (error) {
-      emit(AuthenticationState.error(
-        mode: state.mode,
-        email: state.email,
-        password: state.password,
-        message: error.message,
-      ));
+      emit(
+        AuthenticationState.error(
+          mode: state.mode,
+          email: state.email,
+          password: state.password,
+          message: error.message,
+        ),
+      );
     } on Object catch (_) {
-      emit(AuthenticationState.error(
-        mode: state.mode,
-        email: state.email,
-        password: state.password,
-        message: 'Could not authenticate you. Please try again later.',
-      ));
+      emit(
+        AuthenticationState.error(
+          mode: state.mode,
+          email: state.email,
+          password: state.password,
+          message: 'Could not authenticate you. Please try again later.',
+        ),
+      );
       rethrow;
     }
   }
@@ -93,34 +103,40 @@ class AuthenticationBloc
     _EmailChangedAuthenticationEvent event,
     Emitter<AuthenticationState> emit,
   ) async {
-    emit(AuthenticationState.inputData(
-      mode: state.mode,
-      email: EmailInput.dirty(event.email),
-      password: state.password,
-    ));
+    emit(
+      AuthenticationState.inputData(
+        mode: state.mode,
+        email: EmailInput.dirty(event.email),
+        password: state.password,
+      ),
+    );
   }
 
   Future<void> _passwordChanged(
     _PasswordChangedAuthenticationEvent event,
     Emitter<AuthenticationState> emit,
   ) async {
-    emit(AuthenticationState.inputData(
-      mode: state.mode,
-      email: state.email,
-      password: PasswordInput.dirty(event.password),
-    ));
+    emit(
+      AuthenticationState.inputData(
+        mode: state.mode,
+        email: state.email,
+        password: PasswordInput.dirty(event.password),
+      ),
+    );
   }
 
   Future<void> _repeatPasswordChanged(
     _RepeatPasswordChangedAuthenticationEvent event,
     Emitter<AuthenticationState> emit,
   ) async {
-    emit(AuthenticationState.inputData(
-      mode: state.mode,
-      email: state.email,
-      password: state.password,
-      repeatPassword: PasswordInput.dirty(event.password),
-    ));
+    emit(
+      AuthenticationState.inputData(
+        mode: state.mode,
+        email: state.email,
+        password: state.password,
+        repeatPassword: PasswordInput.dirty(event.password),
+      ),
+    );
   }
 
   Future<void> _switchMode(

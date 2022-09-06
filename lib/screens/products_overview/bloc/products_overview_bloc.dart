@@ -38,10 +38,12 @@ class ProductsOverviewBloc
       final products = await _repository.getAllProducts();
       emit(ProductsOverviewState.success(products: products));
     } on SocketException {
-      emit(ProductsOverviewState.error(
-        products: state.products,
-        message: 'No Internet connection, please try again later',
-      ));
+      emit(
+        ProductsOverviewState.error(
+          products: state.products,
+          message: 'No Internet connection, please try again later',
+        ),
+      );
     } on Exception {
       emit(ProductsOverviewState.error(products: state.products));
       rethrow;
@@ -56,21 +58,27 @@ class ProductsOverviewBloc
       await _repository.toggleProductFavorite(event.product);
       final products = await _repository.getAllProducts();
       final filteredProducts = state.filter.applyAll(products).toList();
-      emit(ProductsOverviewState.success(
-        filter: state.filter,
-        products: filteredProducts,
-      ));
+      emit(
+        ProductsOverviewState.success(
+          filter: state.filter,
+          products: filteredProducts,
+        ),
+      );
     } on SocketException {
-      emit(ProductsOverviewState.error(
-        filter: state.filter,
-        products: state.products,
-        message: 'No Internet connection, please try again later',
-      ));
+      emit(
+        ProductsOverviewState.error(
+          filter: state.filter,
+          products: state.products,
+          message: 'No Internet connection, please try again later',
+        ),
+      );
     } on Exception {
-      emit(ProductsOverviewState.error(
-        filter: state.filter,
-        products: state.products,
-      ));
+      emit(
+        ProductsOverviewState.error(
+          filter: state.filter,
+          products: state.products,
+        ),
+      );
       rethrow;
     }
   }
@@ -82,20 +90,26 @@ class ProductsOverviewBloc
     try {
       final products = await _repository.getAllProducts();
       final filteredProducts = event.filter.applyAll(products).toList();
-      emit(ProductsOverviewState.success(
-        filter: event.filter,
-        products: filteredProducts,
-      ));
+      emit(
+        ProductsOverviewState.success(
+          filter: event.filter,
+          products: filteredProducts,
+        ),
+      );
     } on SocketException {
-      emit(ProductsOverviewState.error(
-        products: state.products,
-        message: 'No Internet connection, please try again later',
-      ));
+      emit(
+        ProductsOverviewState.error(
+          products: state.products,
+          message: 'No Internet connection, please try again later',
+        ),
+      );
     } on Exception {
-      emit(ProductsOverviewState.error(
-        filter: event.filter,
-        products: state.products,
-      ));
+      emit(
+        ProductsOverviewState.error(
+          filter: event.filter,
+          products: state.products,
+        ),
+      );
       rethrow;
     }
   }

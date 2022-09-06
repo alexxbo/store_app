@@ -8,7 +8,9 @@ class ProductFavoriteResponse {
     MapEntry<String, dynamic> entry,
   ) =>
       ProductFavoriteResponse(
-          productId: entry.key, favorite: entry.value as bool);
+        productId: entry.key,
+        favorite: entry.value as bool,
+      );
 
   final String productId;
   final bool favorite;

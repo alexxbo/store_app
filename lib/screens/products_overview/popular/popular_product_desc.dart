@@ -86,11 +86,13 @@ class PopularProductDescriptionCard extends StatelessWidget {
     required Product product,
   }) {
     final cartBloc = context.read<CartBloc>()
-      ..add(CartEvent.addProduct(
-        productId: product.id,
-        title: product.title,
-        price: product.price,
-      ));
+      ..add(
+        CartEvent.addProduct(
+          productId: product.id,
+          title: product.title,
+          price: product.price,
+        ),
+      );
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
       ..showSnackBar(

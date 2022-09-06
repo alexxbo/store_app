@@ -128,10 +128,12 @@ class AddEditProductBloc
     final valid = state.product.validate();
 
     if (!valid) {
-      emit(AddEditProductState.invalid(
-        product: state.product,
-        mode: state.mode,
-      ));
+      emit(
+        AddEditProductState.invalid(
+          product: state.product,
+          mode: state.mode,
+        ),
+      );
 
       return;
     }
@@ -145,11 +147,13 @@ class AddEditProductBloc
 
       emit(const AddEditProductState.success());
     } on Object catch (_) {
-      emit(AddEditProductState.error(
-        product: state.product,
-        mode: state.mode,
-        message: 'Could not save product. Please try again later.',
-      ));
+      emit(
+        AddEditProductState.error(
+          product: state.product,
+          mode: state.mode,
+          message: 'Could not save product. Please try again later.',
+        ),
+      );
       rethrow;
     }
   }

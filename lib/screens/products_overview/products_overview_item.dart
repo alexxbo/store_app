@@ -80,19 +80,23 @@ class ProductsOverviewItem extends StatelessWidget {
     required Product product,
   }) {
     final cartBloc = context.read<CartBloc>()
-      ..add(CartEvent.addProduct(
-        productId: product.id,
-        title: product.title,
-        price: product.price,
-      ));
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: const Text('Add product to card'),
-      action: SnackBarAction(
-        label: 'UNDO',
-        onPressed: () {
-          cartBloc.add(CartEvent.reduceQuantityOrRemoveProduct(product.id));
-        },
+      ..add(
+        CartEvent.addProduct(
+          productId: product.id,
+          title: product.title,
+          price: product.price,
+        ),
+      );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Add product to card'),
+        action: SnackBarAction(
+          label: 'UNDO',
+          onPressed: () {
+            cartBloc.add(CartEvent.reduceQuantityOrRemoveProduct(product.id));
+          },
+        ),
       ),
-    ));
+    );
   }
 }

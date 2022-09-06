@@ -101,32 +101,34 @@ class ProductsOverviewView extends StatelessWidget {
     return BlocProvider<PopularProductsBloc>(
       create: (context) => PopularProductsBloc(repository)
         ..add(const PopularProductsEvent.started()),
-      child: Builder(builder: (context) {
-        return BlocBuilder<PopularProductsBloc, PopularProductsState>(
-          builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                if (state.products.isNotEmpty)
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Text(
-                        'Popular products',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.titleLarge,
+      child: Builder(
+        builder: (context) {
+          return BlocBuilder<PopularProductsBloc, PopularProductsState>(
+            builder: (context, state) {
+              return CustomScrollView(
+                slivers: [
+                  if (state.products.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Text(
+                          'Popular products',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
                       ),
                     ),
-                  ),
-                if (state.products.isNotEmpty)
-                  SliverToBoxAdapter(
-                    child: PopularProducts(products: state.products),
-                  ),
-                _buildProductList(products),
-              ],
-            );
-          },
-        );
-      }),
+                  if (state.products.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: PopularProducts(products: state.products),
+                    ),
+                  _buildProductList(products),
+                ],
+              );
+            },
+          );
+        },
+      ),
     );
   }
 
