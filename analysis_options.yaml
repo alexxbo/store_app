@@ -182,15 +182,14 @@ linter:
     use_test_throws_matchers: true
     use_to_and_as_if_applicable: true
     void_checks: true
+    require_trailing_commas: true
+    avoid_dynamic_calls: true
 
     # experimental
     use_super_parameters: true
 
-    prefer_final_parameters: false # use true
-    avoid_dynamic_calls: false # use true
-    require_trailing_commas: true
-
-    unnecessary_lambdas: false 
+    prefer_final_parameters: false
+    unnecessary_lambdas: false
     unnecessary_await_in_return: false
     prefer_if_elements_to_conditional_expressions: false
     prefer_expression_function_bodies: false
@@ -199,7 +198,7 @@ linter:
     prefer_asserts_in_initializer_lists: false
     one_member_abstracts: false
     always_specify_types: false
-    avoid_final_parameters: false
+    avoid_final_parameters: true
     prefer_double_quotes: false
     unnecessary_final: false
     use_raw_strings: false
