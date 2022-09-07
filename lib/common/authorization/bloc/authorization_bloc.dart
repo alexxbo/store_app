@@ -2,14 +2,11 @@ import 'dart:async';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/authorization/data/authorization_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../data/authorization_repository.dart';
-
 part 'authorization_bloc.freezed.dart';
-
 part 'authorization_event.dart';
-
 part 'authorization_state.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
@@ -17,7 +14,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
       : _repository = repository,
         super(const AuthorizationState.inProgress()) {
     on<AuthorizationEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         logout: (event) => _logout(event, emit),
         tryAutoLogin: (event) => _tryAutoLogin(event, emit),
       ),

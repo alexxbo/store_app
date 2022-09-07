@@ -1,15 +1,16 @@
 import 'package:collection/collection.dart';
-
-import '../../../util/extensions.dart';
-import '../../data/model/cart_item.dart';
-import '../../data/model/order_item.dart';
-import '../api/model/order_item_response.dart';
-import '../api/model/order_product_response.dart';
-import '../api/model/order_request.dart';
+import 'package:flutter_shop/common/data/model/cart_item.dart';
+import 'package:flutter_shop/common/data/model/order_item.dart';
+import 'package:flutter_shop/common/orders/api/model/order_item_response.dart';
+import 'package:flutter_shop/common/orders/api/model/order_product_response.dart';
+import 'package:flutter_shop/common/orders/api/model/order_request.dart';
+import 'package:flutter_shop/util/extensions.dart';
 
 extension OrderItemX on OrderItemResponse {
   OrderItem? toOrderItem() {
-    if (id == null) return null;
+    if (id == null) {
+      return null;
+    }
 
     return OrderItem(
       id: id!,
@@ -26,7 +27,9 @@ extension OrderItemX on OrderItemResponse {
 
 extension OrderProductX on OrderProductResponse {
   OrderProduct? toOrderProduct() {
-    if (id == null) return null;
+    if (id == null) {
+      return null;
+    }
 
     return OrderProduct(
       id: id!,

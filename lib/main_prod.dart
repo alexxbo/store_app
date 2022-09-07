@@ -1,14 +1,13 @@
+import 'package:flutter_shop/app/app.dart';
 import 'package:flutter_shop/app/app_config.dart';
 import 'package:flutter_shop/app/environment.dart';
+import 'package:flutter_shop/entry_point.dart';
 
-import 'app/app.dart';
-import 'entry_point.dart';
-
-void main() {
+Future<void> main() async {
   const configuredApp = AppConfig(
     environment: ProdEnvironment(),
     child: FlutterShop(),
   );
 
-  entryPoint(() => configuredApp);
+  await entryPoint(() => configuredApp);
 }

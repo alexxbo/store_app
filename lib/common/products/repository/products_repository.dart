@@ -47,7 +47,7 @@ class _ProductRepository implements IProductsRepository {
 
     final products = productResponseList.map(
       (item) => item.mapToProduct(
-        userFavorites
+        isFavorite: userFavorites
                 .firstWhereOrNull((favItem) => favItem.productId == item.id)
                 ?.favorite ??
             false,
@@ -65,7 +65,7 @@ class _ProductRepository implements IProductsRepository {
 
     final products = productResponseList.map(
       (item) => item.mapToProduct(
-        userFavorites
+        isFavorite: userFavorites
                 .firstWhereOrNull((favItem) => favItem.productId == item.id)
                 ?.favorite ??
             false,
@@ -77,8 +77,8 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<void> toggleProductFavorite(Product product) async {
-    AuthenticatedUser? user = await _getUser();
-    _api.toggleFavoriteProduct(
+    final user = await _getUser();
+    await _api.toggleFavoriteProduct(
       userId: user.userId,
       product: product,
     );
@@ -86,7 +86,7 @@ class _ProductRepository implements IProductsRepository {
 
   @override
   Future<Product> getProductById(String productId) async {
-    AuthenticatedUser? user = await _getUser();
+    final user = await _getUser();
     final productResponse = await _api.getProductById(
       productId: productId,
     );
@@ -96,7 +96,7 @@ class _ProductRepository implements IProductsRepository {
       productId: productId,
     );
 
-    return productResponse.mapToProduct(favorite);
+    return productResponse.mapToProduct(isFavorite: favorite);
   }
 
   @override
@@ -130,7 +130,10 @@ class _ProductRepository implements IProductsRepository {
 
   Future<AuthenticatedUser> _getUser() async {
     final user = await _userStorage.getSavedUser();
-    if (user == null) throw Exception('User is null');
+
+    if (user == null) {
+      throw Exception('User is null');
+    }
 
     return user;
   }

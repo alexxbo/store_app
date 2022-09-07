@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/common/products/repository/products_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/screens/cart_detail/cart_detail_screen.dart';
+import 'package:flutter_shop/screens/products_overview/bloc/products_overview_bloc.dart';
 import 'package:flutter_shop/screens/products_overview/popular/bloc/popular_products_bloc.dart';
 import 'package:flutter_shop/screens/products_overview/popular/popular_products.dart';
-
-import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/data/model/product.dart';
-import '../../common/products/repository/products_repository.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../widgets/app_drawer.dart';
-import '../../widgets/badge.dart';
-import '../../widgets/progress.dart';
-import '../cart_detail/cart_detail_screen.dart';
-import 'bloc/products_overview_bloc.dart';
-import 'products_overview_filter.dart';
-import 'products_overview_item.dart';
+import 'package:flutter_shop/screens/products_overview/products_overview_filter.dart';
+import 'package:flutter_shop/screens/products_overview/products_overview_item.dart';
+import 'package:flutter_shop/widgets/app_drawer.dart';
+import 'package:flutter_shop/widgets/badge.dart';
+import 'package:flutter_shop/widgets/progress.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
+  const ProductsOverviewScreen({Key? key}) : super(key: key);
+
   static const String routeName = '/products';
 
-  static void launch({required BuildContext context}) {
-    Navigator.of(context).pushReplacementNamed(routeName);
+  static Future<void> launch({required BuildContext context}) async {
+    await Navigator.of(context).pushReplacementNamed(routeName);
   }
-
-  const ProductsOverviewScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class ProductsOverviewView extends StatelessWidget {
             builder: (context, state) => Badge(
               value: '${state.itemCount}',
               child: IconButton(
-                onPressed: () => _openCartDetail(context),
+                onPressed: () async => _openCartDetail(context),
                 icon: const Icon(Icons.shopping_cart),
               ),
             ),
@@ -77,9 +76,9 @@ class ProductsOverviewView extends StatelessWidget {
           _showErrorMessage(state.errorMessageOrNull, context);
         },
         builder: (context, state) => state.when(
-          progress: (filter, products) => const ProgressWidget(),
-          error: (filter, products, _) => _buildBody(products),
-          success: (filter, products) => products.isEmpty
+          progress: (products, filter) => const ProgressWidget(),
+          error: (products, filter, _) => _buildBody(products),
+          success: (products, filter) => products.isEmpty
               ? _buildEmptyState(context)
               : _buildBody(products),
         ),
@@ -102,32 +101,34 @@ class ProductsOverviewView extends StatelessWidget {
     return BlocProvider<PopularProductsBloc>(
       create: (context) => PopularProductsBloc(repository)
         ..add(const PopularProductsEvent.started()),
-      child: Builder(builder: (context) {
-        return BlocBuilder<PopularProductsBloc, PopularProductsState>(
-          builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                if (state.products.isNotEmpty)
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Text(
-                        'Popular products',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.titleLarge,
+      child: Builder(
+        builder: (context) {
+          return BlocBuilder<PopularProductsBloc, PopularProductsState>(
+            builder: (context, state) {
+              return CustomScrollView(
+                slivers: [
+                  if (state.products.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Text(
+                          'Popular products',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
                       ),
                     ),
-                  ),
-                if (state.products.isNotEmpty)
-                  SliverToBoxAdapter(
-                    child: PopularProducts(products: state.products),
-                  ),
-                _buildProductList(products),
-              ],
-            );
-          },
-        );
-      }),
+                  if (state.products.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: PopularProducts(products: state.products),
+                    ),
+                  _buildProductList(products),
+                ],
+              );
+            },
+          );
+        },
+      ),
     );
   }
 
@@ -149,8 +150,8 @@ class ProductsOverviewView extends StatelessWidget {
     );
   }
 
-  void _openCartDetail(BuildContext context) {
-    CartDetailScreen.launch(context: context);
+  Future<void> _openCartDetail(BuildContext context) async {
+    await CartDetailScreen.launch(context: context);
   }
 
   void _setFilter(BuildContext context, final Object? filter) {

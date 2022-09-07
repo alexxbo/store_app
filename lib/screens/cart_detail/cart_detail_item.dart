@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
 import 'package:flutter_shop/l10n/localization.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/cart/bloc/cart_bloc.dart';
-
 class CartDetailItem extends StatelessWidget {
-  final String id;
-  final String productId;
-  final String title;
-  final double price;
-  final int quantity;
-
   const CartDetailItem({
-    Key? key,
     required this.id,
     required this.productId,
     required this.title,
     required this.price,
     required this.quantity,
+    Key? key,
   }) : super(key: key);
+
+  final String id;
+  final String productId;
+  final String title;
+  final double price;
+  final int quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class CartDetailItem extends StatelessWidget {
     return Dismissible(
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
-      confirmDismiss: (direction) => _showConfirmDeleteDialog(context),
+      confirmDismiss: (direction) async => _showConfirmDeleteDialog(context),
       onDismissed: (direction) => _removeProduct(context),
       background: Container(
         margin: const EdgeInsets.all(24),
@@ -52,7 +51,7 @@ class CartDetailItem extends StatelessWidget {
           child: ListTile(
             leading: CircleAvatar(
               child: Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(4),
                 child: FittedBox(child: Text(localization.common_price(price))),
               ),
             ),

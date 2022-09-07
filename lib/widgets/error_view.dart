@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class ErrorView extends StatelessWidget {
   const ErrorView({
-    Key? key,
     required final String message,
+    Key? key,
   })  : _message = message,
         super(key: key);
 

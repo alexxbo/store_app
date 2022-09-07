@@ -84,16 +84,24 @@ class _CustomLogger implements Log {
           '[${record.time}] [${getLevelLabel(record.level.name)}]',
         );
         if (record.error != null && record.stackTrace != null) {
-          if (record.loggerName.isNotEmpty) sb.write(' [${record.loggerName}]');
-          sb.write(' [${record.error}]');
-          sb.write(' Message: ${record.message}');
-          sb.write(' Exception: ${record.stackTrace}');
+          if (record.loggerName.isNotEmpty) {
+            sb.write(' [${record.loggerName}]');
+          }
+          sb
+            ..write(' [${record.error}]')
+            ..write(' Message: ${record.message}')
+            ..write(' Exception: ${record.stackTrace}');
         } else if (record.error != null) {
-          if (record.loggerName.isNotEmpty) sb.write(' [${record.loggerName}]');
-          sb.write(' [${record.error}]');
-          sb.write(' Message: ${record.message}');
+          if (record.loggerName.isNotEmpty) {
+            sb.write(' [${record.loggerName}]');
+          }
+          sb
+            ..write(' [${record.error}]')
+            ..write(' Message: ${record.message}');
         } else {
-          if (record.loggerName.isNotEmpty) sb.write(' [${record.loggerName}]');
+          if (record.loggerName.isNotEmpty) {
+            sb.write(' [${record.loggerName}]');
+          }
           sb.write(' Message: ${record.message}');
         }
         developer.log(sb.toString());

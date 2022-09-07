@@ -4,6 +4,14 @@ part of 'cart_bloc.dart';
 class CartState with _$CartState {
   const CartState._();
 
+  const factory CartState.full({
+    required final List<CartModel> items,
+  }) = _FullCartState;
+
+  const factory CartState.empty({
+    @Default(<CartModel>[]) final List<CartModel> items,
+  }) = _EmptyCartState;
+
   double get totalAmount => when<double>(
         full: (items) => _calculateTotalAmount(items),
         empty: (_) => 0.0,
@@ -19,17 +27,9 @@ class CartState with _$CartState {
         empty: (items) => items,
       ).toList();
 
-  const factory CartState.full({
-    required final List<CartModel> items,
-  }) = _FullCartState;
-
-  const factory CartState.empty({
-    @Default(<CartModel>[]) final List<CartModel> items,
-  }) = _EmptyCartState;
-
   double _calculateTotalAmount(List<CartModel> items) {
     return items.fold(
-      0.0,
+      0,
       (total, item) => total + (item.product.price * item.product.quantity),
     );
   }

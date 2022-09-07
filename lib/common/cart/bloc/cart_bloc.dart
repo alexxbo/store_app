@@ -1,9 +1,8 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/cart/api/cart_api.dart';
+import 'package:flutter_shop/common/cart/data/cart_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../api/cart_api.dart';
-import '../data/cart_repository.dart';
 
 part 'cart_bloc.freezed.dart';
 part 'cart_event.dart';
@@ -14,7 +13,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       : _repository = repository,
         super(const CartState.empty()) {
     on<CartEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         addProduct: (event) => _addProduct(event, emit),
         removeProduct: (event) => _removeProduct(event, emit),
         reduceQuantityOrRemoveProduct: (event) =>
@@ -39,7 +38,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _ReduceQuantityOrRemoveProductCartEvent event,
     Emitter<CartState> emit,
   ) async {
-    _repository.removeSingle(event.productId);
+    await _repository.removeSingle(event.productId);
     final items = await _repository.getItems();
     items.isEmpty
         ? emit(const CartState.empty())
@@ -50,7 +49,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _RemoveProductCartEvent event,
     Emitter<CartState> emit,
   ) async {
-    _repository.remove(event.productId);
+    await _repository.remove(event.productId);
     final items = await _repository.getItems();
     items.isEmpty
         ? emit(const CartState.empty())
@@ -61,7 +60,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _AddProductCartEvent event,
     Emitter<CartState> emit,
   ) async {
-    _repository.add(
+    await _repository.add(
       AddProduct(
         productId: event.productId,
         title: event.title,

@@ -189,7 +189,9 @@ class _ProductsApi implements IProductsApi {
       );
     } else {
       final data = json.decode(response.body) as Map<String, dynamic>?;
-      if (data == null) return [];
+      if (data == null) {
+        return [];
+      }
 
       final loadedProducts = <ProductModel>[];
       data.forEach((productId, json) {

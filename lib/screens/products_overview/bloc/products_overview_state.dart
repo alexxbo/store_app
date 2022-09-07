@@ -2,7 +2,23 @@ part of 'products_overview_bloc.dart';
 
 @freezed
 class ProductsOverviewState with _$ProductsOverviewState {
-  // ignore: unused_element
+  const factory ProductsOverviewState.success({
+    required final List<Product> products,
+    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
+  }) = _SuccessProductsState;
+
+  const factory ProductsOverviewState.error({
+    @Default(<Product>[]) final List<Product> products,
+    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
+    @Default('Something went wrong. Please try again later.')
+        final String message,
+  }) = _ErrorProductsState;
+
+  const factory ProductsOverviewState.progress({
+    @Default(<Product>[]) final List<Product> products,
+    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
+  }) = _ProgressProductsState;
+
   const ProductsOverviewState._();
 
   bool get isEmpty => maybeMap<bool>(
@@ -19,21 +35,4 @@ class ProductsOverviewState with _$ProductsOverviewState {
         error: (state) => state.message,
         orElse: () => null,
       );
-
-  const factory ProductsOverviewState.progress({
-    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
-    @Default(<Product>[]) final List<Product> products,
-  }) = _ProgressProductsState;
-
-  const factory ProductsOverviewState.error({
-    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
-    @Default(<Product>[]) final List<Product> products,
-    @Default('Something went wrong. Please try again later.')
-        final String message,
-  }) = _ErrorProductsState;
-
-  const factory ProductsOverviewState.success({
-    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
-    required final List<Product> products,
-  }) = _SuccessProductsState;
 }

@@ -257,9 +257,9 @@ abstract class _AddProductCartEvent extends CartEvent {
       required final double price}) = _$_AddProductCartEvent;
   const _AddProductCartEvent._() : super._();
 
-  String get productId => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
+  String get productId;
+  String get title;
+  double get price;
   @JsonKey(ignore: true)
   _$$_AddProductCartEventCopyWith<_$_AddProductCartEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -413,7 +413,7 @@ abstract class _RemoveProductCartEvent extends CartEvent {
       _$_RemoveProductCartEvent;
   const _RemoveProductCartEvent._() : super._();
 
-  String get productId => throw _privateConstructorUsedError;
+  String get productId;
   @JsonKey(ignore: true)
   _$$_RemoveProductCartEventCopyWith<_$_RemoveProductCartEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -572,7 +572,7 @@ abstract class _ReduceQuantityOrRemoveProductCartEvent extends CartEvent {
       final String productId) = _$_ReduceQuantityOrRemoveProductCartEvent;
   const _ReduceQuantityOrRemoveProductCartEvent._() : super._();
 
-  String get productId => throw _privateConstructorUsedError;
+  String get productId;
   @JsonKey(ignore: true)
   _$$_ReduceQuantityOrRemoveProductCartEventCopyWith<
           _$_ReduceQuantityOrRemoveProductCartEvent>
@@ -914,7 +914,7 @@ abstract class _FullCartState extends CartState {
   const _FullCartState._() : super._();
 
   @override
-  List<CartModel> get items => throw _privateConstructorUsedError;
+  List<CartModel> get items;
   @override
   @JsonKey(ignore: true)
   _$$_FullCartStateCopyWith<_$_FullCartState> get copyWith =>
@@ -1061,7 +1061,7 @@ abstract class _EmptyCartState extends CartState {
   const _EmptyCartState._() : super._();
 
   @override
-  List<CartModel> get items => throw _privateConstructorUsedError;
+  List<CartModel> get items;
   @override
   @JsonKey(ignore: true)
   _$$_EmptyCartStateCopyWith<_$_EmptyCartState> get copyWith =>

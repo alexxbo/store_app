@@ -339,7 +339,7 @@ abstract class _FilterChangedProductsEvent implements ProductsOverviewEvent {
   const factory _FilterChangedProductsEvent(
       {final ProductsOverviewFilter filter}) = _$_FilterChangedProductsEvent;
 
-  ProductsOverviewFilter get filter => throw _privateConstructorUsedError;
+  ProductsOverviewFilter get filter;
   @JsonKey(ignore: true)
   _$$_FilterChangedProductsEventCopyWith<_$_FilterChangedProductsEvent>
       get copyWith => throw _privateConstructorUsedError;
@@ -486,7 +486,7 @@ abstract class _FavoriteToggledProductsEvent implements ProductsOverviewEvent {
   const factory _FavoriteToggledProductsEvent(
       {required final Product product}) = _$_FavoriteToggledProductsEvent;
 
-  Product get product => throw _privateConstructorUsedError;
+  Product get product;
   @JsonKey(ignore: true)
   _$$_FavoriteToggledProductsEventCopyWith<_$_FavoriteToggledProductsEvent>
       get copyWith => throw _privateConstructorUsedError;
@@ -494,63 +494,63 @@ abstract class _FavoriteToggledProductsEvent implements ProductsOverviewEvent {
 
 /// @nodoc
 mixin _$ProductsOverviewState {
-  ProductsOverviewFilter get filter => throw _privateConstructorUsedError;
   List<Product> get products => throw _privateConstructorUsedError;
+  ProductsOverviewFilter get filter => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        progress,
-    required TResult Function(ProductsOverviewFilter filter,
-            List<Product> products, String message)
+            List<Product> products, ProductsOverviewFilter filter)
+        success,
+    required TResult Function(List<Product> products,
+            ProductsOverviewFilter filter, String message)
         error,
     required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        success,
+            List<Product> products, ProductsOverviewFilter filter)
+        progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
             String message)?
         error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
             String message)?
         error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressProductsState value) progress,
-    required TResult Function(_ErrorProductsState value) error,
     required TResult Function(_SuccessProductsState value) success,
+    required TResult Function(_ErrorProductsState value) error,
+    required TResult Function(_ProgressProductsState value) progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
     TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
     TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -565,7 +565,7 @@ abstract class $ProductsOverviewStateCopyWith<$Res> {
   factory $ProductsOverviewStateCopyWith(ProductsOverviewState value,
           $Res Function(ProductsOverviewState) then) =
       _$ProductsOverviewStateCopyWithImpl<$Res>;
-  $Res call({ProductsOverviewFilter filter, List<Product> products});
+  $Res call({List<Product> products, ProductsOverviewFilter filter});
 }
 
 /// @nodoc
@@ -579,20 +579,403 @@ class _$ProductsOverviewStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? filter = freezed,
     Object? products = freezed,
+    Object? filter = freezed,
   }) {
     return _then(_value.copyWith(
-      filter: filter == freezed
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as ProductsOverviewFilter,
       products: products == freezed
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as ProductsOverviewFilter,
     ));
   }
+}
+
+/// @nodoc
+abstract class _$$_SuccessProductsStateCopyWith<$Res>
+    implements $ProductsOverviewStateCopyWith<$Res> {
+  factory _$$_SuccessProductsStateCopyWith(_$_SuccessProductsState value,
+          $Res Function(_$_SuccessProductsState) then) =
+      __$$_SuccessProductsStateCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Product> products, ProductsOverviewFilter filter});
+}
+
+/// @nodoc
+class __$$_SuccessProductsStateCopyWithImpl<$Res>
+    extends _$ProductsOverviewStateCopyWithImpl<$Res>
+    implements _$$_SuccessProductsStateCopyWith<$Res> {
+  __$$_SuccessProductsStateCopyWithImpl(_$_SuccessProductsState _value,
+      $Res Function(_$_SuccessProductsState) _then)
+      : super(_value, (v) => _then(v as _$_SuccessProductsState));
+
+  @override
+  _$_SuccessProductsState get _value => super._value as _$_SuccessProductsState;
+
+  @override
+  $Res call({
+    Object? products = freezed,
+    Object? filter = freezed,
+  }) {
+    return _then(_$_SuccessProductsState(
+      products: products == freezed
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as ProductsOverviewFilter,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SuccessProductsState extends _SuccessProductsState {
+  const _$_SuccessProductsState(
+      {required final List<Product> products,
+      this.filter = ProductsOverviewFilter.all})
+      : _products = products,
+        super._();
+
+  final List<Product> _products;
+  @override
+  List<Product> get products {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  @JsonKey()
+  final ProductsOverviewFilter filter;
+
+  @override
+  String toString() {
+    return 'ProductsOverviewState.success(products: $products, filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SuccessProductsState &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            const DeepCollectionEquality().equals(other.filter, filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_products),
+      const DeepCollectionEquality().hash(filter));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessProductsStateCopyWith<_$_SuccessProductsState> get copyWith =>
+      __$$_SuccessProductsStateCopyWithImpl<_$_SuccessProductsState>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<Product> products, ProductsOverviewFilter filter)
+        success,
+    required TResult Function(List<Product> products,
+            ProductsOverviewFilter filter, String message)
+        error,
+    required TResult Function(
+            List<Product> products, ProductsOverviewFilter filter)
+        progress,
+  }) {
+    return success(products, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
+            String message)?
+        error,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
+  }) {
+    return success?.call(products, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
+            String message)?
+        error,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(products, filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SuccessProductsState value) success,
+    required TResult Function(_ErrorProductsState value) error,
+    required TResult Function(_ProgressProductsState value) progress,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessProductsState extends ProductsOverviewState {
+  const factory _SuccessProductsState(
+      {required final List<Product> products,
+      final ProductsOverviewFilter filter}) = _$_SuccessProductsState;
+  const _SuccessProductsState._() : super._();
+
+  @override
+  List<Product> get products;
+  @override
+  ProductsOverviewFilter get filter;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SuccessProductsStateCopyWith<_$_SuccessProductsState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ErrorProductsStateCopyWith<$Res>
+    implements $ProductsOverviewStateCopyWith<$Res> {
+  factory _$$_ErrorProductsStateCopyWith(_$_ErrorProductsState value,
+          $Res Function(_$_ErrorProductsState) then) =
+      __$$_ErrorProductsStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {List<Product> products, ProductsOverviewFilter filter, String message});
+}
+
+/// @nodoc
+class __$$_ErrorProductsStateCopyWithImpl<$Res>
+    extends _$ProductsOverviewStateCopyWithImpl<$Res>
+    implements _$$_ErrorProductsStateCopyWith<$Res> {
+  __$$_ErrorProductsStateCopyWithImpl(
+      _$_ErrorProductsState _value, $Res Function(_$_ErrorProductsState) _then)
+      : super(_value, (v) => _then(v as _$_ErrorProductsState));
+
+  @override
+  _$_ErrorProductsState get _value => super._value as _$_ErrorProductsState;
+
+  @override
+  $Res call({
+    Object? products = freezed,
+    Object? filter = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_$_ErrorProductsState(
+      products: products == freezed
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as ProductsOverviewFilter,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ErrorProductsState extends _ErrorProductsState {
+  const _$_ErrorProductsState(
+      {final List<Product> products = const <Product>[],
+      this.filter = ProductsOverviewFilter.all,
+      this.message = 'Something went wrong. Please try again later.'})
+      : _products = products,
+        super._();
+
+  final List<Product> _products;
+  @override
+  @JsonKey()
+  List<Product> get products {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  @JsonKey()
+  final ProductsOverviewFilter filter;
+  @override
+  @JsonKey()
+  final String message;
+
+  @override
+  String toString() {
+    return 'ProductsOverviewState.error(products: $products, filter: $filter, message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ErrorProductsState &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            const DeepCollectionEquality().equals(other.filter, filter) &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_products),
+      const DeepCollectionEquality().hash(filter),
+      const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ErrorProductsStateCopyWith<_$_ErrorProductsState> get copyWith =>
+      __$$_ErrorProductsStateCopyWithImpl<_$_ErrorProductsState>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<Product> products, ProductsOverviewFilter filter)
+        success,
+    required TResult Function(List<Product> products,
+            ProductsOverviewFilter filter, String message)
+        error,
+    required TResult Function(
+            List<Product> products, ProductsOverviewFilter filter)
+        progress,
+  }) {
+    return error(products, filter, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
+            String message)?
+        error,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
+  }) {
+    return error?.call(products, filter, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
+            String message)?
+        error,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(products, filter, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SuccessProductsState value) success,
+    required TResult Function(_ErrorProductsState value) error,
+    required TResult Function(_ProgressProductsState value) progress,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ErrorProductsState extends ProductsOverviewState {
+  const factory _ErrorProductsState(
+      {final List<Product> products,
+      final ProductsOverviewFilter filter,
+      final String message}) = _$_ErrorProductsState;
+  const _ErrorProductsState._() : super._();
+
+  @override
+  List<Product> get products;
+  @override
+  ProductsOverviewFilter get filter;
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ErrorProductsStateCopyWith<_$_ErrorProductsState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -602,7 +985,7 @@ abstract class _$$_ProgressProductsStateCopyWith<$Res>
           $Res Function(_$_ProgressProductsState) then) =
       __$$_ProgressProductsStateCopyWithImpl<$Res>;
   @override
-  $Res call({ProductsOverviewFilter filter, List<Product> products});
+  $Res call({List<Product> products, ProductsOverviewFilter filter});
 }
 
 /// @nodoc
@@ -619,18 +1002,18 @@ class __$$_ProgressProductsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? filter = freezed,
     Object? products = freezed,
+    Object? filter = freezed,
   }) {
     return _then(_$_ProgressProductsState(
-      filter: filter == freezed
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as ProductsOverviewFilter,
       products: products == freezed
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as ProductsOverviewFilter,
     ));
   }
 }
@@ -639,14 +1022,11 @@ class __$$_ProgressProductsStateCopyWithImpl<$Res>
 
 class _$_ProgressProductsState extends _ProgressProductsState {
   const _$_ProgressProductsState(
-      {this.filter = ProductsOverviewFilter.all,
-      final List<Product> products = const <Product>[]})
+      {final List<Product> products = const <Product>[],
+      this.filter = ProductsOverviewFilter.all})
       : _products = products,
         super._();
 
-  @override
-  @JsonKey()
-  final ProductsOverviewFilter filter;
   final List<Product> _products;
   @override
   @JsonKey()
@@ -656,8 +1036,12 @@ class _$_ProgressProductsState extends _ProgressProductsState {
   }
 
   @override
+  @JsonKey()
+  final ProductsOverviewFilter filter;
+
+  @override
   String toString() {
-    return 'ProductsOverviewState.progress(filter: $filter, products: $products)';
+    return 'ProductsOverviewState.progress(products: $products, filter: $filter)';
   }
 
   @override
@@ -665,15 +1049,15 @@ class _$_ProgressProductsState extends _ProgressProductsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProgressProductsState &&
-            const DeepCollectionEquality().equals(other.filter, filter) &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            const DeepCollectionEquality().equals(other.filter, filter));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(filter),
-      const DeepCollectionEquality().hash(_products));
+      const DeepCollectionEquality().hash(_products),
+      const DeepCollectionEquality().hash(filter));
 
   @JsonKey(ignore: true)
   @override
@@ -685,46 +1069,46 @@ class _$_ProgressProductsState extends _ProgressProductsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        progress,
-    required TResult Function(ProductsOverviewFilter filter,
-            List<Product> products, String message)
+            List<Product> products, ProductsOverviewFilter filter)
+        success,
+    required TResult Function(List<Product> products,
+            ProductsOverviewFilter filter, String message)
         error,
     required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        success,
+            List<Product> products, ProductsOverviewFilter filter)
+        progress,
   }) {
-    return progress(filter, products);
+    return progress(products, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
             String message)?
         error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
   }) {
-    return progress?.call(filter, products);
+    return progress?.call(products, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter,
             String message)?
         error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
+    TResult Function(List<Product> products, ProductsOverviewFilter filter)?
+        progress,
     required TResult orElse(),
   }) {
     if (progress != null) {
-      return progress(filter, products);
+      return progress(products, filter);
     }
     return orElse();
   }
@@ -732,9 +1116,9 @@ class _$_ProgressProductsState extends _ProgressProductsState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressProductsState value) progress,
-    required TResult Function(_ErrorProductsState value) error,
     required TResult Function(_SuccessProductsState value) success,
+    required TResult Function(_ErrorProductsState value) error,
+    required TResult Function(_ProgressProductsState value) progress,
   }) {
     return progress(this);
   }
@@ -742,9 +1126,9 @@ class _$_ProgressProductsState extends _ProgressProductsState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
     TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
   }) {
     return progress?.call(this);
   }
@@ -752,9 +1136,9 @@ class _$_ProgressProductsState extends _ProgressProductsState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
     TResult Function(_SuccessProductsState value)? success,
+    TResult Function(_ErrorProductsState value)? error,
+    TResult Function(_ProgressProductsState value)? progress,
     required TResult orElse(),
   }) {
     if (progress != null) {
@@ -766,398 +1150,16 @@ class _$_ProgressProductsState extends _ProgressProductsState {
 
 abstract class _ProgressProductsState extends ProductsOverviewState {
   const factory _ProgressProductsState(
-      {final ProductsOverviewFilter filter,
-      final List<Product> products}) = _$_ProgressProductsState;
+      {final List<Product> products,
+      final ProductsOverviewFilter filter}) = _$_ProgressProductsState;
   const _ProgressProductsState._() : super._();
 
   @override
-  ProductsOverviewFilter get filter => throw _privateConstructorUsedError;
+  List<Product> get products;
   @override
-  List<Product> get products => throw _privateConstructorUsedError;
+  ProductsOverviewFilter get filter;
   @override
   @JsonKey(ignore: true)
   _$$_ProgressProductsStateCopyWith<_$_ProgressProductsState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ErrorProductsStateCopyWith<$Res>
-    implements $ProductsOverviewStateCopyWith<$Res> {
-  factory _$$_ErrorProductsStateCopyWith(_$_ErrorProductsState value,
-          $Res Function(_$_ErrorProductsState) then) =
-      __$$_ErrorProductsStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {ProductsOverviewFilter filter, List<Product> products, String message});
-}
-
-/// @nodoc
-class __$$_ErrorProductsStateCopyWithImpl<$Res>
-    extends _$ProductsOverviewStateCopyWithImpl<$Res>
-    implements _$$_ErrorProductsStateCopyWith<$Res> {
-  __$$_ErrorProductsStateCopyWithImpl(
-      _$_ErrorProductsState _value, $Res Function(_$_ErrorProductsState) _then)
-      : super(_value, (v) => _then(v as _$_ErrorProductsState));
-
-  @override
-  _$_ErrorProductsState get _value => super._value as _$_ErrorProductsState;
-
-  @override
-  $Res call({
-    Object? filter = freezed,
-    Object? products = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_$_ErrorProductsState(
-      filter: filter == freezed
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as ProductsOverviewFilter,
-      products: products == freezed
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ErrorProductsState extends _ErrorProductsState {
-  const _$_ErrorProductsState(
-      {this.filter = ProductsOverviewFilter.all,
-      final List<Product> products = const <Product>[],
-      this.message = 'Something went wrong. Please try again later.'})
-      : _products = products,
-        super._();
-
-  @override
-  @JsonKey()
-  final ProductsOverviewFilter filter;
-  final List<Product> _products;
-  @override
-  @JsonKey()
-  List<Product> get products {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
-
-  @override
-  @JsonKey()
-  final String message;
-
-  @override
-  String toString() {
-    return 'ProductsOverviewState.error(filter: $filter, products: $products, message: $message)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ErrorProductsState &&
-            const DeepCollectionEquality().equals(other.filter, filter) &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
-            const DeepCollectionEquality().equals(other.message, message));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(filter),
-      const DeepCollectionEquality().hash(_products),
-      const DeepCollectionEquality().hash(message));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ErrorProductsStateCopyWith<_$_ErrorProductsState> get copyWith =>
-      __$$_ErrorProductsStateCopyWithImpl<_$_ErrorProductsState>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        progress,
-    required TResult Function(ProductsOverviewFilter filter,
-            List<Product> products, String message)
-        error,
-    required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        success,
-  }) {
-    return error(filter, products, message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
-            String message)?
-        error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
-  }) {
-    return error?.call(filter, products, message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
-            String message)?
-        error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(filter, products, message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressProductsState value) progress,
-    required TResult Function(_ErrorProductsState value) error,
-    required TResult Function(_SuccessProductsState value) success,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
-    TResult Function(_SuccessProductsState value)? success,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
-    TResult Function(_SuccessProductsState value)? success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ErrorProductsState extends ProductsOverviewState {
-  const factory _ErrorProductsState(
-      {final ProductsOverviewFilter filter,
-      final List<Product> products,
-      final String message}) = _$_ErrorProductsState;
-  const _ErrorProductsState._() : super._();
-
-  @override
-  ProductsOverviewFilter get filter => throw _privateConstructorUsedError;
-  @override
-  List<Product> get products => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ErrorProductsStateCopyWith<_$_ErrorProductsState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_SuccessProductsStateCopyWith<$Res>
-    implements $ProductsOverviewStateCopyWith<$Res> {
-  factory _$$_SuccessProductsStateCopyWith(_$_SuccessProductsState value,
-          $Res Function(_$_SuccessProductsState) then) =
-      __$$_SuccessProductsStateCopyWithImpl<$Res>;
-  @override
-  $Res call({ProductsOverviewFilter filter, List<Product> products});
-}
-
-/// @nodoc
-class __$$_SuccessProductsStateCopyWithImpl<$Res>
-    extends _$ProductsOverviewStateCopyWithImpl<$Res>
-    implements _$$_SuccessProductsStateCopyWith<$Res> {
-  __$$_SuccessProductsStateCopyWithImpl(_$_SuccessProductsState _value,
-      $Res Function(_$_SuccessProductsState) _then)
-      : super(_value, (v) => _then(v as _$_SuccessProductsState));
-
-  @override
-  _$_SuccessProductsState get _value => super._value as _$_SuccessProductsState;
-
-  @override
-  $Res call({
-    Object? filter = freezed,
-    Object? products = freezed,
-  }) {
-    return _then(_$_SuccessProductsState(
-      filter: filter == freezed
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as ProductsOverviewFilter,
-      products: products == freezed
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SuccessProductsState extends _SuccessProductsState {
-  const _$_SuccessProductsState(
-      {this.filter = ProductsOverviewFilter.all,
-      required final List<Product> products})
-      : _products = products,
-        super._();
-
-  @override
-  @JsonKey()
-  final ProductsOverviewFilter filter;
-  final List<Product> _products;
-  @override
-  List<Product> get products {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
-
-  @override
-  String toString() {
-    return 'ProductsOverviewState.success(filter: $filter, products: $products)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SuccessProductsState &&
-            const DeepCollectionEquality().equals(other.filter, filter) &&
-            const DeepCollectionEquality().equals(other._products, _products));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(filter),
-      const DeepCollectionEquality().hash(_products));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessProductsStateCopyWith<_$_SuccessProductsState> get copyWith =>
-      __$$_SuccessProductsStateCopyWithImpl<_$_SuccessProductsState>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        progress,
-    required TResult Function(ProductsOverviewFilter filter,
-            List<Product> products, String message)
-        error,
-    required TResult Function(
-            ProductsOverviewFilter filter, List<Product> products)
-        success,
-  }) {
-    return success(filter, products);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
-            String message)?
-        error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
-  }) {
-    return success?.call(filter, products);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        progress,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products,
-            String message)?
-        error,
-    TResult Function(ProductsOverviewFilter filter, List<Product> products)?
-        success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(filter, products);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressProductsState value) progress,
-    required TResult Function(_ErrorProductsState value) error,
-    required TResult Function(_SuccessProductsState value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
-    TResult Function(_SuccessProductsState value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressProductsState value)? progress,
-    TResult Function(_ErrorProductsState value)? error,
-    TResult Function(_SuccessProductsState value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SuccessProductsState extends ProductsOverviewState {
-  const factory _SuccessProductsState(
-      {final ProductsOverviewFilter filter,
-      required final List<Product> products}) = _$_SuccessProductsState;
-  const _SuccessProductsState._() : super._();
-
-  @override
-  ProductsOverviewFilter get filter => throw _privateConstructorUsedError;
-  @override
-  List<Product> get products => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SuccessProductsStateCopyWith<_$_SuccessProductsState> get copyWith =>
       throw _privateConstructorUsedError;
 }

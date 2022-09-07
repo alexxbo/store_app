@@ -262,7 +262,7 @@ abstract class _PasswordChangedAuthenticationEvent extends AuthenticationEvent {
       {required final String password}) = _$_PasswordChangedAuthenticationEvent;
   const _PasswordChangedAuthenticationEvent._() : super._();
 
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @JsonKey(ignore: true)
   _$$_PasswordChangedAuthenticationEventCopyWith<
           _$_PasswordChangedAuthenticationEvent>
@@ -435,7 +435,7 @@ abstract class _RepeatPasswordChangedAuthenticationEvent
       _$_RepeatPasswordChangedAuthenticationEvent;
   const _RepeatPasswordChangedAuthenticationEvent._() : super._();
 
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @JsonKey(ignore: true)
   _$$_RepeatPasswordChangedAuthenticationEventCopyWith<
           _$_RepeatPasswordChangedAuthenticationEvent>
@@ -604,7 +604,7 @@ abstract class _EmailChangedAuthenticationEvent extends AuthenticationEvent {
       {required final String email}) = _$_EmailChangedAuthenticationEvent;
   const _EmailChangedAuthenticationEvent._() : super._();
 
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @JsonKey(ignore: true)
   _$$_EmailChangedAuthenticationEventCopyWith<
           _$_EmailChangedAuthenticationEvent>
@@ -892,15 +892,6 @@ mixin _$AuthenticationState {
   PasswordInput get repeatPassword => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        inputData,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        progress,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        success,
     required TResult Function(
             AuthenticationMode mode,
             EmailInput email,
@@ -908,19 +899,19 @@ mixin _$AuthenticationState {
             PasswordInput repeatPassword,
             String message)
         error,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        success,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        progress,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        inputData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
     TResult Function(
             AuthenticationMode mode,
             EmailInput email,
@@ -928,19 +919,19 @@ mixin _$AuthenticationState {
             PasswordInput repeatPassword,
             String message)?
         error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
     TResult Function(
             AuthenticationMode mode,
             EmailInput email,
@@ -948,31 +939,40 @@ mixin _$AuthenticationState {
             PasswordInput repeatPassword,
             String message)?
         error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InputDataAuthenticationState value) inputData,
-    required TResult Function(_ProgressAuthenticationState value) progress,
-    required TResult Function(_SuccessAuthenticationState value) success,
     required TResult Function(_ErrorAuthenticationState value) error,
+    required TResult Function(_SuccessAuthenticationState value) success,
+    required TResult Function(_ProgressAuthenticationState value) progress,
+    required TResult Function(_InputDataAuthenticationState value) inputData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
     TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
     TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1029,733 +1029,6 @@ class _$AuthenticationStateCopyWithImpl<$Res>
               as PasswordInput,
     ));
   }
-}
-
-/// @nodoc
-abstract class _$$_InputDataAuthenticationStateCopyWith<$Res>
-    implements $AuthenticationStateCopyWith<$Res> {
-  factory _$$_InputDataAuthenticationStateCopyWith(
-          _$_InputDataAuthenticationState value,
-          $Res Function(_$_InputDataAuthenticationState) then) =
-      __$$_InputDataAuthenticationStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {AuthenticationMode mode,
-      EmailInput email,
-      PasswordInput password,
-      PasswordInput repeatPassword});
-}
-
-/// @nodoc
-class __$$_InputDataAuthenticationStateCopyWithImpl<$Res>
-    extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements _$$_InputDataAuthenticationStateCopyWith<$Res> {
-  __$$_InputDataAuthenticationStateCopyWithImpl(
-      _$_InputDataAuthenticationState _value,
-      $Res Function(_$_InputDataAuthenticationState) _then)
-      : super(_value, (v) => _then(v as _$_InputDataAuthenticationState));
-
-  @override
-  _$_InputDataAuthenticationState get _value =>
-      super._value as _$_InputDataAuthenticationState;
-
-  @override
-  $Res call({
-    Object? mode = freezed,
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? repeatPassword = freezed,
-  }) {
-    return _then(_$_InputDataAuthenticationState(
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as AuthenticationMode,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-      repeatPassword: repeatPassword == freezed
-          ? _value.repeatPassword
-          : repeatPassword // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_InputDataAuthenticationState extends _InputDataAuthenticationState {
-  const _$_InputDataAuthenticationState(
-      {this.mode = AuthenticationMode.login,
-      this.email = const EmailInput.dirty(),
-      this.password = const PasswordInput.dirty(),
-      this.repeatPassword = const PasswordInput.dirty()})
-      : super._();
-
-  @override
-  @JsonKey()
-  final AuthenticationMode mode;
-  @override
-  @JsonKey()
-  final EmailInput email;
-  @override
-  @JsonKey()
-  final PasswordInput password;
-  @override
-  @JsonKey()
-  final PasswordInput repeatPassword;
-
-  @override
-  String toString() {
-    return 'AuthenticationState.inputData(mode: $mode, email: $email, password: $password, repeatPassword: $repeatPassword)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InputDataAuthenticationState &&
-            const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality()
-                .equals(other.repeatPassword, repeatPassword));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(repeatPassword));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_InputDataAuthenticationStateCopyWith<_$_InputDataAuthenticationState>
-      get copyWith => __$$_InputDataAuthenticationStateCopyWithImpl<
-          _$_InputDataAuthenticationState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        inputData,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        progress,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        success,
-    required TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)
-        error,
-  }) {
-    return inputData(mode, email, password, repeatPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
-    TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)?
-        error,
-  }) {
-    return inputData?.call(mode, email, password, repeatPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
-    TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (inputData != null) {
-      return inputData(mode, email, password, repeatPassword);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InputDataAuthenticationState value) inputData,
-    required TResult Function(_ProgressAuthenticationState value) progress,
-    required TResult Function(_SuccessAuthenticationState value) success,
-    required TResult Function(_ErrorAuthenticationState value) error,
-  }) {
-    return inputData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
-    TResult Function(_ErrorAuthenticationState value)? error,
-  }) {
-    return inputData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
-    TResult Function(_ErrorAuthenticationState value)? error,
-    required TResult orElse(),
-  }) {
-    if (inputData != null) {
-      return inputData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InputDataAuthenticationState extends AuthenticationState {
-  const factory _InputDataAuthenticationState(
-      {final AuthenticationMode mode,
-      final EmailInput email,
-      final PasswordInput password,
-      final PasswordInput repeatPassword}) = _$_InputDataAuthenticationState;
-  const _InputDataAuthenticationState._() : super._();
-
-  @override
-  AuthenticationMode get mode => throw _privateConstructorUsedError;
-  @override
-  EmailInput get email => throw _privateConstructorUsedError;
-  @override
-  PasswordInput get password => throw _privateConstructorUsedError;
-  @override
-  PasswordInput get repeatPassword => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_InputDataAuthenticationStateCopyWith<_$_InputDataAuthenticationState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ProgressAuthenticationStateCopyWith<$Res>
-    implements $AuthenticationStateCopyWith<$Res> {
-  factory _$$_ProgressAuthenticationStateCopyWith(
-          _$_ProgressAuthenticationState value,
-          $Res Function(_$_ProgressAuthenticationState) then) =
-      __$$_ProgressAuthenticationStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {AuthenticationMode mode,
-      EmailInput email,
-      PasswordInput password,
-      PasswordInput repeatPassword});
-}
-
-/// @nodoc
-class __$$_ProgressAuthenticationStateCopyWithImpl<$Res>
-    extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements _$$_ProgressAuthenticationStateCopyWith<$Res> {
-  __$$_ProgressAuthenticationStateCopyWithImpl(
-      _$_ProgressAuthenticationState _value,
-      $Res Function(_$_ProgressAuthenticationState) _then)
-      : super(_value, (v) => _then(v as _$_ProgressAuthenticationState));
-
-  @override
-  _$_ProgressAuthenticationState get _value =>
-      super._value as _$_ProgressAuthenticationState;
-
-  @override
-  $Res call({
-    Object? mode = freezed,
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? repeatPassword = freezed,
-  }) {
-    return _then(_$_ProgressAuthenticationState(
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as AuthenticationMode,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-      repeatPassword: repeatPassword == freezed
-          ? _value.repeatPassword
-          : repeatPassword // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ProgressAuthenticationState extends _ProgressAuthenticationState {
-  const _$_ProgressAuthenticationState(
-      {required this.mode,
-      this.email = const EmailInput.dirty(),
-      this.password = const PasswordInput.dirty(),
-      this.repeatPassword = const PasswordInput.dirty()})
-      : super._();
-
-  @override
-  final AuthenticationMode mode;
-  @override
-  @JsonKey()
-  final EmailInput email;
-  @override
-  @JsonKey()
-  final PasswordInput password;
-  @override
-  @JsonKey()
-  final PasswordInput repeatPassword;
-
-  @override
-  String toString() {
-    return 'AuthenticationState.progress(mode: $mode, email: $email, password: $password, repeatPassword: $repeatPassword)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ProgressAuthenticationState &&
-            const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality()
-                .equals(other.repeatPassword, repeatPassword));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(repeatPassword));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ProgressAuthenticationStateCopyWith<_$_ProgressAuthenticationState>
-      get copyWith => __$$_ProgressAuthenticationStateCopyWithImpl<
-          _$_ProgressAuthenticationState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        inputData,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        progress,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        success,
-    required TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)
-        error,
-  }) {
-    return progress(mode, email, password, repeatPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
-    TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)?
-        error,
-  }) {
-    return progress?.call(mode, email, password, repeatPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
-    TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(mode, email, password, repeatPassword);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InputDataAuthenticationState value) inputData,
-    required TResult Function(_ProgressAuthenticationState value) progress,
-    required TResult Function(_SuccessAuthenticationState value) success,
-    required TResult Function(_ErrorAuthenticationState value) error,
-  }) {
-    return progress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
-    TResult Function(_ErrorAuthenticationState value)? error,
-  }) {
-    return progress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
-    TResult Function(_ErrorAuthenticationState value)? error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ProgressAuthenticationState extends AuthenticationState {
-  const factory _ProgressAuthenticationState(
-      {required final AuthenticationMode mode,
-      final EmailInput email,
-      final PasswordInput password,
-      final PasswordInput repeatPassword}) = _$_ProgressAuthenticationState;
-  const _ProgressAuthenticationState._() : super._();
-
-  @override
-  AuthenticationMode get mode => throw _privateConstructorUsedError;
-  @override
-  EmailInput get email => throw _privateConstructorUsedError;
-  @override
-  PasswordInput get password => throw _privateConstructorUsedError;
-  @override
-  PasswordInput get repeatPassword => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ProgressAuthenticationStateCopyWith<_$_ProgressAuthenticationState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_SuccessAuthenticationStateCopyWith<$Res>
-    implements $AuthenticationStateCopyWith<$Res> {
-  factory _$$_SuccessAuthenticationStateCopyWith(
-          _$_SuccessAuthenticationState value,
-          $Res Function(_$_SuccessAuthenticationState) then) =
-      __$$_SuccessAuthenticationStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {AuthenticationMode mode,
-      EmailInput email,
-      PasswordInput password,
-      PasswordInput repeatPassword});
-}
-
-/// @nodoc
-class __$$_SuccessAuthenticationStateCopyWithImpl<$Res>
-    extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements _$$_SuccessAuthenticationStateCopyWith<$Res> {
-  __$$_SuccessAuthenticationStateCopyWithImpl(
-      _$_SuccessAuthenticationState _value,
-      $Res Function(_$_SuccessAuthenticationState) _then)
-      : super(_value, (v) => _then(v as _$_SuccessAuthenticationState));
-
-  @override
-  _$_SuccessAuthenticationState get _value =>
-      super._value as _$_SuccessAuthenticationState;
-
-  @override
-  $Res call({
-    Object? mode = freezed,
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? repeatPassword = freezed,
-  }) {
-    return _then(_$_SuccessAuthenticationState(
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as AuthenticationMode,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-      repeatPassword: repeatPassword == freezed
-          ? _value.repeatPassword
-          : repeatPassword // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SuccessAuthenticationState extends _SuccessAuthenticationState {
-  const _$_SuccessAuthenticationState(
-      {required this.mode,
-      this.email = const EmailInput.dirty(),
-      this.password = const PasswordInput.dirty(),
-      this.repeatPassword = const PasswordInput.dirty()})
-      : super._();
-
-  @override
-  final AuthenticationMode mode;
-  @override
-  @JsonKey()
-  final EmailInput email;
-  @override
-  @JsonKey()
-  final PasswordInput password;
-  @override
-  @JsonKey()
-  final PasswordInput repeatPassword;
-
-  @override
-  String toString() {
-    return 'AuthenticationState.success(mode: $mode, email: $email, password: $password, repeatPassword: $repeatPassword)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SuccessAuthenticationState &&
-            const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality()
-                .equals(other.repeatPassword, repeatPassword));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(repeatPassword));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessAuthenticationStateCopyWith<_$_SuccessAuthenticationState>
-      get copyWith => __$$_SuccessAuthenticationStateCopyWithImpl<
-          _$_SuccessAuthenticationState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        inputData,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        progress,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        success,
-    required TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)
-        error,
-  }) {
-    return success(mode, email, password, repeatPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
-    TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)?
-        error,
-  }) {
-    return success?.call(mode, email, password, repeatPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
-    TResult Function(
-            AuthenticationMode mode,
-            EmailInput email,
-            PasswordInput password,
-            PasswordInput repeatPassword,
-            String message)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(mode, email, password, repeatPassword);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InputDataAuthenticationState value) inputData,
-    required TResult Function(_ProgressAuthenticationState value) progress,
-    required TResult Function(_SuccessAuthenticationState value) success,
-    required TResult Function(_ErrorAuthenticationState value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
-    TResult Function(_ErrorAuthenticationState value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
-    TResult Function(_ErrorAuthenticationState value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SuccessAuthenticationState extends AuthenticationState {
-  const factory _SuccessAuthenticationState(
-      {required final AuthenticationMode mode,
-      final EmailInput email,
-      final PasswordInput password,
-      final PasswordInput repeatPassword}) = _$_SuccessAuthenticationState;
-  const _SuccessAuthenticationState._() : super._();
-
-  @override
-  AuthenticationMode get mode => throw _privateConstructorUsedError;
-  @override
-  EmailInput get email => throw _privateConstructorUsedError;
-  @override
-  PasswordInput get password => throw _privateConstructorUsedError;
-  @override
-  PasswordInput get repeatPassword => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SuccessAuthenticationStateCopyWith<_$_SuccessAuthenticationState>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1881,15 +1154,6 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        inputData,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        progress,
-    required TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)
-        success,
     required TResult Function(
             AuthenticationMode mode,
             EmailInput email,
@@ -1897,6 +1161,15 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
             PasswordInput repeatPassword,
             String message)
         error,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        success,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        progress,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        inputData,
   }) {
     return error(mode, email, password, repeatPassword, message);
   }
@@ -1904,15 +1177,6 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
     TResult Function(
             AuthenticationMode mode,
             EmailInput email,
@@ -1920,6 +1184,15 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
             PasswordInput repeatPassword,
             String message)?
         error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
   }) {
     return error?.call(mode, email, password, repeatPassword, message);
   }
@@ -1927,15 +1200,6 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        inputData,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        progress,
-    TResult Function(AuthenticationMode mode, EmailInput email,
-            PasswordInput password, PasswordInput repeatPassword)?
-        success,
     TResult Function(
             AuthenticationMode mode,
             EmailInput email,
@@ -1943,6 +1207,15 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
             PasswordInput repeatPassword,
             String message)?
         error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1954,10 +1227,10 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InputDataAuthenticationState value) inputData,
-    required TResult Function(_ProgressAuthenticationState value) progress,
-    required TResult Function(_SuccessAuthenticationState value) success,
     required TResult Function(_ErrorAuthenticationState value) error,
+    required TResult Function(_SuccessAuthenticationState value) success,
+    required TResult Function(_ProgressAuthenticationState value) progress,
+    required TResult Function(_InputDataAuthenticationState value) inputData,
   }) {
     return error(this);
   }
@@ -1965,10 +1238,10 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
     TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
   }) {
     return error?.call(this);
   }
@@ -1976,10 +1249,10 @@ class _$_ErrorAuthenticationState extends _ErrorAuthenticationState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InputDataAuthenticationState value)? inputData,
-    TResult Function(_ProgressAuthenticationState value)? progress,
-    TResult Function(_SuccessAuthenticationState value)? success,
     TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1999,16 +1272,743 @@ abstract class _ErrorAuthenticationState extends AuthenticationState {
   const _ErrorAuthenticationState._() : super._();
 
   @override
-  AuthenticationMode get mode => throw _privateConstructorUsedError;
+  AuthenticationMode get mode;
   @override
-  EmailInput get email => throw _privateConstructorUsedError;
+  EmailInput get email;
   @override
-  PasswordInput get password => throw _privateConstructorUsedError;
+  PasswordInput get password;
   @override
-  PasswordInput get repeatPassword => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  PasswordInput get repeatPassword;
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_ErrorAuthenticationStateCopyWith<_$_ErrorAuthenticationState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SuccessAuthenticationStateCopyWith<$Res>
+    implements $AuthenticationStateCopyWith<$Res> {
+  factory _$$_SuccessAuthenticationStateCopyWith(
+          _$_SuccessAuthenticationState value,
+          $Res Function(_$_SuccessAuthenticationState) then) =
+      __$$_SuccessAuthenticationStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {AuthenticationMode mode,
+      EmailInput email,
+      PasswordInput password,
+      PasswordInput repeatPassword});
+}
+
+/// @nodoc
+class __$$_SuccessAuthenticationStateCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res>
+    implements _$$_SuccessAuthenticationStateCopyWith<$Res> {
+  __$$_SuccessAuthenticationStateCopyWithImpl(
+      _$_SuccessAuthenticationState _value,
+      $Res Function(_$_SuccessAuthenticationState) _then)
+      : super(_value, (v) => _then(v as _$_SuccessAuthenticationState));
+
+  @override
+  _$_SuccessAuthenticationState get _value =>
+      super._value as _$_SuccessAuthenticationState;
+
+  @override
+  $Res call({
+    Object? mode = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? repeatPassword = freezed,
+  }) {
+    return _then(_$_SuccessAuthenticationState(
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as AuthenticationMode,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as EmailInput,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as PasswordInput,
+      repeatPassword: repeatPassword == freezed
+          ? _value.repeatPassword
+          : repeatPassword // ignore: cast_nullable_to_non_nullable
+              as PasswordInput,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SuccessAuthenticationState extends _SuccessAuthenticationState {
+  const _$_SuccessAuthenticationState(
+      {required this.mode,
+      this.email = const EmailInput.dirty(),
+      this.password = const PasswordInput.dirty(),
+      this.repeatPassword = const PasswordInput.dirty()})
+      : super._();
+
+  @override
+  final AuthenticationMode mode;
+  @override
+  @JsonKey()
+  final EmailInput email;
+  @override
+  @JsonKey()
+  final PasswordInput password;
+  @override
+  @JsonKey()
+  final PasswordInput repeatPassword;
+
+  @override
+  String toString() {
+    return 'AuthenticationState.success(mode: $mode, email: $email, password: $password, repeatPassword: $repeatPassword)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SuccessAuthenticationState &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.repeatPassword, repeatPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(repeatPassword));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessAuthenticationStateCopyWith<_$_SuccessAuthenticationState>
+      get copyWith => __$$_SuccessAuthenticationStateCopyWithImpl<
+          _$_SuccessAuthenticationState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)
+        error,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        success,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        progress,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        inputData,
+  }) {
+    return success(mode, email, password, repeatPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)?
+        error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
+  }) {
+    return success?.call(mode, email, password, repeatPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)?
+        error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(mode, email, password, repeatPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorAuthenticationState value) error,
+    required TResult Function(_SuccessAuthenticationState value) success,
+    required TResult Function(_ProgressAuthenticationState value) progress,
+    required TResult Function(_InputDataAuthenticationState value) inputData,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessAuthenticationState extends AuthenticationState {
+  const factory _SuccessAuthenticationState(
+      {required final AuthenticationMode mode,
+      final EmailInput email,
+      final PasswordInput password,
+      final PasswordInput repeatPassword}) = _$_SuccessAuthenticationState;
+  const _SuccessAuthenticationState._() : super._();
+
+  @override
+  AuthenticationMode get mode;
+  @override
+  EmailInput get email;
+  @override
+  PasswordInput get password;
+  @override
+  PasswordInput get repeatPassword;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SuccessAuthenticationStateCopyWith<_$_SuccessAuthenticationState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ProgressAuthenticationStateCopyWith<$Res>
+    implements $AuthenticationStateCopyWith<$Res> {
+  factory _$$_ProgressAuthenticationStateCopyWith(
+          _$_ProgressAuthenticationState value,
+          $Res Function(_$_ProgressAuthenticationState) then) =
+      __$$_ProgressAuthenticationStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {AuthenticationMode mode,
+      EmailInput email,
+      PasswordInput password,
+      PasswordInput repeatPassword});
+}
+
+/// @nodoc
+class __$$_ProgressAuthenticationStateCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res>
+    implements _$$_ProgressAuthenticationStateCopyWith<$Res> {
+  __$$_ProgressAuthenticationStateCopyWithImpl(
+      _$_ProgressAuthenticationState _value,
+      $Res Function(_$_ProgressAuthenticationState) _then)
+      : super(_value, (v) => _then(v as _$_ProgressAuthenticationState));
+
+  @override
+  _$_ProgressAuthenticationState get _value =>
+      super._value as _$_ProgressAuthenticationState;
+
+  @override
+  $Res call({
+    Object? mode = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? repeatPassword = freezed,
+  }) {
+    return _then(_$_ProgressAuthenticationState(
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as AuthenticationMode,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as EmailInput,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as PasswordInput,
+      repeatPassword: repeatPassword == freezed
+          ? _value.repeatPassword
+          : repeatPassword // ignore: cast_nullable_to_non_nullable
+              as PasswordInput,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ProgressAuthenticationState extends _ProgressAuthenticationState {
+  const _$_ProgressAuthenticationState(
+      {required this.mode,
+      this.email = const EmailInput.dirty(),
+      this.password = const PasswordInput.dirty(),
+      this.repeatPassword = const PasswordInput.dirty()})
+      : super._();
+
+  @override
+  final AuthenticationMode mode;
+  @override
+  @JsonKey()
+  final EmailInput email;
+  @override
+  @JsonKey()
+  final PasswordInput password;
+  @override
+  @JsonKey()
+  final PasswordInput repeatPassword;
+
+  @override
+  String toString() {
+    return 'AuthenticationState.progress(mode: $mode, email: $email, password: $password, repeatPassword: $repeatPassword)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProgressAuthenticationState &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.repeatPassword, repeatPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(repeatPassword));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ProgressAuthenticationStateCopyWith<_$_ProgressAuthenticationState>
+      get copyWith => __$$_ProgressAuthenticationStateCopyWithImpl<
+          _$_ProgressAuthenticationState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)
+        error,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        success,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        progress,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        inputData,
+  }) {
+    return progress(mode, email, password, repeatPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)?
+        error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
+  }) {
+    return progress?.call(mode, email, password, repeatPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)?
+        error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
+    required TResult orElse(),
+  }) {
+    if (progress != null) {
+      return progress(mode, email, password, repeatPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorAuthenticationState value) error,
+    required TResult Function(_SuccessAuthenticationState value) success,
+    required TResult Function(_ProgressAuthenticationState value) progress,
+    required TResult Function(_InputDataAuthenticationState value) inputData,
+  }) {
+    return progress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
+  }) {
+    return progress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
+    required TResult orElse(),
+  }) {
+    if (progress != null) {
+      return progress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProgressAuthenticationState extends AuthenticationState {
+  const factory _ProgressAuthenticationState(
+      {required final AuthenticationMode mode,
+      final EmailInput email,
+      final PasswordInput password,
+      final PasswordInput repeatPassword}) = _$_ProgressAuthenticationState;
+  const _ProgressAuthenticationState._() : super._();
+
+  @override
+  AuthenticationMode get mode;
+  @override
+  EmailInput get email;
+  @override
+  PasswordInput get password;
+  @override
+  PasswordInput get repeatPassword;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProgressAuthenticationStateCopyWith<_$_ProgressAuthenticationState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InputDataAuthenticationStateCopyWith<$Res>
+    implements $AuthenticationStateCopyWith<$Res> {
+  factory _$$_InputDataAuthenticationStateCopyWith(
+          _$_InputDataAuthenticationState value,
+          $Res Function(_$_InputDataAuthenticationState) then) =
+      __$$_InputDataAuthenticationStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {AuthenticationMode mode,
+      EmailInput email,
+      PasswordInput password,
+      PasswordInput repeatPassword});
+}
+
+/// @nodoc
+class __$$_InputDataAuthenticationStateCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res>
+    implements _$$_InputDataAuthenticationStateCopyWith<$Res> {
+  __$$_InputDataAuthenticationStateCopyWithImpl(
+      _$_InputDataAuthenticationState _value,
+      $Res Function(_$_InputDataAuthenticationState) _then)
+      : super(_value, (v) => _then(v as _$_InputDataAuthenticationState));
+
+  @override
+  _$_InputDataAuthenticationState get _value =>
+      super._value as _$_InputDataAuthenticationState;
+
+  @override
+  $Res call({
+    Object? mode = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? repeatPassword = freezed,
+  }) {
+    return _then(_$_InputDataAuthenticationState(
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as AuthenticationMode,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as EmailInput,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as PasswordInput,
+      repeatPassword: repeatPassword == freezed
+          ? _value.repeatPassword
+          : repeatPassword // ignore: cast_nullable_to_non_nullable
+              as PasswordInput,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InputDataAuthenticationState extends _InputDataAuthenticationState {
+  const _$_InputDataAuthenticationState(
+      {this.mode = AuthenticationMode.login,
+      this.email = const EmailInput.dirty(),
+      this.password = const PasswordInput.dirty(),
+      this.repeatPassword = const PasswordInput.dirty()})
+      : super._();
+
+  @override
+  @JsonKey()
+  final AuthenticationMode mode;
+  @override
+  @JsonKey()
+  final EmailInput email;
+  @override
+  @JsonKey()
+  final PasswordInput password;
+  @override
+  @JsonKey()
+  final PasswordInput repeatPassword;
+
+  @override
+  String toString() {
+    return 'AuthenticationState.inputData(mode: $mode, email: $email, password: $password, repeatPassword: $repeatPassword)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InputDataAuthenticationState &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.repeatPassword, repeatPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(repeatPassword));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InputDataAuthenticationStateCopyWith<_$_InputDataAuthenticationState>
+      get copyWith => __$$_InputDataAuthenticationStateCopyWithImpl<
+          _$_InputDataAuthenticationState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)
+        error,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        success,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        progress,
+    required TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)
+        inputData,
+  }) {
+    return inputData(mode, email, password, repeatPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)?
+        error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
+  }) {
+    return inputData?.call(mode, email, password, repeatPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            AuthenticationMode mode,
+            EmailInput email,
+            PasswordInput password,
+            PasswordInput repeatPassword,
+            String message)?
+        error,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        success,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        progress,
+    TResult Function(AuthenticationMode mode, EmailInput email,
+            PasswordInput password, PasswordInput repeatPassword)?
+        inputData,
+    required TResult orElse(),
+  }) {
+    if (inputData != null) {
+      return inputData(mode, email, password, repeatPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorAuthenticationState value) error,
+    required TResult Function(_SuccessAuthenticationState value) success,
+    required TResult Function(_ProgressAuthenticationState value) progress,
+    required TResult Function(_InputDataAuthenticationState value) inputData,
+  }) {
+    return inputData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
+  }) {
+    return inputData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorAuthenticationState value)? error,
+    TResult Function(_SuccessAuthenticationState value)? success,
+    TResult Function(_ProgressAuthenticationState value)? progress,
+    TResult Function(_InputDataAuthenticationState value)? inputData,
+    required TResult orElse(),
+  }) {
+    if (inputData != null) {
+      return inputData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InputDataAuthenticationState extends AuthenticationState {
+  const factory _InputDataAuthenticationState(
+      {final AuthenticationMode mode,
+      final EmailInput email,
+      final PasswordInput password,
+      final PasswordInput repeatPassword}) = _$_InputDataAuthenticationState;
+  const _InputDataAuthenticationState._() : super._();
+
+  @override
+  AuthenticationMode get mode;
+  @override
+  EmailInput get email;
+  @override
+  PasswordInput get password;
+  @override
+  PasswordInput get repeatPassword;
+  @override
+  @JsonKey(ignore: true)
+  _$$_InputDataAuthenticationStateCopyWith<_$_InputDataAuthenticationState>
       get copyWith => throw _privateConstructorUsedError;
 }

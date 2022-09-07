@@ -890,7 +890,7 @@ abstract class _ErrorAuthorizationState extends AuthorizationState {
       _$_ErrorAuthorizationState;
   const _ErrorAuthorizationState._() : super._();
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   _$$_ErrorAuthorizationStateCopyWith<_$_ErrorAuthorizationState>
       get copyWith => throw _privateConstructorUsedError;

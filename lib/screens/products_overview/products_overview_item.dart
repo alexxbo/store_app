@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/screens/product_detail/product_detail_screen.dart';
+import 'package:flutter_shop/screens/products_overview/bloc/products_overview_bloc.dart';
 import 'package:provider/provider.dart';
-
-import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/data/model/product.dart';
-import '../product_detail/product_detail_screen.dart';
-import 'bloc/products_overview_bloc.dart';
 
 class ProductsOverviewItem extends StatelessWidget {
   const ProductsOverviewItem({
-    Key? key,
     required final Product product,
+    Key? key,
   })  : _product = product,
         super(key: key);
 
@@ -20,7 +19,7 @@ class ProductsOverviewItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: GestureDetector(
-        onTap: () => _openProductDetail(context, _product),
+        onTap: () async => _openProductDetail(context, _product),
         child: GridTile(
           footer: GridTileBar(
             title: Text(
@@ -63,8 +62,8 @@ class ProductsOverviewItem extends StatelessWidget {
     );
   }
 
-  void _openProductDetail(BuildContext context, Product product) {
-    return ProductDetailScreen.launch(
+  Future<void> _openProductDetail(BuildContext context, Product product) async {
+    await ProductDetailScreen.launch(
       context: context,
       productId: product.id,
     );
@@ -80,20 +79,24 @@ class ProductsOverviewItem extends StatelessWidget {
     required BuildContext context,
     required Product product,
   }) {
-    final cartBloc = context.read<CartBloc>();
-    cartBloc.add(CartEvent.addProduct(
-      productId: product.id,
-      title: product.title,
-      price: product.price,
-    ));
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: const Text('Add product to card'),
-      action: SnackBarAction(
-        label: 'UNDO',
-        onPressed: () {
-          cartBloc.add(CartEvent.reduceQuantityOrRemoveProduct(product.id));
-        },
+    final cartBloc = context.read<CartBloc>()
+      ..add(
+        CartEvent.addProduct(
+          productId: product.id,
+          title: product.title,
+          price: product.price,
+        ),
+      );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Add product to card'),
+        action: SnackBarAction(
+          label: 'UNDO',
+          onPressed: () {
+            cartBloc.add(CartEvent.reduceQuantityOrRemoveProduct(product.id));
+          },
+        ),
       ),
-    ));
+    );
   }
 }

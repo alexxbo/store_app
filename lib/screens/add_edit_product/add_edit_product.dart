@@ -10,11 +10,11 @@ import 'package:flutter_shop/screens/add_edit_product/bloc/models/title_input.da
 import 'package:flutter_shop/util/extensions.dart';
 
 class AddEditProductScreen extends StatelessWidget {
-  static const String routeName = '/add_edit_products';
-
   const AddEditProductScreen({Key? key}) : super(key: key);
 
-  static void launchEdit({
+  static const String routeName = '/add_edit_products';
+
+  static Future<void> launchEdit({
     required BuildContext context,
     required String productId,
     required VoidCallback onSuccess,
@@ -26,7 +26,7 @@ class AddEditProductScreen extends StatelessWidget {
     }
   }
 
-  static void launchAdd({
+  static Future<void> launchAdd({
     required BuildContext context,
     required VoidCallback onSuccess,
   }) async {
@@ -39,7 +39,7 @@ class AddEditProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context)?.settings.arguments;
-    AddEditProductEvent event = id != null && id is String
+    final event = id != null && id is String
         ? AddEditProductEvent.onEdit(productId: id)
         : const AddEditProductEvent.onCreate();
 
@@ -54,8 +54,8 @@ class AddEditProductScreen extends StatelessWidget {
 
 class _AddEditView extends StatefulWidget {
   const _AddEditView({
-    Key? key,
     required bool isEdit,
+    Key? key,
   })  : _isEdit = isEdit,
         super(key: key);
 
@@ -140,59 +140,7 @@ class _AddEditViewState extends State<_AddEditView> {
                           onChanged: (value) =>
                               _onDescriptionChanged(context, value),
                         ),
-                        const SizedBox(height: 8),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              margin: const EdgeInsets.only(
-                                top: 8,
-                                right: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  width: 1,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              child: state.product.imageUrl.isEmpty ||
-                                      state.urlError != null
-                                  ? const Center(child: Text('Enter a URL'))
-                                  : Image.network(
-                                      state.product.imageUrl,
-                                      fit: BoxFit.cover,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return const SizedBox(
-                                          width: 100,
-                                          height: 100,
-                                          child: Center(
-                                            child: Text('Enter a URL'),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                            ),
-                            Expanded(
-                              child: TextFormField(
-                                initialValue: state.product.imageUrl,
-                                decoration: InputDecoration(
-                                  label: const Text('Image Url'),
-                                  errorText:
-                                      _onInputImageUrlError(state.urlError),
-                                ),
-                                keyboardType: TextInputType.url,
-                                textInputAction: TextInputAction.done,
-                                onChanged: (value) =>
-                                    _onImageUrlChanged(context, value),
-                                // onEditingComplete: () => _onImageUrlChanged(),
-                              ),
-                            ),
-                          ],
-                        ),
+                        _buildImageInput(state, context),
                       ],
                     ),
                   ),
@@ -207,6 +155,57 @@ class _AddEditViewState extends State<_AddEditView> {
     _priceFocusNode.dispose();
     _descriptionFocusNode.dispose();
     super.dispose();
+  }
+
+  Widget _buildImageInput(AddEditProductState state, BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const SizedBox(height: 8),
+        Container(
+          width: 100,
+          height: 100,
+          margin: const EdgeInsets.only(
+            top: 8,
+            right: 8,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: Colors.grey,
+            ),
+          ),
+          child: state.product.imageUrl.isEmpty || state.urlError != null
+              ? const Center(child: Text('Enter a URL'))
+              : Image.network(
+                  state.product.imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: Center(
+                        child: Text('Enter a URL'),
+                      ),
+                    );
+                  },
+                ),
+        ),
+        Expanded(
+          child: TextFormField(
+            initialValue: state.product.imageUrl,
+            decoration: InputDecoration(
+              label: const Text('Image Url'),
+              errorText: _onInputImageUrlError(state.urlError),
+            ),
+            keyboardType: TextInputType.url,
+            textInputAction: TextInputAction.done,
+            onChanged: (value) => _onImageUrlChanged(context, value),
+            // onEditingComplete: () => _onImageUrlChanged(),
+          ),
+        ),
+      ],
+    );
   }
 
   void _onSaveClicked() {

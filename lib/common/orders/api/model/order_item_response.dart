@@ -1,18 +1,6 @@
 import 'package:flutter_shop/common/orders/api/model/order_product_response.dart';
 
 class OrderItemResponse {
-  final String? id;
-  final double? amount;
-  final List<OrderProductResponse>? products;
-  final DateTime? date;
-
-  const OrderItemResponse._({
-    required this.id,
-    required this.amount,
-    required this.products,
-    required this.date,
-  });
-
   factory OrderItemResponse.fromJson(
     String orderId,
     Map<String, dynamic> json,
@@ -26,4 +14,16 @@ class OrderItemResponse {
           .toList(),
     );
   }
+
+  const OrderItemResponse._({
+    required this.id,
+    required this.amount,
+    required this.products,
+    required this.date,
+  });
+
+  final String? id;
+  final double? amount;
+  final List<OrderProductResponse>? products;
+  final DateTime? date;
 }

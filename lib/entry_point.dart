@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shop/app/app_config.dart';
-
-import 'common/bloc/block_observer.dart';
-import 'common/service_locator/injection_container.dart';
-import 'util/logging/logger.dart';
+import 'package:flutter_shop/common/bloc/block_observer.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/util/logging/logger.dart';
 
 Future<void> entryPoint(FutureOr<AppConfig> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +18,12 @@ Future<void> entryPoint(FutureOr<AppConfig> Function() builder) async {
     DeviceOrientation.portraitDown,
   ]);
 
-  FlutterError.onError = (FlutterErrorDetails details) {
+  FlutterError.onError = (details) {
     FlutterError.presentError(details);
-    if (kReleaseMode) exit(1);
+    if (kReleaseMode) {
+      exit(1);
+    }
+
     logger.e(
       tag: 'FlutterError',
       message: details.exceptionAsString(),
@@ -34,11 +36,8 @@ Future<void> entryPoint(FutureOr<AppConfig> Function() builder) async {
     () async {
       final app = await builder();
       setupServiceLocator(app.environment);
-
-      await BlocOverrides.runZoned(
-        () async => runApp(app),
-        blocObserver: AppBlocObserver(),
-      );
+      Bloc.observer = AppBlocObserver();
+      runApp(app);
     },
     (error, stackTrace) => logger.e(
       message: '${error.runtimeType}',

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_shop/common/products/api/model/product_response.dart';
 import 'package:flutter_shop/screens/add_edit_product/bloc/models/description_input.dart';
 import 'package:flutter_shop/screens/add_edit_product/bloc/models/image_url_input.dart';
@@ -6,13 +7,14 @@ import 'package:flutter_shop/screens/add_edit_product/bloc/models/title_input.da
 import 'package:flutter_shop/util/extensions.dart';
 import 'package:formz/formz.dart';
 
+@immutable
 class CreateProduct {
   const CreateProduct({
-    this.id,
     required this.title,
     required this.description,
     required this.price,
     required this.imageUrl,
+    this.id,
   });
 
   const CreateProduct.empty()

@@ -7,7 +7,7 @@ class AuthenticationBackgroundView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [

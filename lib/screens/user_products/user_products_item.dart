@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/screens/add_edit_product/add_edit_product.dart';
+import 'package:flutter_shop/screens/user_products/bloc/user_products_bloc.dart';
 import 'package:provider/provider.dart';
 
-import 'bloc/user_products_bloc.dart';
-
 class UserProductsItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final String imageUrl;
-
   const UserProductsItem({
-    Key? key,
     required this.id,
     required this.title,
     required this.imageUrl,
+    Key? key,
   }) : super(key: key);
+
+  final String id;
+  final String title;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class UserProductsItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            onPressed: () => _openEditItemScreen(context),
+            onPressed: () async => _openEditItemScreen(context),
             icon: Icon(
               Icons.edit,
               color: Theme.of(context).colorScheme.primary,
@@ -49,8 +48,8 @@ class UserProductsItem extends StatelessWidget {
     context.read<UserProductsBloc>().add(UserProductsEvent.onRemove(id));
   }
 
-  void _openEditItemScreen(BuildContext context) {
-    AddEditProductScreen.launchEdit(
+  Future<void> _openEditItemScreen(BuildContext context) async {
+    await AddEditProductScreen.launchEdit(
       context: context,
       productId: id,
       onSuccess: () {

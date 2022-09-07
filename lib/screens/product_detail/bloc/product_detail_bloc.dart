@@ -2,10 +2,9 @@ import 'dart:io';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/data/model/product.dart';
+import 'package:flutter_shop/common/products/repository/products_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../common/data/model/product.dart';
-import '../../../common/products/repository/products_repository.dart';
 
 part 'product_detail_bloc.freezed.dart';
 part 'product_detail_event.dart';
@@ -16,7 +15,7 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
       : _repository = repository,
         super(const _ProgressProductDetailState()) {
     on<ProductDetailEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         onStarted: (event) => _onStarted(event, emit),
       ),
       transformer: bloc_concurrency.droppable(),

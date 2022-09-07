@@ -11,10 +11,10 @@ class ShopLogoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Container(
-        margin: const EdgeInsets.only(bottom: 20.0),
+        margin: const EdgeInsets.only(bottom: 20),
         padding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-          horizontal: 94.0,
+          vertical: 8,
+          horizontal: 94,
         ),
         transform: Matrix4.rotationZ(-8 * math.pi / 180)..translate(-15.0),
         decoration: BoxDecoration(

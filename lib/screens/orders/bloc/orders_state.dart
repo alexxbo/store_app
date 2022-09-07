@@ -2,7 +2,22 @@ part of 'orders_bloc.dart';
 
 @freezed
 class OrdersState with _$OrdersState {
+  const factory OrdersState.error({
+    @Default(<OrderItem>[]) final List<OrderItem> orders,
+    @Default('Something went wrong. Please try again later.')
+        final String message,
+  }) = _ErrorOrdersState;
+
+  const factory OrdersState.success({
+    required final List<OrderItem> orders,
+  }) = _SuccessOrdersState;
+
+  const factory OrdersState.empty() = _EmptyOrdersState;
+
+  const factory OrdersState.inProgress() = _InProgressOrdersState;
+
   const OrdersState._();
+
   bool get isInProgress => maybeMap<bool>(
         inProgress: (_) => true,
         orElse: () => false,
@@ -18,18 +33,4 @@ class OrdersState with _$OrdersState {
         error: (state) => state.orders,
         orElse: () => <OrderItem>[],
       );
-
-  const factory OrdersState.inProgress() = _InProgressOrdersState;
-
-  const factory OrdersState.empty() = _EmptyOrdersState;
-
-  const factory OrdersState.success({
-    required final List<OrderItem> orders,
-  }) = _SuccessOrdersState;
-
-  const factory OrdersState.error({
-    @Default(<OrderItem>[]) final List<OrderItem> orders,
-    @Default('Something went wrong. Please try again later.')
-        final String message,
-  }) = _ErrorOrdersState;
 }

@@ -1,8 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_shop/common/data/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../model/user.dart';
 
 abstract class IUserStorage {
   factory IUserStorage() => _UserPreferencesStorage();
@@ -29,7 +28,7 @@ class _UserPreferencesStorage implements IUserStorage {
     final expiryDate = DateTime.parse(data['expiryDate']);
 
     if (expiryDate.isBefore(DateTime.now())) {
-      removeSavedUser();
+      await removeSavedUser();
 
       return null;
     }

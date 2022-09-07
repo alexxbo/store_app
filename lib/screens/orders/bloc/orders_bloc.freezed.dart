@@ -170,51 +170,51 @@ abstract class _FetchOrdersEvent extends OrdersEvent {
 mixin _$OrdersState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function() empty,
-    required TResult Function(List<OrderItem> orders) success,
     required TResult Function(List<OrderItem> orders, String message) error,
+    required TResult Function(List<OrderItem> orders) success,
+    required TResult Function() empty,
+    required TResult Function() inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
     TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
     TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressOrdersState value) inProgress,
-    required TResult Function(_EmptyOrdersState value) empty,
-    required TResult Function(_SuccessOrdersState value) success,
     required TResult Function(_ErrorOrdersState value) error,
+    required TResult Function(_SuccessOrdersState value) success,
+    required TResult Function(_EmptyOrdersState value) empty,
+    required TResult Function(_InProgressOrdersState value) inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
     TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
     TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -234,398 +234,6 @@ class _$OrdersStateCopyWithImpl<$Res> implements $OrdersStateCopyWith<$Res> {
   final OrdersState _value;
   // ignore: unused_field
   final $Res Function(OrdersState) _then;
-}
-
-/// @nodoc
-abstract class _$$_InProgressOrdersStateCopyWith<$Res> {
-  factory _$$_InProgressOrdersStateCopyWith(_$_InProgressOrdersState value,
-          $Res Function(_$_InProgressOrdersState) then) =
-      __$$_InProgressOrdersStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InProgressOrdersStateCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res>
-    implements _$$_InProgressOrdersStateCopyWith<$Res> {
-  __$$_InProgressOrdersStateCopyWithImpl(_$_InProgressOrdersState _value,
-      $Res Function(_$_InProgressOrdersState) _then)
-      : super(_value, (v) => _then(v as _$_InProgressOrdersState));
-
-  @override
-  _$_InProgressOrdersState get _value =>
-      super._value as _$_InProgressOrdersState;
-}
-
-/// @nodoc
-
-class _$_InProgressOrdersState extends _InProgressOrdersState {
-  const _$_InProgressOrdersState() : super._();
-
-  @override
-  String toString() {
-    return 'OrdersState.inProgress()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InProgressOrdersState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function() empty,
-    required TResult Function(List<OrderItem> orders) success,
-    required TResult Function(List<OrderItem> orders, String message) error,
-  }) {
-    return inProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
-    TResult Function(List<OrderItem> orders, String message)? error,
-  }) {
-    return inProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
-    TResult Function(List<OrderItem> orders, String message)? error,
-    required TResult orElse(),
-  }) {
-    if (inProgress != null) {
-      return inProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressOrdersState value) inProgress,
-    required TResult Function(_EmptyOrdersState value) empty,
-    required TResult Function(_SuccessOrdersState value) success,
-    required TResult Function(_ErrorOrdersState value) error,
-  }) {
-    return inProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
-    TResult Function(_ErrorOrdersState value)? error,
-  }) {
-    return inProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
-    TResult Function(_ErrorOrdersState value)? error,
-    required TResult orElse(),
-  }) {
-    if (inProgress != null) {
-      return inProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InProgressOrdersState extends OrdersState {
-  const factory _InProgressOrdersState() = _$_InProgressOrdersState;
-  const _InProgressOrdersState._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_EmptyOrdersStateCopyWith<$Res> {
-  factory _$$_EmptyOrdersStateCopyWith(
-          _$_EmptyOrdersState value, $Res Function(_$_EmptyOrdersState) then) =
-      __$$_EmptyOrdersStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_EmptyOrdersStateCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res>
-    implements _$$_EmptyOrdersStateCopyWith<$Res> {
-  __$$_EmptyOrdersStateCopyWithImpl(
-      _$_EmptyOrdersState _value, $Res Function(_$_EmptyOrdersState) _then)
-      : super(_value, (v) => _then(v as _$_EmptyOrdersState));
-
-  @override
-  _$_EmptyOrdersState get _value => super._value as _$_EmptyOrdersState;
-}
-
-/// @nodoc
-
-class _$_EmptyOrdersState extends _EmptyOrdersState {
-  const _$_EmptyOrdersState() : super._();
-
-  @override
-  String toString() {
-    return 'OrdersState.empty()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_EmptyOrdersState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function() empty,
-    required TResult Function(List<OrderItem> orders) success,
-    required TResult Function(List<OrderItem> orders, String message) error,
-  }) {
-    return empty();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
-    TResult Function(List<OrderItem> orders, String message)? error,
-  }) {
-    return empty?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
-    TResult Function(List<OrderItem> orders, String message)? error,
-    required TResult orElse(),
-  }) {
-    if (empty != null) {
-      return empty();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressOrdersState value) inProgress,
-    required TResult Function(_EmptyOrdersState value) empty,
-    required TResult Function(_SuccessOrdersState value) success,
-    required TResult Function(_ErrorOrdersState value) error,
-  }) {
-    return empty(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
-    TResult Function(_ErrorOrdersState value)? error,
-  }) {
-    return empty?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
-    TResult Function(_ErrorOrdersState value)? error,
-    required TResult orElse(),
-  }) {
-    if (empty != null) {
-      return empty(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EmptyOrdersState extends OrdersState {
-  const factory _EmptyOrdersState() = _$_EmptyOrdersState;
-  const _EmptyOrdersState._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_SuccessOrdersStateCopyWith<$Res> {
-  factory _$$_SuccessOrdersStateCopyWith(_$_SuccessOrdersState value,
-          $Res Function(_$_SuccessOrdersState) then) =
-      __$$_SuccessOrdersStateCopyWithImpl<$Res>;
-  $Res call({List<OrderItem> orders});
-}
-
-/// @nodoc
-class __$$_SuccessOrdersStateCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res>
-    implements _$$_SuccessOrdersStateCopyWith<$Res> {
-  __$$_SuccessOrdersStateCopyWithImpl(
-      _$_SuccessOrdersState _value, $Res Function(_$_SuccessOrdersState) _then)
-      : super(_value, (v) => _then(v as _$_SuccessOrdersState));
-
-  @override
-  _$_SuccessOrdersState get _value => super._value as _$_SuccessOrdersState;
-
-  @override
-  $Res call({
-    Object? orders = freezed,
-  }) {
-    return _then(_$_SuccessOrdersState(
-      orders: orders == freezed
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrderItem>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SuccessOrdersState extends _SuccessOrdersState {
-  const _$_SuccessOrdersState({required final List<OrderItem> orders})
-      : _orders = orders,
-        super._();
-
-  final List<OrderItem> _orders;
-  @override
-  List<OrderItem> get orders {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_orders);
-  }
-
-  @override
-  String toString() {
-    return 'OrdersState.success(orders: $orders)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SuccessOrdersState &&
-            const DeepCollectionEquality().equals(other._orders, _orders));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_orders));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessOrdersStateCopyWith<_$_SuccessOrdersState> get copyWith =>
-      __$$_SuccessOrdersStateCopyWithImpl<_$_SuccessOrdersState>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function() empty,
-    required TResult Function(List<OrderItem> orders) success,
-    required TResult Function(List<OrderItem> orders, String message) error,
-  }) {
-    return success(orders);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
-    TResult Function(List<OrderItem> orders, String message)? error,
-  }) {
-    return success?.call(orders);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
-    TResult Function(List<OrderItem> orders, String message)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(orders);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressOrdersState value) inProgress,
-    required TResult Function(_EmptyOrdersState value) empty,
-    required TResult Function(_SuccessOrdersState value) success,
-    required TResult Function(_ErrorOrdersState value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
-    TResult Function(_ErrorOrdersState value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
-    TResult Function(_ErrorOrdersState value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SuccessOrdersState extends OrdersState {
-  const factory _SuccessOrdersState({required final List<OrderItem> orders}) =
-      _$_SuccessOrdersState;
-  const _SuccessOrdersState._() : super._();
-
-  List<OrderItem> get orders => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$_SuccessOrdersStateCopyWith<_$_SuccessOrdersState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -714,10 +322,10 @@ class _$_ErrorOrdersState extends _ErrorOrdersState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function() empty,
-    required TResult Function(List<OrderItem> orders) success,
     required TResult Function(List<OrderItem> orders, String message) error,
+    required TResult Function(List<OrderItem> orders) success,
+    required TResult Function() empty,
+    required TResult Function() inProgress,
   }) {
     return error(orders, message);
   }
@@ -725,10 +333,10 @@ class _$_ErrorOrdersState extends _ErrorOrdersState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
     TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
   }) {
     return error?.call(orders, message);
   }
@@ -736,10 +344,10 @@ class _$_ErrorOrdersState extends _ErrorOrdersState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function()? empty,
-    TResult Function(List<OrderItem> orders)? success,
     TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -751,10 +359,10 @@ class _$_ErrorOrdersState extends _ErrorOrdersState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressOrdersState value) inProgress,
-    required TResult Function(_EmptyOrdersState value) empty,
-    required TResult Function(_SuccessOrdersState value) success,
     required TResult Function(_ErrorOrdersState value) error,
+    required TResult Function(_SuccessOrdersState value) success,
+    required TResult Function(_EmptyOrdersState value) empty,
+    required TResult Function(_InProgressOrdersState value) inProgress,
   }) {
     return error(this);
   }
@@ -762,10 +370,10 @@ class _$_ErrorOrdersState extends _ErrorOrdersState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
     TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
   }) {
     return error?.call(this);
   }
@@ -773,10 +381,10 @@ class _$_ErrorOrdersState extends _ErrorOrdersState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressOrdersState value)? inProgress,
-    TResult Function(_EmptyOrdersState value)? empty,
-    TResult Function(_SuccessOrdersState value)? success,
     TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -792,9 +400,401 @@ abstract class _ErrorOrdersState extends OrdersState {
       final String message}) = _$_ErrorOrdersState;
   const _ErrorOrdersState._() : super._();
 
-  List<OrderItem> get orders => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  List<OrderItem> get orders;
+  String get message;
   @JsonKey(ignore: true)
   _$$_ErrorOrdersStateCopyWith<_$_ErrorOrdersState> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SuccessOrdersStateCopyWith<$Res> {
+  factory _$$_SuccessOrdersStateCopyWith(_$_SuccessOrdersState value,
+          $Res Function(_$_SuccessOrdersState) then) =
+      __$$_SuccessOrdersStateCopyWithImpl<$Res>;
+  $Res call({List<OrderItem> orders});
+}
+
+/// @nodoc
+class __$$_SuccessOrdersStateCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res>
+    implements _$$_SuccessOrdersStateCopyWith<$Res> {
+  __$$_SuccessOrdersStateCopyWithImpl(
+      _$_SuccessOrdersState _value, $Res Function(_$_SuccessOrdersState) _then)
+      : super(_value, (v) => _then(v as _$_SuccessOrdersState));
+
+  @override
+  _$_SuccessOrdersState get _value => super._value as _$_SuccessOrdersState;
+
+  @override
+  $Res call({
+    Object? orders = freezed,
+  }) {
+    return _then(_$_SuccessOrdersState(
+      orders: orders == freezed
+          ? _value._orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<OrderItem>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SuccessOrdersState extends _SuccessOrdersState {
+  const _$_SuccessOrdersState({required final List<OrderItem> orders})
+      : _orders = orders,
+        super._();
+
+  final List<OrderItem> _orders;
+  @override
+  List<OrderItem> get orders {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orders);
+  }
+
+  @override
+  String toString() {
+    return 'OrdersState.success(orders: $orders)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SuccessOrdersState &&
+            const DeepCollectionEquality().equals(other._orders, _orders));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_orders));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessOrdersStateCopyWith<_$_SuccessOrdersState> get copyWith =>
+      __$$_SuccessOrdersStateCopyWithImpl<_$_SuccessOrdersState>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<OrderItem> orders, String message) error,
+    required TResult Function(List<OrderItem> orders) success,
+    required TResult Function() empty,
+    required TResult Function() inProgress,
+  }) {
+    return success(orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
+  }) {
+    return success?.call(orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(orders);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorOrdersState value) error,
+    required TResult Function(_SuccessOrdersState value) success,
+    required TResult Function(_EmptyOrdersState value) empty,
+    required TResult Function(_InProgressOrdersState value) inProgress,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessOrdersState extends OrdersState {
+  const factory _SuccessOrdersState({required final List<OrderItem> orders}) =
+      _$_SuccessOrdersState;
+  const _SuccessOrdersState._() : super._();
+
+  List<OrderItem> get orders;
+  @JsonKey(ignore: true)
+  _$$_SuccessOrdersStateCopyWith<_$_SuccessOrdersState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_EmptyOrdersStateCopyWith<$Res> {
+  factory _$$_EmptyOrdersStateCopyWith(
+          _$_EmptyOrdersState value, $Res Function(_$_EmptyOrdersState) then) =
+      __$$_EmptyOrdersStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EmptyOrdersStateCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res>
+    implements _$$_EmptyOrdersStateCopyWith<$Res> {
+  __$$_EmptyOrdersStateCopyWithImpl(
+      _$_EmptyOrdersState _value, $Res Function(_$_EmptyOrdersState) _then)
+      : super(_value, (v) => _then(v as _$_EmptyOrdersState));
+
+  @override
+  _$_EmptyOrdersState get _value => super._value as _$_EmptyOrdersState;
+}
+
+/// @nodoc
+
+class _$_EmptyOrdersState extends _EmptyOrdersState {
+  const _$_EmptyOrdersState() : super._();
+
+  @override
+  String toString() {
+    return 'OrdersState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_EmptyOrdersState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<OrderItem> orders, String message) error,
+    required TResult Function(List<OrderItem> orders) success,
+    required TResult Function() empty,
+    required TResult Function() inProgress,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorOrdersState value) error,
+    required TResult Function(_SuccessOrdersState value) success,
+    required TResult Function(_EmptyOrdersState value) empty,
+    required TResult Function(_InProgressOrdersState value) inProgress,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmptyOrdersState extends OrdersState {
+  const factory _EmptyOrdersState() = _$_EmptyOrdersState;
+  const _EmptyOrdersState._() : super._();
+}
+
+/// @nodoc
+abstract class _$$_InProgressOrdersStateCopyWith<$Res> {
+  factory _$$_InProgressOrdersStateCopyWith(_$_InProgressOrdersState value,
+          $Res Function(_$_InProgressOrdersState) then) =
+      __$$_InProgressOrdersStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InProgressOrdersStateCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res>
+    implements _$$_InProgressOrdersStateCopyWith<$Res> {
+  __$$_InProgressOrdersStateCopyWithImpl(_$_InProgressOrdersState _value,
+      $Res Function(_$_InProgressOrdersState) _then)
+      : super(_value, (v) => _then(v as _$_InProgressOrdersState));
+
+  @override
+  _$_InProgressOrdersState get _value =>
+      super._value as _$_InProgressOrdersState;
+}
+
+/// @nodoc
+
+class _$_InProgressOrdersState extends _InProgressOrdersState {
+  const _$_InProgressOrdersState() : super._();
+
+  @override
+  String toString() {
+    return 'OrdersState.inProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_InProgressOrdersState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<OrderItem> orders, String message) error,
+    required TResult Function(List<OrderItem> orders) success,
+    required TResult Function() empty,
+    required TResult Function() inProgress,
+  }) {
+    return inProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
+  }) {
+    return inProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<OrderItem> orders, String message)? error,
+    TResult Function(List<OrderItem> orders)? success,
+    TResult Function()? empty,
+    TResult Function()? inProgress,
+    required TResult orElse(),
+  }) {
+    if (inProgress != null) {
+      return inProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorOrdersState value) error,
+    required TResult Function(_SuccessOrdersState value) success,
+    required TResult Function(_EmptyOrdersState value) empty,
+    required TResult Function(_InProgressOrdersState value) inProgress,
+  }) {
+    return inProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
+  }) {
+    return inProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorOrdersState value)? error,
+    TResult Function(_SuccessOrdersState value)? success,
+    TResult Function(_EmptyOrdersState value)? empty,
+    TResult Function(_InProgressOrdersState value)? inProgress,
+    required TResult orElse(),
+  }) {
+    if (inProgress != null) {
+      return inProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InProgressOrdersState extends OrdersState {
+  const factory _InProgressOrdersState() = _$_InProgressOrdersState;
+  const _InProgressOrdersState._() : super._();
 }

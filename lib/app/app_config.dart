@@ -3,9 +3,9 @@ import 'package:flutter_shop/app/environment.dart';
 
 class AppConfig extends InheritedWidget {
   const AppConfig({
-    Key? key,
     required this.environment,
     required Widget child,
+    Key? key,
   }) : super(
           key: key,
           child: child,

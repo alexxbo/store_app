@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
+import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/screens/cart_detail/cart_detail_item.dart';
+import 'package:flutter_shop/screens/products_overview/products_overview.dart';
+import 'package:flutter_shop/util/extensions.dart';
+import 'package:flutter_shop/widgets/mixins/progress.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/cart/bloc/cart_bloc.dart';
-import '../../common/orders/repository/orders_repository.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../util/extensions.dart';
-import '../../widgets/mixins/progress.dart';
-import '../products_overview/products_overview.dart';
-import 'cart_detail_item.dart';
-
 class CartDetailScreen extends StatelessWidget {
+  const CartDetailScreen({Key? key}) : super(key: key);
+
   static const String routeName = '/cart';
 
-  static void launch({required BuildContext context}) {
-    Navigator.of(context).pushNamed(routeName);
+  static Future<void> launch({required BuildContext context}) async {
+    await Navigator.of(context).pushNamed(routeName);
   }
-
-  const CartDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +72,12 @@ class CartDetailScreen extends StatelessWidget {
 }
 
 class OrderButton extends StatefulWidget {
-  final CartBloc _cartBloc;
-
-  const OrderButton({Key? key, required CartBloc cartBloc})
-      : _cartBloc = cartBloc,
+  const OrderButton({
+    required CartBloc cartBloc,
+    Key? key,
+  })  : _cartBloc = cartBloc,
         super(key: key);
+  final CartBloc _cartBloc;
 
   @override
   State<OrderButton> createState() => _OrderButtonState();
@@ -95,7 +95,7 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
           : TextButton(
               onPressed: widget._cartBloc.state.totalAmount == 0.0
                   ? null
-                  : () => _onOrderNowClicked(
+                  : () async => _onOrderNowClicked(
                         context: context,
                         cartBloc: widget._cartBloc,
                       ),
@@ -110,14 +110,14 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
     );
   }
 
-  void _onOrderNowClicked({
+  Future<void> _onOrderNowClicked({
     required BuildContext context,
     required CartBloc cartBloc,
-  }) {
-    showProgress(true);
-    final IOrdersRepository repository = locator.get<IOrdersRepository>();
+  }) async {
+    showProgress(show: true);
+    final repository = locator.get<IOrdersRepository>();
 
-    repository
+    await repository
         .add(
           cartBloc.state.products.map((item) => item.product).toList(),
           cartBloc.state.totalAmount,
@@ -129,6 +129,6 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
           },
         )
         .onErrorMessage(context)
-        .whenComplete(() => showProgress(false));
+        .whenComplete(() => showProgress(show: false));
   }
 }

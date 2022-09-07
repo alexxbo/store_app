@@ -1,7 +1,7 @@
 class AuthenticateException implements Exception {
-  final String message;
-
   AuthenticateException(this.message);
+
+  final String message;
 
   @override
   String toString() {

@@ -1,28 +1,27 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_shop/common/data/model/order_item.dart';
+import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../common/data/model/order_item.dart';
-import '../../../common/orders/repository/orders_repository.dart';
 
 part 'orders_bloc.freezed.dart';
 part 'orders_event.dart';
 part 'orders_state.dart';
 
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
-  final IOrdersRepository _repository;
-
   OrdersBloc(IOrdersRepository repository)
       : _repository = repository,
         super(const OrdersState.inProgress()) {
     on<OrdersEvent>(
-      (event, emit) => event.map<Future<void>>(
+      (event, emit) async => event.map<Future<void>>(
         fetchOrders: (event) => _fetchOrders(event, emit),
       ),
       transformer: bloc_concurrency.sequential(),
     );
     add(const OrdersEvent.fetchOrders());
   }
+
+  final IOrdersRepository _repository;
 
   Future<void> _fetchOrders(
     OrdersEvent event,

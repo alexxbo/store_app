@@ -1,18 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_shop/common/products/api/model/product_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../products/api/model/product_response.dart';
 
 @immutable
 class Product {
-  final String id;
-  final String title;
-  final String description;
-  final double price;
-  final String imageUrl;
-  final String userId;
-  final bool isFavorite;
-
   const Product({
     required this.id,
     required this.title,
@@ -22,6 +13,14 @@ class Product {
     required this.userId,
     required this.isFavorite,
   });
+
+  final String id;
+  final String title;
+  final String description;
+  final double price;
+  final String imageUrl;
+  final String userId;
+  final bool isFavorite;
 
   Product copyWith({
     final String? id,
@@ -44,7 +43,7 @@ class Product {
 }
 
 extension ProductModelX on ProductModel {
-  Product mapToProduct(bool isFavorite) => Product(
+  Product mapToProduct({required bool isFavorite}) => Product(
         id: id,
         title: title,
         description: description,

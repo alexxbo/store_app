@@ -1,4 +1,4 @@
-import '../../data/model/cart_item.dart';
+import 'package:flutter_shop/common/data/model/cart_item.dart';
 
 abstract class ICartApi {
   factory ICartApi() => _CartApi();
@@ -42,7 +42,7 @@ class _CartApi implements ICartApi {
     );
 
     if (index >= 0) {
-      final CartModel current = _items[index];
+      final current = _items[index];
       final cartItem = current.product.copyWith(
         title: product.title,
         price: product.price,

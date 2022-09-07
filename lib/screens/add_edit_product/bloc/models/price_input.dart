@@ -14,7 +14,7 @@ class PriceInput extends FormzInput<String, PriceValidationError> {
         double.tryParse(value) == null) {
       return PriceValidationError.invalid;
     }
-    assert(double.tryParse(value) != null);
+    assert(double.tryParse(value) != null, 'return null for invalid inputs');
     if (double.tryParse(value)! <= 0.0) {
       return PriceValidationError.small;
     }

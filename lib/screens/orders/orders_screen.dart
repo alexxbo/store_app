@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../common/data/model/order_item.dart';
-import '../../common/orders/repository/orders_repository.dart';
-import '../../common/service_locator/injection_container.dart';
-import '../../widgets/app_drawer.dart';
-import '../../widgets/progress.dart';
-import 'bloc/orders_bloc.dart';
-import 'order_item.dart';
+import 'package:flutter_shop/common/data/model/order_item.dart';
+import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
+import 'package:flutter_shop/common/service_locator/injection_container.dart';
+import 'package:flutter_shop/screens/orders/bloc/orders_bloc.dart';
+import 'package:flutter_shop/screens/orders/order_item.dart';
+import 'package:flutter_shop/widgets/app_drawer.dart';
+import 'package:flutter_shop/widgets/progress.dart';
 
 class OrderScreen extends StatelessWidget {
+  const OrderScreen({Key? key}) : super(key: key);
+
   static const String routeName = '/orders';
 
-  static void launch({required BuildContext context}) {
-    Navigator.of(context).pushReplacementNamed(routeName);
+  static Future<void> launch({required BuildContext context}) async {
+    await Navigator.of(context).pushReplacementNamed(routeName);
   }
-
-  const OrderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

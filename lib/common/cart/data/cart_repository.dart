@@ -1,4 +1,4 @@
-import '../api/cart_api.dart';
+import 'package:flutter_shop/common/cart/api/cart_api.dart';
 
 abstract class ICartRepository {
   static ICartRepository call(ICartApi api) => _CartRepository(api);
@@ -22,21 +22,21 @@ class _CartRepository implements ICartRepository {
 
   @override
   Future<void> add(AddProduct product) async {
-    _api.add(product);
+    await _api.add(product);
   }
 
   @override
   Future<void> remove(String productId) async {
-    _api.remove(productId);
+    await _api.remove(productId);
   }
 
   @override
   Future<void> removeSingle(String productId) async {
-    _api.removeSingle(productId);
+    await _api.removeSingle(productId);
   }
 
   @override
   Future<void> clear() async {
-    _api.clear();
+    await _api.clear();
   }
 }

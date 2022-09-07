@@ -3,8 +3,10 @@ import 'package:flutter_shop/common/data/model/product.dart';
 import 'package:flutter_shop/screens/products_overview/popular/popular_product_desc.dart';
 
 class PopularProductItem extends StatelessWidget {
-  const PopularProductItem({Key? key, required Product product})
-      : _product = product,
+  const PopularProductItem({
+    required Product product,
+    Key? key,
+  })  : _product = product,
         super(key: key);
 
   final Product _product;
@@ -25,7 +27,6 @@ class PopularProductItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: Colors.black12,
-          width: 1,
         ),
       ),
       margin: const EdgeInsets.all(8),

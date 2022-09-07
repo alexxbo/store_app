@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import '../../data/model/user.dart';
-import '../../data/storage/user_storage.dart';
+import 'package:flutter_shop/common/data/model/user.dart';
+import 'package:flutter_shop/common/data/storage/user_storage.dart';
 
 abstract class IAuthorizationRepository {
   factory IAuthorizationRepository({
@@ -31,12 +31,14 @@ class _AuthorizationRepository implements IAuthorizationRepository {
 
     final user = await _storage.getSavedUser();
 
-    if (user == null) return const NotAuthenticatedUser();
+    if (user == null) {
+      return const NotAuthenticatedUser();
+    }
 
     final expiryDate = user.expiryDate;
 
     if (expiryDate.isBefore(DateTime.now())) {
-      _removeUser();
+      await _removeUser();
 
       return const NotAuthenticatedUser();
     }

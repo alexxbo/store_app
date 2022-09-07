@@ -1,7 +1,6 @@
+import 'package:flutter_shop/screens/authentication/api/model/user_response.dart';
+import 'package:flutter_shop/util/extensions.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '/../util/extensions.dart';
-import '../../../screens/authentication/api/model/user_response.dart';
 
 @immutable
 abstract class User {
@@ -15,7 +14,9 @@ abstract class User {
   }) = AuthenticatedUser;
 
   bool get isAuthenticated;
+
   bool get isNotAuthenticated;
+
   AuthenticatedUser? get authenticatedOrNull;
 
   T when<T extends Object?>({
@@ -28,6 +29,7 @@ abstract class User {
 class NotAuthenticatedUser implements User {
   @literal
   const NotAuthenticatedUser();
+
   @override
   AuthenticatedUser? get authenticatedOrNull => null;
 
@@ -57,9 +59,9 @@ class NotAuthenticatedUser implements User {
 @immutable
 class AuthenticatedUser implements User {
   const AuthenticatedUser({
-    required final this.token,
-    required final this.expiryDate,
-    required final this.userId,
+    required this.token,
+    required this.expiryDate,
+    required this.userId,
   });
 
   final String token;
@@ -101,7 +103,7 @@ class AuthenticatedUser implements User {
 extension UserMapper on UserResponse {
   User mapToUser() {
     final isAuth = userId != null &&
-        expiryDate?.isAfter(DateTime.now()) == true &&
+        (expiryDate?.isAfter(DateTime.now()) ?? false) &&
         token != null;
 
     return isAuth
