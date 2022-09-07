@@ -424,7 +424,7 @@ abstract class _EditAddEditProductEvent extends AddEditProductEvent {
       _$_EditAddEditProductEvent;
   const _EditAddEditProductEvent._() : super._();
 
-  String get productId => throw _privateConstructorUsedError;
+  String get productId;
   @JsonKey(ignore: true)
   _$$_EditAddEditProductEventCopyWith<_$_EditAddEditProductEvent>
       get copyWith => throw _privateConstructorUsedError;
@@ -602,7 +602,7 @@ abstract class _TitleChangedAddEditProductEvent extends AddEditProductEvent {
       {required final String title}) = _$_TitleChangedAddEditProductEvent;
   const _TitleChangedAddEditProductEvent._() : super._();
 
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @JsonKey(ignore: true)
   _$$_TitleChangedAddEditProductEventCopyWith<
           _$_TitleChangedAddEditProductEvent>
@@ -781,7 +781,7 @@ abstract class _PriceChangedAddEditProductEvent extends AddEditProductEvent {
       {required final String price}) = _$_PriceChangedAddEditProductEvent;
   const _PriceChangedAddEditProductEvent._() : super._();
 
-  String get price => throw _privateConstructorUsedError;
+  String get price;
   @JsonKey(ignore: true)
   _$$_PriceChangedAddEditProductEventCopyWith<
           _$_PriceChangedAddEditProductEvent>
@@ -963,7 +963,7 @@ abstract class _DescriptionChangedAddEditProductEvent
       {required final String desc}) = _$_DescriptionChangedAddEditProductEvent;
   const _DescriptionChangedAddEditProductEvent._() : super._();
 
-  String get desc => throw _privateConstructorUsedError;
+  String get desc;
   @JsonKey(ignore: true)
   _$$_DescriptionChangedAddEditProductEventCopyWith<
           _$_DescriptionChangedAddEditProductEvent>
@@ -1142,7 +1142,7 @@ abstract class _ImageChangedAddEditProductEvent extends AddEditProductEvent {
       _$_ImageChangedAddEditProductEvent;
   const _ImageChangedAddEditProductEvent._() : super._();
 
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @JsonKey(ignore: true)
   _$$_ImageChangedAddEditProductEventCopyWith<
           _$_ImageChangedAddEditProductEvent>
@@ -1302,66 +1302,66 @@ mixin _$AddEditProductState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        progress,
+        success,
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        inputData,
+        invalid,
     required TResult Function(
             AddEditProductMode mode, CreateProduct product, String message)
         error,
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        invalid,
+        inputData,
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        success,
+        progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
     TResult Function(
             AddEditProductMode mode, CreateProduct product, String message)?
         error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
     TResult Function(
             AddEditProductMode mode, CreateProduct product, String message)?
         error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressAddEditProductState value) progress,
-    required TResult Function(_InputDataAddEditProductState value) inputData,
-    required TResult Function(_ErrorAddEditProductState value) error,
-    required TResult Function(_InvalidAddEditProductState value) invalid,
     required TResult Function(_SuccessAddEditProductState value) success,
+    required TResult Function(_InvalidAddEditProductState value) invalid,
+    required TResult Function(_ErrorAddEditProductState value) error,
+    required TResult Function(_InputDataAddEditProductState value) inputData,
+    required TResult Function(_ProgressAddEditProductState value) progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
     TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
     TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1404,778 +1404,6 @@ class _$AddEditProductStateCopyWithImpl<$Res>
               as CreateProduct,
     ));
   }
-}
-
-/// @nodoc
-abstract class _$$_ProgressAddEditProductStateCopyWith<$Res>
-    implements $AddEditProductStateCopyWith<$Res> {
-  factory _$$_ProgressAddEditProductStateCopyWith(
-          _$_ProgressAddEditProductState value,
-          $Res Function(_$_ProgressAddEditProductState) then) =
-      __$$_ProgressAddEditProductStateCopyWithImpl<$Res>;
-  @override
-  $Res call({AddEditProductMode mode, CreateProduct product});
-}
-
-/// @nodoc
-class __$$_ProgressAddEditProductStateCopyWithImpl<$Res>
-    extends _$AddEditProductStateCopyWithImpl<$Res>
-    implements _$$_ProgressAddEditProductStateCopyWith<$Res> {
-  __$$_ProgressAddEditProductStateCopyWithImpl(
-      _$_ProgressAddEditProductState _value,
-      $Res Function(_$_ProgressAddEditProductState) _then)
-      : super(_value, (v) => _then(v as _$_ProgressAddEditProductState));
-
-  @override
-  _$_ProgressAddEditProductState get _value =>
-      super._value as _$_ProgressAddEditProductState;
-
-  @override
-  $Res call({
-    Object? mode = freezed,
-    Object? product = freezed,
-  }) {
-    return _then(_$_ProgressAddEditProductState(
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as AddEditProductMode,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as CreateProduct,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ProgressAddEditProductState extends _ProgressAddEditProductState {
-  const _$_ProgressAddEditProductState(
-      {this.mode = AddEditProductMode.add,
-      this.product = const CreateProduct.empty()})
-      : super._();
-
-  @override
-  @JsonKey()
-  final AddEditProductMode mode;
-  @override
-  @JsonKey()
-  final CreateProduct product;
-
-  @override
-  String toString() {
-    return 'AddEditProductState.progress(mode: $mode, product: $product)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ProgressAddEditProductState &&
-            const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.product, product));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(product));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ProgressAddEditProductStateCopyWith<_$_ProgressAddEditProductState>
-      get copyWith => __$$_ProgressAddEditProductStateCopyWithImpl<
-          _$_ProgressAddEditProductState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        progress,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        inputData,
-    required TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)
-        error,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        invalid,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        success,
-  }) {
-    return progress(mode, product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-  }) {
-    return progress?.call(mode, product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(mode, product);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressAddEditProductState value) progress,
-    required TResult Function(_InputDataAddEditProductState value) inputData,
-    required TResult Function(_ErrorAddEditProductState value) error,
-    required TResult Function(_InvalidAddEditProductState value) invalid,
-    required TResult Function(_SuccessAddEditProductState value) success,
-  }) {
-    return progress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-  }) {
-    return progress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ProgressAddEditProductState extends AddEditProductState {
-  const factory _ProgressAddEditProductState(
-      {final AddEditProductMode mode,
-      final CreateProduct product}) = _$_ProgressAddEditProductState;
-  const _ProgressAddEditProductState._() : super._();
-
-  @override
-  AddEditProductMode get mode => throw _privateConstructorUsedError;
-  @override
-  CreateProduct get product => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ProgressAddEditProductStateCopyWith<_$_ProgressAddEditProductState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_InputDataAddEditProductStateCopyWith<$Res>
-    implements $AddEditProductStateCopyWith<$Res> {
-  factory _$$_InputDataAddEditProductStateCopyWith(
-          _$_InputDataAddEditProductState value,
-          $Res Function(_$_InputDataAddEditProductState) then) =
-      __$$_InputDataAddEditProductStateCopyWithImpl<$Res>;
-  @override
-  $Res call({AddEditProductMode mode, CreateProduct product});
-}
-
-/// @nodoc
-class __$$_InputDataAddEditProductStateCopyWithImpl<$Res>
-    extends _$AddEditProductStateCopyWithImpl<$Res>
-    implements _$$_InputDataAddEditProductStateCopyWith<$Res> {
-  __$$_InputDataAddEditProductStateCopyWithImpl(
-      _$_InputDataAddEditProductState _value,
-      $Res Function(_$_InputDataAddEditProductState) _then)
-      : super(_value, (v) => _then(v as _$_InputDataAddEditProductState));
-
-  @override
-  _$_InputDataAddEditProductState get _value =>
-      super._value as _$_InputDataAddEditProductState;
-
-  @override
-  $Res call({
-    Object? mode = freezed,
-    Object? product = freezed,
-  }) {
-    return _then(_$_InputDataAddEditProductState(
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as AddEditProductMode,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as CreateProduct,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_InputDataAddEditProductState extends _InputDataAddEditProductState {
-  const _$_InputDataAddEditProductState(
-      {required this.mode, required this.product})
-      : super._();
-
-  @override
-  final AddEditProductMode mode;
-  @override
-  final CreateProduct product;
-
-  @override
-  String toString() {
-    return 'AddEditProductState.inputData(mode: $mode, product: $product)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InputDataAddEditProductState &&
-            const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.product, product));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(product));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_InputDataAddEditProductStateCopyWith<_$_InputDataAddEditProductState>
-      get copyWith => __$$_InputDataAddEditProductStateCopyWithImpl<
-          _$_InputDataAddEditProductState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        progress,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        inputData,
-    required TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)
-        error,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        invalid,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        success,
-  }) {
-    return inputData(mode, product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-  }) {
-    return inputData?.call(mode, product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-    required TResult orElse(),
-  }) {
-    if (inputData != null) {
-      return inputData(mode, product);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressAddEditProductState value) progress,
-    required TResult Function(_InputDataAddEditProductState value) inputData,
-    required TResult Function(_ErrorAddEditProductState value) error,
-    required TResult Function(_InvalidAddEditProductState value) invalid,
-    required TResult Function(_SuccessAddEditProductState value) success,
-  }) {
-    return inputData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-  }) {
-    return inputData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-    required TResult orElse(),
-  }) {
-    if (inputData != null) {
-      return inputData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InputDataAddEditProductState extends AddEditProductState {
-  const factory _InputDataAddEditProductState(
-      {required final AddEditProductMode mode,
-      required final CreateProduct product}) = _$_InputDataAddEditProductState;
-  const _InputDataAddEditProductState._() : super._();
-
-  @override
-  AddEditProductMode get mode => throw _privateConstructorUsedError;
-  @override
-  CreateProduct get product => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_InputDataAddEditProductStateCopyWith<_$_InputDataAddEditProductState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ErrorAddEditProductStateCopyWith<$Res>
-    implements $AddEditProductStateCopyWith<$Res> {
-  factory _$$_ErrorAddEditProductStateCopyWith(
-          _$_ErrorAddEditProductState value,
-          $Res Function(_$_ErrorAddEditProductState) then) =
-      __$$_ErrorAddEditProductStateCopyWithImpl<$Res>;
-  @override
-  $Res call({AddEditProductMode mode, CreateProduct product, String message});
-}
-
-/// @nodoc
-class __$$_ErrorAddEditProductStateCopyWithImpl<$Res>
-    extends _$AddEditProductStateCopyWithImpl<$Res>
-    implements _$$_ErrorAddEditProductStateCopyWith<$Res> {
-  __$$_ErrorAddEditProductStateCopyWithImpl(_$_ErrorAddEditProductState _value,
-      $Res Function(_$_ErrorAddEditProductState) _then)
-      : super(_value, (v) => _then(v as _$_ErrorAddEditProductState));
-
-  @override
-  _$_ErrorAddEditProductState get _value =>
-      super._value as _$_ErrorAddEditProductState;
-
-  @override
-  $Res call({
-    Object? mode = freezed,
-    Object? product = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_$_ErrorAddEditProductState(
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as AddEditProductMode,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as CreateProduct,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ErrorAddEditProductState extends _ErrorAddEditProductState {
-  const _$_ErrorAddEditProductState(
-      {required this.mode,
-      required this.product,
-      this.message = 'The product could not be saved. Please try again later.'})
-      : super._();
-
-  @override
-  final AddEditProductMode mode;
-  @override
-  final CreateProduct product;
-// required final TitleInput title,
-// required final PriceInput price,
-// required final DescriptionInput desc,
-// required final ImageUrlInput imageUrl,
-  @override
-  @JsonKey()
-  final String message;
-
-  @override
-  String toString() {
-    return 'AddEditProductState.error(mode: $mode, product: $product, message: $message)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ErrorAddEditProductState &&
-            const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.product, product) &&
-            const DeepCollectionEquality().equals(other.message, message));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(product),
-      const DeepCollectionEquality().hash(message));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ErrorAddEditProductStateCopyWith<_$_ErrorAddEditProductState>
-      get copyWith => __$$_ErrorAddEditProductStateCopyWithImpl<
-          _$_ErrorAddEditProductState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        progress,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        inputData,
-    required TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)
-        error,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        invalid,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        success,
-  }) {
-    return error(mode, product, message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-  }) {
-    return error?.call(mode, product, message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(mode, product, message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressAddEditProductState value) progress,
-    required TResult Function(_InputDataAddEditProductState value) inputData,
-    required TResult Function(_ErrorAddEditProductState value) error,
-    required TResult Function(_InvalidAddEditProductState value) invalid,
-    required TResult Function(_SuccessAddEditProductState value) success,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ErrorAddEditProductState extends AddEditProductState {
-  const factory _ErrorAddEditProductState(
-      {required final AddEditProductMode mode,
-      required final CreateProduct product,
-      final String message}) = _$_ErrorAddEditProductState;
-  const _ErrorAddEditProductState._() : super._();
-
-  @override
-  AddEditProductMode get mode => throw _privateConstructorUsedError;
-  @override
-  CreateProduct get product =>
-      throw _privateConstructorUsedError; // required final TitleInput title,
-// required final PriceInput price,
-// required final DescriptionInput desc,
-// required final ImageUrlInput imageUrl,
-  String get message => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ErrorAddEditProductStateCopyWith<_$_ErrorAddEditProductState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_InvalidAddEditProductStateCopyWith<$Res>
-    implements $AddEditProductStateCopyWith<$Res> {
-  factory _$$_InvalidAddEditProductStateCopyWith(
-          _$_InvalidAddEditProductState value,
-          $Res Function(_$_InvalidAddEditProductState) then) =
-      __$$_InvalidAddEditProductStateCopyWithImpl<$Res>;
-  @override
-  $Res call({AddEditProductMode mode, CreateProduct product});
-}
-
-/// @nodoc
-class __$$_InvalidAddEditProductStateCopyWithImpl<$Res>
-    extends _$AddEditProductStateCopyWithImpl<$Res>
-    implements _$$_InvalidAddEditProductStateCopyWith<$Res> {
-  __$$_InvalidAddEditProductStateCopyWithImpl(
-      _$_InvalidAddEditProductState _value,
-      $Res Function(_$_InvalidAddEditProductState) _then)
-      : super(_value, (v) => _then(v as _$_InvalidAddEditProductState));
-
-  @override
-  _$_InvalidAddEditProductState get _value =>
-      super._value as _$_InvalidAddEditProductState;
-
-  @override
-  $Res call({
-    Object? mode = freezed,
-    Object? product = freezed,
-  }) {
-    return _then(_$_InvalidAddEditProductState(
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as AddEditProductMode,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as CreateProduct,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_InvalidAddEditProductState extends _InvalidAddEditProductState {
-  const _$_InvalidAddEditProductState(
-      {required this.mode, required this.product})
-      : super._();
-
-  @override
-  final AddEditProductMode mode;
-  @override
-  final CreateProduct product;
-
-  @override
-  String toString() {
-    return 'AddEditProductState.invalid(mode: $mode, product: $product)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InvalidAddEditProductState &&
-            const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.product, product));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(product));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_InvalidAddEditProductStateCopyWith<_$_InvalidAddEditProductState>
-      get copyWith => __$$_InvalidAddEditProductStateCopyWithImpl<
-          _$_InvalidAddEditProductState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        progress,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        inputData,
-    required TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)
-        error,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        invalid,
-    required TResult Function(AddEditProductMode mode, CreateProduct product)
-        success,
-  }) {
-    return invalid(mode, product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-  }) {
-    return invalid?.call(mode, product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
-    TResult Function(
-            AddEditProductMode mode, CreateProduct product, String message)?
-        error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
-    required TResult orElse(),
-  }) {
-    if (invalid != null) {
-      return invalid(mode, product);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressAddEditProductState value) progress,
-    required TResult Function(_InputDataAddEditProductState value) inputData,
-    required TResult Function(_ErrorAddEditProductState value) error,
-    required TResult Function(_InvalidAddEditProductState value) invalid,
-    required TResult Function(_SuccessAddEditProductState value) success,
-  }) {
-    return invalid(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-  }) {
-    return invalid?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
-    TResult Function(_SuccessAddEditProductState value)? success,
-    required TResult orElse(),
-  }) {
-    if (invalid != null) {
-      return invalid(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InvalidAddEditProductState extends AddEditProductState {
-  const factory _InvalidAddEditProductState(
-      {required final AddEditProductMode mode,
-      required final CreateProduct product}) = _$_InvalidAddEditProductState;
-  const _InvalidAddEditProductState._() : super._();
-
-  @override
-  AddEditProductMode get mode => throw _privateConstructorUsedError;
-  @override
-  CreateProduct get product => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_InvalidAddEditProductStateCopyWith<_$_InvalidAddEditProductState>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2265,16 +1493,16 @@ class _$_SuccessAddEditProductState extends _SuccessAddEditProductState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        progress,
+        success,
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        inputData,
+        invalid,
     required TResult Function(
             AddEditProductMode mode, CreateProduct product, String message)
         error,
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        invalid,
+        inputData,
     required TResult Function(AddEditProductMode mode, CreateProduct product)
-        success,
+        progress,
   }) {
     return success(mode, product);
   }
@@ -2282,13 +1510,13 @@ class _$_SuccessAddEditProductState extends _SuccessAddEditProductState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
     TResult Function(
             AddEditProductMode mode, CreateProduct product, String message)?
         error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
   }) {
     return success?.call(mode, product);
   }
@@ -2296,13 +1524,13 @@ class _$_SuccessAddEditProductState extends _SuccessAddEditProductState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
     TResult Function(
             AddEditProductMode mode, CreateProduct product, String message)?
         error,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
-    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -2314,11 +1542,11 @@ class _$_SuccessAddEditProductState extends _SuccessAddEditProductState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProgressAddEditProductState value) progress,
-    required TResult Function(_InputDataAddEditProductState value) inputData,
-    required TResult Function(_ErrorAddEditProductState value) error,
-    required TResult Function(_InvalidAddEditProductState value) invalid,
     required TResult Function(_SuccessAddEditProductState value) success,
+    required TResult Function(_InvalidAddEditProductState value) invalid,
+    required TResult Function(_ErrorAddEditProductState value) error,
+    required TResult Function(_InputDataAddEditProductState value) inputData,
+    required TResult Function(_ProgressAddEditProductState value) progress,
   }) {
     return success(this);
   }
@@ -2326,11 +1554,11 @@ class _$_SuccessAddEditProductState extends _SuccessAddEditProductState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
     TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
   }) {
     return success?.call(this);
   }
@@ -2338,11 +1566,11 @@ class _$_SuccessAddEditProductState extends _SuccessAddEditProductState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProgressAddEditProductState value)? progress,
-    TResult Function(_InputDataAddEditProductState value)? inputData,
-    TResult Function(_ErrorAddEditProductState value)? error,
-    TResult Function(_InvalidAddEditProductState value)? invalid,
     TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -2359,11 +1587,775 @@ abstract class _SuccessAddEditProductState extends AddEditProductState {
   const _SuccessAddEditProductState._() : super._();
 
   @override
-  AddEditProductMode get mode => throw _privateConstructorUsedError;
+  AddEditProductMode get mode;
   @override
-  CreateProduct get product => throw _privateConstructorUsedError;
+  CreateProduct get product;
   @override
   @JsonKey(ignore: true)
   _$$_SuccessAddEditProductStateCopyWith<_$_SuccessAddEditProductState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InvalidAddEditProductStateCopyWith<$Res>
+    implements $AddEditProductStateCopyWith<$Res> {
+  factory _$$_InvalidAddEditProductStateCopyWith(
+          _$_InvalidAddEditProductState value,
+          $Res Function(_$_InvalidAddEditProductState) then) =
+      __$$_InvalidAddEditProductStateCopyWithImpl<$Res>;
+  @override
+  $Res call({AddEditProductMode mode, CreateProduct product});
+}
+
+/// @nodoc
+class __$$_InvalidAddEditProductStateCopyWithImpl<$Res>
+    extends _$AddEditProductStateCopyWithImpl<$Res>
+    implements _$$_InvalidAddEditProductStateCopyWith<$Res> {
+  __$$_InvalidAddEditProductStateCopyWithImpl(
+      _$_InvalidAddEditProductState _value,
+      $Res Function(_$_InvalidAddEditProductState) _then)
+      : super(_value, (v) => _then(v as _$_InvalidAddEditProductState));
+
+  @override
+  _$_InvalidAddEditProductState get _value =>
+      super._value as _$_InvalidAddEditProductState;
+
+  @override
+  $Res call({
+    Object? mode = freezed,
+    Object? product = freezed,
+  }) {
+    return _then(_$_InvalidAddEditProductState(
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as AddEditProductMode,
+      product: product == freezed
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as CreateProduct,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InvalidAddEditProductState extends _InvalidAddEditProductState {
+  const _$_InvalidAddEditProductState(
+      {required this.mode, required this.product})
+      : super._();
+
+  @override
+  final AddEditProductMode mode;
+  @override
+  final CreateProduct product;
+
+  @override
+  String toString() {
+    return 'AddEditProductState.invalid(mode: $mode, product: $product)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InvalidAddEditProductState &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.product, product));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(product));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InvalidAddEditProductStateCopyWith<_$_InvalidAddEditProductState>
+      get copyWith => __$$_InvalidAddEditProductStateCopyWithImpl<
+          _$_InvalidAddEditProductState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        success,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        invalid,
+    required TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)
+        error,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        inputData,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        progress,
+  }) {
+    return invalid(mode, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+  }) {
+    return invalid?.call(mode, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+    required TResult orElse(),
+  }) {
+    if (invalid != null) {
+      return invalid(mode, product);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SuccessAddEditProductState value) success,
+    required TResult Function(_InvalidAddEditProductState value) invalid,
+    required TResult Function(_ErrorAddEditProductState value) error,
+    required TResult Function(_InputDataAddEditProductState value) inputData,
+    required TResult Function(_ProgressAddEditProductState value) progress,
+  }) {
+    return invalid(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+  }) {
+    return invalid?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+    required TResult orElse(),
+  }) {
+    if (invalid != null) {
+      return invalid(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidAddEditProductState extends AddEditProductState {
+  const factory _InvalidAddEditProductState(
+      {required final AddEditProductMode mode,
+      required final CreateProduct product}) = _$_InvalidAddEditProductState;
+  const _InvalidAddEditProductState._() : super._();
+
+  @override
+  AddEditProductMode get mode;
+  @override
+  CreateProduct get product;
+  @override
+  @JsonKey(ignore: true)
+  _$$_InvalidAddEditProductStateCopyWith<_$_InvalidAddEditProductState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ErrorAddEditProductStateCopyWith<$Res>
+    implements $AddEditProductStateCopyWith<$Res> {
+  factory _$$_ErrorAddEditProductStateCopyWith(
+          _$_ErrorAddEditProductState value,
+          $Res Function(_$_ErrorAddEditProductState) then) =
+      __$$_ErrorAddEditProductStateCopyWithImpl<$Res>;
+  @override
+  $Res call({AddEditProductMode mode, CreateProduct product, String message});
+}
+
+/// @nodoc
+class __$$_ErrorAddEditProductStateCopyWithImpl<$Res>
+    extends _$AddEditProductStateCopyWithImpl<$Res>
+    implements _$$_ErrorAddEditProductStateCopyWith<$Res> {
+  __$$_ErrorAddEditProductStateCopyWithImpl(_$_ErrorAddEditProductState _value,
+      $Res Function(_$_ErrorAddEditProductState) _then)
+      : super(_value, (v) => _then(v as _$_ErrorAddEditProductState));
+
+  @override
+  _$_ErrorAddEditProductState get _value =>
+      super._value as _$_ErrorAddEditProductState;
+
+  @override
+  $Res call({
+    Object? mode = freezed,
+    Object? product = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_$_ErrorAddEditProductState(
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as AddEditProductMode,
+      product: product == freezed
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as CreateProduct,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ErrorAddEditProductState extends _ErrorAddEditProductState {
+  const _$_ErrorAddEditProductState(
+      {required this.mode,
+      required this.product,
+      this.message = 'The product could not be saved. Please try again later.'})
+      : super._();
+
+  @override
+  final AddEditProductMode mode;
+  @override
+  final CreateProduct product;
+  @override
+  @JsonKey()
+  final String message;
+
+  @override
+  String toString() {
+    return 'AddEditProductState.error(mode: $mode, product: $product, message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ErrorAddEditProductState &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.product, product) &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(product),
+      const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ErrorAddEditProductStateCopyWith<_$_ErrorAddEditProductState>
+      get copyWith => __$$_ErrorAddEditProductStateCopyWithImpl<
+          _$_ErrorAddEditProductState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        success,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        invalid,
+    required TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)
+        error,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        inputData,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        progress,
+  }) {
+    return error(mode, product, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+  }) {
+    return error?.call(mode, product, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(mode, product, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SuccessAddEditProductState value) success,
+    required TResult Function(_InvalidAddEditProductState value) invalid,
+    required TResult Function(_ErrorAddEditProductState value) error,
+    required TResult Function(_InputDataAddEditProductState value) inputData,
+    required TResult Function(_ProgressAddEditProductState value) progress,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ErrorAddEditProductState extends AddEditProductState {
+  const factory _ErrorAddEditProductState(
+      {required final AddEditProductMode mode,
+      required final CreateProduct product,
+      final String message}) = _$_ErrorAddEditProductState;
+  const _ErrorAddEditProductState._() : super._();
+
+  @override
+  AddEditProductMode get mode;
+  @override
+  CreateProduct get product;
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ErrorAddEditProductStateCopyWith<_$_ErrorAddEditProductState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InputDataAddEditProductStateCopyWith<$Res>
+    implements $AddEditProductStateCopyWith<$Res> {
+  factory _$$_InputDataAddEditProductStateCopyWith(
+          _$_InputDataAddEditProductState value,
+          $Res Function(_$_InputDataAddEditProductState) then) =
+      __$$_InputDataAddEditProductStateCopyWithImpl<$Res>;
+  @override
+  $Res call({AddEditProductMode mode, CreateProduct product});
+}
+
+/// @nodoc
+class __$$_InputDataAddEditProductStateCopyWithImpl<$Res>
+    extends _$AddEditProductStateCopyWithImpl<$Res>
+    implements _$$_InputDataAddEditProductStateCopyWith<$Res> {
+  __$$_InputDataAddEditProductStateCopyWithImpl(
+      _$_InputDataAddEditProductState _value,
+      $Res Function(_$_InputDataAddEditProductState) _then)
+      : super(_value, (v) => _then(v as _$_InputDataAddEditProductState));
+
+  @override
+  _$_InputDataAddEditProductState get _value =>
+      super._value as _$_InputDataAddEditProductState;
+
+  @override
+  $Res call({
+    Object? mode = freezed,
+    Object? product = freezed,
+  }) {
+    return _then(_$_InputDataAddEditProductState(
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as AddEditProductMode,
+      product: product == freezed
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as CreateProduct,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InputDataAddEditProductState extends _InputDataAddEditProductState {
+  const _$_InputDataAddEditProductState(
+      {required this.mode, required this.product})
+      : super._();
+
+  @override
+  final AddEditProductMode mode;
+  @override
+  final CreateProduct product;
+
+  @override
+  String toString() {
+    return 'AddEditProductState.inputData(mode: $mode, product: $product)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InputDataAddEditProductState &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.product, product));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(product));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InputDataAddEditProductStateCopyWith<_$_InputDataAddEditProductState>
+      get copyWith => __$$_InputDataAddEditProductStateCopyWithImpl<
+          _$_InputDataAddEditProductState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        success,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        invalid,
+    required TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)
+        error,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        inputData,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        progress,
+  }) {
+    return inputData(mode, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+  }) {
+    return inputData?.call(mode, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+    required TResult orElse(),
+  }) {
+    if (inputData != null) {
+      return inputData(mode, product);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SuccessAddEditProductState value) success,
+    required TResult Function(_InvalidAddEditProductState value) invalid,
+    required TResult Function(_ErrorAddEditProductState value) error,
+    required TResult Function(_InputDataAddEditProductState value) inputData,
+    required TResult Function(_ProgressAddEditProductState value) progress,
+  }) {
+    return inputData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+  }) {
+    return inputData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+    required TResult orElse(),
+  }) {
+    if (inputData != null) {
+      return inputData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InputDataAddEditProductState extends AddEditProductState {
+  const factory _InputDataAddEditProductState(
+      {required final AddEditProductMode mode,
+      required final CreateProduct product}) = _$_InputDataAddEditProductState;
+  const _InputDataAddEditProductState._() : super._();
+
+  @override
+  AddEditProductMode get mode;
+  @override
+  CreateProduct get product;
+  @override
+  @JsonKey(ignore: true)
+  _$$_InputDataAddEditProductStateCopyWith<_$_InputDataAddEditProductState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ProgressAddEditProductStateCopyWith<$Res>
+    implements $AddEditProductStateCopyWith<$Res> {
+  factory _$$_ProgressAddEditProductStateCopyWith(
+          _$_ProgressAddEditProductState value,
+          $Res Function(_$_ProgressAddEditProductState) then) =
+      __$$_ProgressAddEditProductStateCopyWithImpl<$Res>;
+  @override
+  $Res call({AddEditProductMode mode, CreateProduct product});
+}
+
+/// @nodoc
+class __$$_ProgressAddEditProductStateCopyWithImpl<$Res>
+    extends _$AddEditProductStateCopyWithImpl<$Res>
+    implements _$$_ProgressAddEditProductStateCopyWith<$Res> {
+  __$$_ProgressAddEditProductStateCopyWithImpl(
+      _$_ProgressAddEditProductState _value,
+      $Res Function(_$_ProgressAddEditProductState) _then)
+      : super(_value, (v) => _then(v as _$_ProgressAddEditProductState));
+
+  @override
+  _$_ProgressAddEditProductState get _value =>
+      super._value as _$_ProgressAddEditProductState;
+
+  @override
+  $Res call({
+    Object? mode = freezed,
+    Object? product = freezed,
+  }) {
+    return _then(_$_ProgressAddEditProductState(
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as AddEditProductMode,
+      product: product == freezed
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as CreateProduct,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ProgressAddEditProductState extends _ProgressAddEditProductState {
+  const _$_ProgressAddEditProductState(
+      {this.mode = AddEditProductMode.add,
+      this.product = const CreateProduct.empty()})
+      : super._();
+
+  @override
+  @JsonKey()
+  final AddEditProductMode mode;
+  @override
+  @JsonKey()
+  final CreateProduct product;
+
+  @override
+  String toString() {
+    return 'AddEditProductState.progress(mode: $mode, product: $product)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProgressAddEditProductState &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.product, product));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(product));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ProgressAddEditProductStateCopyWith<_$_ProgressAddEditProductState>
+      get copyWith => __$$_ProgressAddEditProductStateCopyWithImpl<
+          _$_ProgressAddEditProductState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        success,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        invalid,
+    required TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)
+        error,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        inputData,
+    required TResult Function(AddEditProductMode mode, CreateProduct product)
+        progress,
+  }) {
+    return progress(mode, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+  }) {
+    return progress?.call(mode, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AddEditProductMode mode, CreateProduct product)? success,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? invalid,
+    TResult Function(
+            AddEditProductMode mode, CreateProduct product, String message)?
+        error,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? inputData,
+    TResult Function(AddEditProductMode mode, CreateProduct product)? progress,
+    required TResult orElse(),
+  }) {
+    if (progress != null) {
+      return progress(mode, product);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SuccessAddEditProductState value) success,
+    required TResult Function(_InvalidAddEditProductState value) invalid,
+    required TResult Function(_ErrorAddEditProductState value) error,
+    required TResult Function(_InputDataAddEditProductState value) inputData,
+    required TResult Function(_ProgressAddEditProductState value) progress,
+  }) {
+    return progress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+  }) {
+    return progress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SuccessAddEditProductState value)? success,
+    TResult Function(_InvalidAddEditProductState value)? invalid,
+    TResult Function(_ErrorAddEditProductState value)? error,
+    TResult Function(_InputDataAddEditProductState value)? inputData,
+    TResult Function(_ProgressAddEditProductState value)? progress,
+    required TResult orElse(),
+  }) {
+    if (progress != null) {
+      return progress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProgressAddEditProductState extends AddEditProductState {
+  const factory _ProgressAddEditProductState(
+      {final AddEditProductMode mode,
+      final CreateProduct product}) = _$_ProgressAddEditProductState;
+  const _ProgressAddEditProductState._() : super._();
+
+  @override
+  AddEditProductMode get mode;
+  @override
+  CreateProduct get product;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProgressAddEditProductStateCopyWith<_$_ProgressAddEditProductState>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -76,9 +76,9 @@ class ProductsOverviewView extends StatelessWidget {
           _showErrorMessage(state.errorMessageOrNull, context);
         },
         builder: (context, state) => state.when(
-          progress: (filter, products) => const ProgressWidget(),
-          error: (filter, products, _) => _buildBody(products),
-          success: (filter, products) => products.isEmpty
+          progress: (products, filter) => const ProgressWidget(),
+          error: (products, filter, _) => _buildBody(products),
+          success: (products, filter) => products.isEmpty
               ? _buildEmptyState(context)
               : _buildBody(products),
         ),

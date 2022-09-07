@@ -174,45 +174,45 @@ abstract class _StartedPopularProductsEvent implements PopularProductsEvent {
 mixin _$PopularProductsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function(List<Product> products) success,
     required TResult Function(List<Product> products, String message) error,
+    required TResult Function(List<Product> products) success,
+    required TResult Function() inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
     TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
     TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressPopularProductsState value) inProgress,
-    required TResult Function(_SuccessPopularProductsState value) success,
     required TResult Function(_ErrorPopularProductsState value) error,
+    required TResult Function(_SuccessPopularProductsState value) success,
+    required TResult Function(_InProgressPopularProductsState value) inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
     TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
     TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -233,276 +233,6 @@ class _$PopularProductsStateCopyWithImpl<$Res>
   final PopularProductsState _value;
   // ignore: unused_field
   final $Res Function(PopularProductsState) _then;
-}
-
-/// @nodoc
-abstract class _$$_InProgressPopularProductsStateCopyWith<$Res> {
-  factory _$$_InProgressPopularProductsStateCopyWith(
-          _$_InProgressPopularProductsState value,
-          $Res Function(_$_InProgressPopularProductsState) then) =
-      __$$_InProgressPopularProductsStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InProgressPopularProductsStateCopyWithImpl<$Res>
-    extends _$PopularProductsStateCopyWithImpl<$Res>
-    implements _$$_InProgressPopularProductsStateCopyWith<$Res> {
-  __$$_InProgressPopularProductsStateCopyWithImpl(
-      _$_InProgressPopularProductsState _value,
-      $Res Function(_$_InProgressPopularProductsState) _then)
-      : super(_value, (v) => _then(v as _$_InProgressPopularProductsState));
-
-  @override
-  _$_InProgressPopularProductsState get _value =>
-      super._value as _$_InProgressPopularProductsState;
-}
-
-/// @nodoc
-
-class _$_InProgressPopularProductsState
-    extends _InProgressPopularProductsState {
-  const _$_InProgressPopularProductsState() : super._();
-
-  @override
-  String toString() {
-    return 'PopularProductsState.inProgress()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InProgressPopularProductsState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function(List<Product> products) success,
-    required TResult Function(List<Product> products, String message) error,
-  }) {
-    return inProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
-    TResult Function(List<Product> products, String message)? error,
-  }) {
-    return inProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
-    TResult Function(List<Product> products, String message)? error,
-    required TResult orElse(),
-  }) {
-    if (inProgress != null) {
-      return inProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressPopularProductsState value) inProgress,
-    required TResult Function(_SuccessPopularProductsState value) success,
-    required TResult Function(_ErrorPopularProductsState value) error,
-  }) {
-    return inProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
-    TResult Function(_ErrorPopularProductsState value)? error,
-  }) {
-    return inProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
-    TResult Function(_ErrorPopularProductsState value)? error,
-    required TResult orElse(),
-  }) {
-    if (inProgress != null) {
-      return inProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InProgressPopularProductsState extends PopularProductsState {
-  const factory _InProgressPopularProductsState() =
-      _$_InProgressPopularProductsState;
-  const _InProgressPopularProductsState._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_SuccessPopularProductsStateCopyWith<$Res> {
-  factory _$$_SuccessPopularProductsStateCopyWith(
-          _$_SuccessPopularProductsState value,
-          $Res Function(_$_SuccessPopularProductsState) then) =
-      __$$_SuccessPopularProductsStateCopyWithImpl<$Res>;
-  $Res call({List<Product> products});
-}
-
-/// @nodoc
-class __$$_SuccessPopularProductsStateCopyWithImpl<$Res>
-    extends _$PopularProductsStateCopyWithImpl<$Res>
-    implements _$$_SuccessPopularProductsStateCopyWith<$Res> {
-  __$$_SuccessPopularProductsStateCopyWithImpl(
-      _$_SuccessPopularProductsState _value,
-      $Res Function(_$_SuccessPopularProductsState) _then)
-      : super(_value, (v) => _then(v as _$_SuccessPopularProductsState));
-
-  @override
-  _$_SuccessPopularProductsState get _value =>
-      super._value as _$_SuccessPopularProductsState;
-
-  @override
-  $Res call({
-    Object? products = freezed,
-  }) {
-    return _then(_$_SuccessPopularProductsState(
-      products: products == freezed
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SuccessPopularProductsState extends _SuccessPopularProductsState {
-  const _$_SuccessPopularProductsState({required final List<Product> products})
-      : _products = products,
-        super._();
-
-  final List<Product> _products;
-  @override
-  List<Product> get products {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
-
-  @override
-  String toString() {
-    return 'PopularProductsState.success(products: $products)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SuccessPopularProductsState &&
-            const DeepCollectionEquality().equals(other._products, _products));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessPopularProductsStateCopyWith<_$_SuccessPopularProductsState>
-      get copyWith => __$$_SuccessPopularProductsStateCopyWithImpl<
-          _$_SuccessPopularProductsState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function(List<Product> products) success,
-    required TResult Function(List<Product> products, String message) error,
-  }) {
-    return success(products);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
-    TResult Function(List<Product> products, String message)? error,
-  }) {
-    return success?.call(products);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
-    TResult Function(List<Product> products, String message)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(products);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressPopularProductsState value) inProgress,
-    required TResult Function(_SuccessPopularProductsState value) success,
-    required TResult Function(_ErrorPopularProductsState value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
-    TResult Function(_ErrorPopularProductsState value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
-    TResult Function(_ErrorPopularProductsState value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SuccessPopularProductsState extends PopularProductsState {
-  const factory _SuccessPopularProductsState(
-      {required final List<Product> products}) = _$_SuccessPopularProductsState;
-  const _SuccessPopularProductsState._() : super._();
-
-  List<Product> get products => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$_SuccessPopularProductsStateCopyWith<_$_SuccessPopularProductsState>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -595,9 +325,9 @@ class _$_ErrorPopularProductsState extends _ErrorPopularProductsState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inProgress,
-    required TResult Function(List<Product> products) success,
     required TResult Function(List<Product> products, String message) error,
+    required TResult Function(List<Product> products) success,
+    required TResult Function() inProgress,
   }) {
     return error(products, message);
   }
@@ -605,9 +335,9 @@ class _$_ErrorPopularProductsState extends _ErrorPopularProductsState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
     TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
   }) {
     return error?.call(products, message);
   }
@@ -615,9 +345,9 @@ class _$_ErrorPopularProductsState extends _ErrorPopularProductsState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inProgress,
-    TResult Function(List<Product> products)? success,
     TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -629,9 +359,9 @@ class _$_ErrorPopularProductsState extends _ErrorPopularProductsState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InProgressPopularProductsState value) inProgress,
-    required TResult Function(_SuccessPopularProductsState value) success,
     required TResult Function(_ErrorPopularProductsState value) error,
+    required TResult Function(_SuccessPopularProductsState value) success,
+    required TResult Function(_InProgressPopularProductsState value) inProgress,
   }) {
     return error(this);
   }
@@ -639,9 +369,9 @@ class _$_ErrorPopularProductsState extends _ErrorPopularProductsState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
     TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
   }) {
     return error?.call(this);
   }
@@ -649,9 +379,9 @@ class _$_ErrorPopularProductsState extends _ErrorPopularProductsState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InProgressPopularProductsState value)? inProgress,
-    TResult Function(_SuccessPopularProductsState value)? success,
     TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -667,9 +397,279 @@ abstract class _ErrorPopularProductsState extends PopularProductsState {
       final String message}) = _$_ErrorPopularProductsState;
   const _ErrorPopularProductsState._() : super._();
 
-  List<Product> get products => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  List<Product> get products;
+  String get message;
   @JsonKey(ignore: true)
   _$$_ErrorPopularProductsStateCopyWith<_$_ErrorPopularProductsState>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SuccessPopularProductsStateCopyWith<$Res> {
+  factory _$$_SuccessPopularProductsStateCopyWith(
+          _$_SuccessPopularProductsState value,
+          $Res Function(_$_SuccessPopularProductsState) then) =
+      __$$_SuccessPopularProductsStateCopyWithImpl<$Res>;
+  $Res call({List<Product> products});
+}
+
+/// @nodoc
+class __$$_SuccessPopularProductsStateCopyWithImpl<$Res>
+    extends _$PopularProductsStateCopyWithImpl<$Res>
+    implements _$$_SuccessPopularProductsStateCopyWith<$Res> {
+  __$$_SuccessPopularProductsStateCopyWithImpl(
+      _$_SuccessPopularProductsState _value,
+      $Res Function(_$_SuccessPopularProductsState) _then)
+      : super(_value, (v) => _then(v as _$_SuccessPopularProductsState));
+
+  @override
+  _$_SuccessPopularProductsState get _value =>
+      super._value as _$_SuccessPopularProductsState;
+
+  @override
+  $Res call({
+    Object? products = freezed,
+  }) {
+    return _then(_$_SuccessPopularProductsState(
+      products: products == freezed
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SuccessPopularProductsState extends _SuccessPopularProductsState {
+  const _$_SuccessPopularProductsState({required final List<Product> products})
+      : _products = products,
+        super._();
+
+  final List<Product> _products;
+  @override
+  List<Product> get products {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  String toString() {
+    return 'PopularProductsState.success(products: $products)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SuccessPopularProductsState &&
+            const DeepCollectionEquality().equals(other._products, _products));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessPopularProductsStateCopyWith<_$_SuccessPopularProductsState>
+      get copyWith => __$$_SuccessPopularProductsStateCopyWithImpl<
+          _$_SuccessPopularProductsState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Product> products, String message) error,
+    required TResult Function(List<Product> products) success,
+    required TResult Function() inProgress,
+  }) {
+    return success(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
+  }) {
+    return success?.call(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorPopularProductsState value) error,
+    required TResult Function(_SuccessPopularProductsState value) success,
+    required TResult Function(_InProgressPopularProductsState value) inProgress,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessPopularProductsState extends PopularProductsState {
+  const factory _SuccessPopularProductsState(
+      {required final List<Product> products}) = _$_SuccessPopularProductsState;
+  const _SuccessPopularProductsState._() : super._();
+
+  List<Product> get products;
+  @JsonKey(ignore: true)
+  _$$_SuccessPopularProductsStateCopyWith<_$_SuccessPopularProductsState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InProgressPopularProductsStateCopyWith<$Res> {
+  factory _$$_InProgressPopularProductsStateCopyWith(
+          _$_InProgressPopularProductsState value,
+          $Res Function(_$_InProgressPopularProductsState) then) =
+      __$$_InProgressPopularProductsStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InProgressPopularProductsStateCopyWithImpl<$Res>
+    extends _$PopularProductsStateCopyWithImpl<$Res>
+    implements _$$_InProgressPopularProductsStateCopyWith<$Res> {
+  __$$_InProgressPopularProductsStateCopyWithImpl(
+      _$_InProgressPopularProductsState _value,
+      $Res Function(_$_InProgressPopularProductsState) _then)
+      : super(_value, (v) => _then(v as _$_InProgressPopularProductsState));
+
+  @override
+  _$_InProgressPopularProductsState get _value =>
+      super._value as _$_InProgressPopularProductsState;
+}
+
+/// @nodoc
+
+class _$_InProgressPopularProductsState
+    extends _InProgressPopularProductsState {
+  const _$_InProgressPopularProductsState() : super._();
+
+  @override
+  String toString() {
+    return 'PopularProductsState.inProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InProgressPopularProductsState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Product> products, String message) error,
+    required TResult Function(List<Product> products) success,
+    required TResult Function() inProgress,
+  }) {
+    return inProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
+  }) {
+    return inProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Product> products, String message)? error,
+    TResult Function(List<Product> products)? success,
+    TResult Function()? inProgress,
+    required TResult orElse(),
+  }) {
+    if (inProgress != null) {
+      return inProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ErrorPopularProductsState value) error,
+    required TResult Function(_SuccessPopularProductsState value) success,
+    required TResult Function(_InProgressPopularProductsState value) inProgress,
+  }) {
+    return inProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
+  }) {
+    return inProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ErrorPopularProductsState value)? error,
+    TResult Function(_SuccessPopularProductsState value)? success,
+    TResult Function(_InProgressPopularProductsState value)? inProgress,
+    required TResult orElse(),
+  }) {
+    if (inProgress != null) {
+      return inProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InProgressPopularProductsState extends PopularProductsState {
+  const factory _InProgressPopularProductsState() =
+      _$_InProgressPopularProductsState;
+  const _InProgressPopularProductsState._() : super._();
 }

@@ -8,15 +8,15 @@ class ProductsOverviewState with _$ProductsOverviewState {
   }) = _SuccessProductsState;
 
   const factory ProductsOverviewState.error({
-    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
     @Default(<Product>[]) final List<Product> products,
+    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
     @Default('Something went wrong. Please try again later.')
         final String message,
   }) = _ErrorProductsState;
 
   const factory ProductsOverviewState.progress({
-    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
     @Default(<Product>[]) final List<Product> products,
+    @Default(ProductsOverviewFilter.all) final ProductsOverviewFilter filter,
   }) = _ProgressProductsState;
 
   const ProductsOverviewState._();

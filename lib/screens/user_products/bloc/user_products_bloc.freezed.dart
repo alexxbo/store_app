@@ -313,7 +313,7 @@ abstract class _RemoveProductProductsEvent extends UserProductsEvent {
       _$_RemoveProductProductsEvent;
   const _RemoveProductProductsEvent._() : super._();
 
-  String get productId => throw _privateConstructorUsedError;
+  String get productId;
   @JsonKey(ignore: true)
   _$$_RemoveProductProductsEventCopyWith<_$_RemoveProductProductsEvent>
       get copyWith => throw _privateConstructorUsedError;
@@ -553,7 +553,7 @@ abstract class _ProgressUserProductsState extends UserProductsState {
   const _ProgressUserProductsState._() : super._();
 
   @override
-  List<Product> get products => throw _privateConstructorUsedError;
+  List<Product> get products;
   @override
   @JsonKey(ignore: true)
   _$$_ProgressUserProductsStateCopyWith<_$_ProgressUserProductsState>
@@ -708,7 +708,7 @@ abstract class _SuccessUserProductsState extends UserProductsState {
   const _SuccessUserProductsState._() : super._();
 
   @override
-  List<Product> get products => throw _privateConstructorUsedError;
+  List<Product> get products;
   @override
   @JsonKey(ignore: true)
   _$$_SuccessUserProductsStateCopyWith<_$_SuccessUserProductsState>
@@ -878,8 +878,8 @@ abstract class _ErrorUserProductsState extends UserProductsState {
   const _ErrorUserProductsState._() : super._();
 
   @override
-  List<Product> get products => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  List<Product> get products;
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_ErrorUserProductsStateCopyWith<_$_ErrorUserProductsState> get copyWith =>

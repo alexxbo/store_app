@@ -216,7 +216,7 @@ abstract class _StartedProductDetailEvent extends ProductDetailEvent {
   const _StartedProductDetailEvent._() : super._();
 
   @override
-  String get productId => throw _privateConstructorUsedError;
+  String get productId;
   @override
   @JsonKey(ignore: true)
   _$$_StartedProductDetailEventCopyWith<_$_StartedProductDetailEvent>
@@ -544,7 +544,7 @@ abstract class _SuccessProductDetailState extends ProductDetailState {
       _$_SuccessProductDetailState;
   const _SuccessProductDetailState._() : super._();
 
-  Product get product => throw _privateConstructorUsedError;
+  Product get product;
   @JsonKey(ignore: true)
   _$$_SuccessProductDetailStateCopyWith<_$_SuccessProductDetailState>
       get copyWith => throw _privateConstructorUsedError;
@@ -692,7 +692,7 @@ abstract class _ErrorProductDetailState extends ProductDetailState {
       _$_ErrorProductDetailState;
   const _ErrorProductDetailState._() : super._();
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   _$$_ErrorProductDetailStateCopyWith<_$_ErrorProductDetailState>
       get copyWith => throw _privateConstructorUsedError;
