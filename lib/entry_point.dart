@@ -36,11 +36,8 @@ Future<void> entryPoint(FutureOr<AppConfig> Function() builder) async {
     () async {
       final app = await builder();
       setupServiceLocator(app.environment);
-
-      await BlocOverrides.runZoned(
-        () async => runApp(app),
-        blocObserver: AppBlocObserver(),
-      );
+      Bloc.observer = AppBlocObserver();
+      runApp(app);
     },
     (error, stackTrace) => logger.e(
       message: '${error.runtimeType}',
