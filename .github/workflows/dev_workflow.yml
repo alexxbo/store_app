@@ -23,9 +23,9 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-      - uses: subosito/flutter-action@v2.4.0
+      - uses: subosito/flutter-action@v2.6.2
         with:
-          flutter-version: '3.0.4'
+          flutter-version: '3.3.0'
 
       - run: echo $SECRETS_FILE_CONTENT | base64 -d > lib/secrets.dart
         env:
@@ -45,9 +45,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2.4.0
+      - uses: subosito/flutter-action@v2.6.2
         with:
-          flutter-version: '3.0.4'
+          flutter-version: '3.3.0'
           architecture: x64
       - run: echo $SECRETS_FILE_CONTENT | base64 -d > lib/secrets.dart
         env:
@@ -72,9 +72,9 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-      - uses: subosito/flutter-action@v2.4.0
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.0.4'
+          flutter-version: '3.3.0'
 
       - run: echo $SECRETS_FILE_CONTENT | base64 -d > lib/secrets.dart
         env:
