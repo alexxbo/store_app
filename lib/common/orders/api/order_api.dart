@@ -10,8 +10,8 @@ abstract class IOrderApi {
       _OrderApi(client, baseUrl);
 
   Future<List<OrderItemResponse>> getOrders({
-    required final String userId,
-    required final String userToken,
+    required String userId,
+    required String userToken,
   });
 
   Future<void> add(OrderRequest order);
@@ -31,8 +31,8 @@ class _OrderApi implements IOrderApi {
 
   @override
   Future<List<OrderItemResponse>> getOrders({
-    required final String userId,
-    required final String userToken,
+    required String userId,
+    required String userToken,
   }) async {
     final url = Uri.parse('$_baseUrl/orders/$userId.json?auth=$userToken');
     final response = await _client.get(url);
