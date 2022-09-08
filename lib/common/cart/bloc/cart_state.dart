@@ -5,11 +5,11 @@ class CartState with _$CartState {
   const CartState._();
 
   const factory CartState.full({
-    required final List<CartModel> items,
+    required final List<CartItem> items,
   }) = _FullCartState;
 
   const factory CartState.empty({
-    @Default(<CartModel>[]) final List<CartModel> items,
+    @Default(<CartItem>[]) final List<CartItem> items,
   }) = _EmptyCartState;
 
   double get totalAmount => when<double>(
@@ -22,15 +22,15 @@ class CartState with _$CartState {
         empty: (_) => 0,
       );
 
-  List<CartModel> get products => when<Iterable<CartModel>>(
+  List<CartItem> get products => when<Iterable<CartItem>>(
         full: (items) => items,
         empty: (items) => items,
       ).toList();
 
-  double _calculateTotalAmount(List<CartModel> items) {
+  double _calculateTotalAmount(List<CartItem> items) {
     return items.fold(
       0,
-      (total, item) => total + (item.product.price * item.product.quantity),
+      (total, item) => total + (item.price * item.quantity),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:flutter_shop/common/data/model/cart_item.dart';
 import 'package:flutter_shop/common/data/model/order_item.dart';
 import 'package:flutter_shop/common/data/storage/user_storage.dart';
 import 'package:flutter_shop/common/orders/api/model/order_request.dart';
 import 'package:flutter_shop/common/orders/api/order_api.dart';
 import 'package:flutter_shop/common/orders/repository/order_mappers.dart';
+import 'package:shopping_cart_repository/shopping_cart_repository.dart';
 
 abstract class IOrdersRepository {
   factory IOrdersRepository({

@@ -4,7 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_shop/common/authorization/bloc/authorization_bloc.dart';
 import 'package:flutter_shop/common/authorization/data/authorization_repository.dart';
 import 'package:flutter_shop/common/cart/bloc/cart_bloc.dart';
-import 'package:flutter_shop/common/cart/data/cart_repository.dart';
 import 'package:flutter_shop/common/service_locator/injection_container.dart';
 import 'package:flutter_shop/l10n/localization.dart';
 import 'package:flutter_shop/screens/add_edit_product/add_edit_product.dart';
@@ -16,6 +15,7 @@ import 'package:flutter_shop/screens/products_overview/products_overview.dart';
 import 'package:flutter_shop/screens/splash/splash_screen.dart';
 import 'package:flutter_shop/screens/user_products/user_products_screen.dart';
 import 'package:flutter_shop/theme/app_theme.dart';
+import 'package:shopping_cart_repository/shopping_cart_repository.dart';
 
 class FlutterShop extends StatelessWidget {
   const FlutterShop({Key? key}) : super(key: key);

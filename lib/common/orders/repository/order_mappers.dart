@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:flutter_shop/common/data/model/cart_item.dart';
 import 'package:flutter_shop/common/data/model/order_item.dart';
 import 'package:flutter_shop/common/orders/api/model/order_item_response.dart';
 import 'package:flutter_shop/common/orders/api/model/order_product_response.dart';
 import 'package:flutter_shop/common/orders/api/model/order_request.dart';
 import 'package:flutter_shop/util/extensions.dart';
+import 'package:shopping_cart_repository/shopping_cart_repository.dart';
 
 extension OrderItemX on OrderItemResponse {
   OrderItem? toOrderItem() {
@@ -43,7 +43,7 @@ extension OrderProductX on OrderProductResponse {
 extension CartItemX on CartItem {
   OrderProductRequest toOrderProductRequest() {
     return OrderProductRequest(
-      id: id,
+      id: productId,
       title: title,
       quantity: quantity,
       price: price,

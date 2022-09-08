@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 class CartDetailItem extends StatelessWidget {
   const CartDetailItem({
-    required this.id,
     required this.productId,
     required this.title,
     required this.price,
@@ -13,7 +12,6 @@ class CartDetailItem extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final String id;
   final String productId;
   final String title;
   final double price;
@@ -24,7 +22,7 @@ class CartDetailItem extends StatelessWidget {
     final localization = context.localization;
 
     return Dismissible(
-      key: ValueKey(id),
+      key: ValueKey(productId),
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) async => _showConfirmDeleteDialog(context),
       onDismissed: (direction) => _removeProduct(context),

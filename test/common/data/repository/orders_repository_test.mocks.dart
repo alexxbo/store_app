@@ -4,11 +4,11 @@
 
 import 'dart:async' as _i3;
 
-import 'package:flutter_shop/common/data/model/cart_item.dart' as _i5;
 import 'package:flutter_shop/common/data/model/order_item.dart' as _i4;
 import 'package:flutter_shop/common/orders/repository/orders_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:shopping_cart_repository/shopping_cart_repository.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

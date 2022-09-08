@@ -703,23 +703,23 @@ abstract class _ClearCartEvent extends CartEvent {
 
 /// @nodoc
 mixin _$CartState {
-  List<CartModel> get items => throw _privateConstructorUsedError;
+  List<CartItem> get items => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CartModel> items) full,
-    required TResult Function(List<CartModel> items) empty,
+    required TResult Function(List<CartItem> items) full,
+    required TResult Function(List<CartItem> items) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<CartModel> items)? full,
-    TResult Function(List<CartModel> items)? empty,
+    TResult Function(List<CartItem> items)? full,
+    TResult Function(List<CartItem> items)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CartModel> items)? full,
-    TResult Function(List<CartModel> items)? empty,
+    TResult Function(List<CartItem> items)? full,
+    TResult Function(List<CartItem> items)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -752,7 +752,8 @@ mixin _$CartState {
 abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res>;
-  $Res call({List<CartModel> items});
+
+  $Res call({List<CartItem> items});
 }
 
 /// @nodoc
@@ -771,7 +772,7 @@ class _$CartStateCopyWithImpl<$Res> implements $CartStateCopyWith<$Res> {
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<CartModel>,
+              as List<CartItem>,
     ));
   }
 }
@@ -782,8 +783,9 @@ abstract class _$$_FullCartStateCopyWith<$Res>
   factory _$$_FullCartStateCopyWith(
           _$_FullCartState value, $Res Function(_$_FullCartState) then) =
       __$$_FullCartStateCopyWithImpl<$Res>;
+
   @override
-  $Res call({List<CartModel> items});
+  $Res call({List<CartItem> items});
 }
 
 /// @nodoc
@@ -804,7 +806,7 @@ class __$$_FullCartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
       items: items == freezed
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<CartModel>,
+              as List<CartItem>,
     ));
   }
 }
@@ -812,13 +814,14 @@ class __$$_FullCartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FullCartState extends _FullCartState {
-  const _$_FullCartState({required final List<CartModel> items})
+  const _$_FullCartState({required final List<CartItem> items})
       : _items = items,
         super._();
 
-  final List<CartModel> _items;
+  final List<CartItem> _items;
+
   @override
-  List<CartModel> get items {
+  List<CartItem> get items {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -848,8 +851,8 @@ class _$_FullCartState extends _FullCartState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CartModel> items) full,
-    required TResult Function(List<CartModel> items) empty,
+    required TResult Function(List<CartItem> items) full,
+    required TResult Function(List<CartItem> items) empty,
   }) {
     return full(items);
   }
@@ -857,8 +860,8 @@ class _$_FullCartState extends _FullCartState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<CartModel> items)? full,
-    TResult Function(List<CartModel> items)? empty,
+    TResult Function(List<CartItem> items)? full,
+    TResult Function(List<CartItem> items)? empty,
   }) {
     return full?.call(items);
   }
@@ -866,8 +869,8 @@ class _$_FullCartState extends _FullCartState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CartModel> items)? full,
-    TResult Function(List<CartModel> items)? empty,
+    TResult Function(List<CartItem> items)? full,
+    TResult Function(List<CartItem> items)? empty,
     required TResult orElse(),
   }) {
     if (full != null) {
@@ -909,12 +912,13 @@ class _$_FullCartState extends _FullCartState {
 }
 
 abstract class _FullCartState extends CartState {
-  const factory _FullCartState({required final List<CartModel> items}) =
+  const factory _FullCartState({required final List<CartItem> items}) =
       _$_FullCartState;
   const _FullCartState._() : super._();
 
   @override
-  List<CartModel> get items;
+  List<CartItem> get items;
+
   @override
   @JsonKey(ignore: true)
   _$$_FullCartStateCopyWith<_$_FullCartState> get copyWith =>
@@ -927,8 +931,9 @@ abstract class _$$_EmptyCartStateCopyWith<$Res>
   factory _$$_EmptyCartStateCopyWith(
           _$_EmptyCartState value, $Res Function(_$_EmptyCartState) then) =
       __$$_EmptyCartStateCopyWithImpl<$Res>;
+
   @override
-  $Res call({List<CartModel> items});
+  $Res call({List<CartItem> items});
 }
 
 /// @nodoc
@@ -950,7 +955,7 @@ class __$$_EmptyCartStateCopyWithImpl<$Res>
       items: items == freezed
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<CartModel>,
+              as List<CartItem>,
     ));
   }
 }
@@ -958,14 +963,15 @@ class __$$_EmptyCartStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_EmptyCartState extends _EmptyCartState {
-  const _$_EmptyCartState({final List<CartModel> items = const <CartModel>[]})
+  const _$_EmptyCartState({final List<CartItem> items = const <CartItem>[]})
       : _items = items,
         super._();
 
-  final List<CartModel> _items;
+  final List<CartItem> _items;
+
   @override
   @JsonKey()
-  List<CartModel> get items {
+  List<CartItem> get items {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -995,8 +1001,8 @@ class _$_EmptyCartState extends _EmptyCartState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CartModel> items) full,
-    required TResult Function(List<CartModel> items) empty,
+    required TResult Function(List<CartItem> items) full,
+    required TResult Function(List<CartItem> items) empty,
   }) {
     return empty(items);
   }
@@ -1004,8 +1010,8 @@ class _$_EmptyCartState extends _EmptyCartState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<CartModel> items)? full,
-    TResult Function(List<CartModel> items)? empty,
+    TResult Function(List<CartItem> items)? full,
+    TResult Function(List<CartItem> items)? empty,
   }) {
     return empty?.call(items);
   }
@@ -1013,8 +1019,8 @@ class _$_EmptyCartState extends _EmptyCartState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CartModel> items)? full,
-    TResult Function(List<CartModel> items)? empty,
+    TResult Function(List<CartItem> items)? full,
+    TResult Function(List<CartItem> items)? empty,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -1056,12 +1062,13 @@ class _$_EmptyCartState extends _EmptyCartState {
 }
 
 abstract class _EmptyCartState extends CartState {
-  const factory _EmptyCartState({final List<CartModel> items}) =
+  const factory _EmptyCartState({final List<CartItem> items}) =
       _$_EmptyCartState;
   const _EmptyCartState._() : super._();
 
   @override
-  List<CartModel> get items;
+  List<CartItem> get items;
+
   @override
   @JsonKey(ignore: true)
   _$$_EmptyCartStateCopyWith<_$_EmptyCartState> get copyWith =>

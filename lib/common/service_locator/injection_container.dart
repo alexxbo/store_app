@@ -1,7 +1,5 @@
 import 'package:flutter_shop/app/environment.dart';
 import 'package:flutter_shop/common/authorization/data/authorization_repository.dart';
-import 'package:flutter_shop/common/cart/api/cart_api.dart';
-import 'package:flutter_shop/common/cart/data/cart_repository.dart';
 import 'package:flutter_shop/common/data/storage/user_storage.dart';
 import 'package:flutter_shop/common/orders/api/order_api.dart';
 import 'package:flutter_shop/common/orders/repository/orders_repository.dart';
@@ -13,6 +11,7 @@ import 'package:flutter_shop/util/interceptor/user_token_interceptor.dart';
 import 'package:flutter_shop/util/logging/logger_intercepter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_interceptor/http/intercepted_client.dart';
+import 'package:shopping_cart_repository/shopping_cart_repository.dart';
 
 final locator = GetIt.I;
 
@@ -29,7 +28,6 @@ void setupServiceLocator(Environment environment) {
 
   // Api
   final productApi = IProductsApi(productsApiClient, environment.shopBaseUrl);
-  final cartApi = ICartApi();
   final authenticationApi = IAuthenticationApi(client);
   final orderApi = IOrderApi(client, environment.shopBaseUrl);
 
@@ -48,7 +46,7 @@ void setupServiceLocator(Environment environment) {
       ),
     )
     ..registerLazySingleton(
-      () => ICartRepository.call(cartApi),
+      () => ICartRepository(),
     )
     ..registerLazySingleton(
       () => IAuthorizationRepository(storage: userStorage),

@@ -56,11 +56,10 @@ class CartDetailScreen extends StatelessWidget {
                 final item = cartState.products[index];
 
                 return CartDetailItem(
-                  id: item.product.id,
                   productId: item.productId,
-                  title: item.product.title,
-                  quantity: item.product.quantity,
-                  price: item.product.price,
+                  title: item.title,
+                  quantity: item.quantity,
+                  price: item.price,
                 );
               },
             ),
@@ -119,7 +118,7 @@ class _OrderButtonState extends State<OrderButton> with ProgressState {
 
     await repository
         .add(
-          cartBloc.state.products.map((item) => item.product).toList(),
+          cartBloc.state.products,
           cartBloc.state.totalAmount,
         )
         .then(
